@@ -7,15 +7,19 @@ extend lang::std::Layout;
 extend lang::std::Id;
 
 start syntax Fsm = fsm: State* states;
-syntax State = @		Foldable state: Initial "state" Id id "{" 		Transition* transitions 	"}";
+syntax State = state: Initial "state" Id id "{" 		Transition* transitions 	"}";
 syntax Initial = initial: "initial"?;
-syntax Transition = @Foldable transition: Input input ("/" Action action)? ("-\>" Id id)? ";";
-	
+syntax Transition = 
+    transition: Input input ";"
+	  | transition: Input input "-\>" Id id ";"
+	  | transition: Input input "/" Action action ";"
+	  | transition: Input input "/" Action action "-\>" Id id ";"; // optionals in rascal
+	  
 lexical Input = input: Id;
-lexical Action = action: Id;	
+lexical Action = action: Ids;	
 
 public Fsm fsm(str location) {
-   try 
+   try
       return parse(#Fsm, ("" | it + e | str e <- readFile(location))); 
    catch Error: {
    	   println("Oops! Something went wrong. Here is an empty FSM for you.");
