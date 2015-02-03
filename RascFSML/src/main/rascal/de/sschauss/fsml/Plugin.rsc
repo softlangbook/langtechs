@@ -20,11 +20,10 @@ public Fsm checkFsm (Fsm f) {
 	return f[@messages = errors];
 }
 
-
 public set[Contribution] FSMLContrib = {
 	popup(
-		menu("FSML",[	
-	    ])
+		menu("FSML",[
+		])
   	)
 };
 

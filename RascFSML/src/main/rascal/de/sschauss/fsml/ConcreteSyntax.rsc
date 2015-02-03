@@ -4,8 +4,8 @@ import Prelude;
 
 extend lang::std::Layout;
 
-start syntax Fsm = fsm: State*;
-syntax State = state: Initial initial "state" Id id "{" Transition* transitions "}"; 
+start syntax Fsm = fsm: State* states;
+syntax State = @Foldable state: Initial initial "state" Id id "{" Transition* transitions "}"; 
 syntax Initial = 
 	  initial: "initial"
 	| noninitial: "";
