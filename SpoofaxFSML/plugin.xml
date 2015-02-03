@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="fsml"
+            description="FSML"
+            language="FSML"
+            derivedFrom="DynamicRoot"
+            validator="de.sschauss.fsml.FSMLValidator"
+            validatorClass="de.sschauss.fsml.FSMLValidator"
+      ></language>
+   </extension>
+   <extension
+         id="de.sschauss.fsml.parser"
+         name="FSML Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="de.sschauss.fsml.FSMLParseController"
+            language="FSML">
+      </parser>
+   </extension>    
+</plugin>

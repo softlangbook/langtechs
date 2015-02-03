@@ -1,0 +1,23 @@
+module FSML
+
+imports
+	
+	Common
+
+context-free start-symbols
+  
+	Start
+
+context-free syntax
+  
+	Start.Fsm = State*
+	State.InitialState = Initial "state" ID "{" Transition* "}"
+	State.State = "state" ID "{" Transition* "}"
+	Transition.Transition = Input";"
+	Transition.TransitionWithTarget = Input "->" ID";"
+	Transition.TransitionWithAction = Input "/" Action";"
+	Transition.TransitionWithActionAndTarget =	Input "/" Action "->" ID";"
+	Initial.Initial = "initial"
+	Input.Input = ID
+	Action.Action = ID
+	
