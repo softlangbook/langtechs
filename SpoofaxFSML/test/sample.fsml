@@ -6,7 +6,7 @@ initial state locked {
 state unlocked { 
 	ticket / eject ;
 	pass -> locked ;
- }
+}
  
 state exception {  
 	ticket -> eject ;
