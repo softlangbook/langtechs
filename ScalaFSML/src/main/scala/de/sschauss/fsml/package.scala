@@ -8,9 +8,9 @@ package object fsml {
 
   case class State(id: Id, transitions: List[Transition])
 
-  case class Transition(input: Input, action: Action, to: Id) {
-    val -> : Id => Transition = to => Transition(input, action, to)
-    val / : Action => Transition = action => Transition(input, action, to)
+  case class Transition(input: Input, action: Option[Action], to: Option[Id]) {
+    val -> : Id => Transition = to => Transition(input, action, Some(to))
+    val / : Action => Transition = action => Transition(input, Some(action), to)
   }
 
   case class Action(name: Name)
@@ -19,7 +19,7 @@ package object fsml {
 
   case class Input(name: Name)
 
-  implicit def stringToTransition(id: String): Transition = Transition(id, "", "")
+  implicit def stringToTransition(id: String): Transition = Transition(id, None, None)
 
   implicit def stringToAction(id: String): Action = Action(id)
 
