@@ -1,11 +1,9 @@
 import de.sschauss.fsml._
 
-/**
- * Created by simon on 24/02/15.
- */
 object Main extends App {
 
-  val locked = state {
+
+  val locked = initial state {
     "ticket" / "collect" -> "unlocked"
     "pass" / "alarm" -> "exception"
   }
