@@ -13,10 +13,10 @@ package object fsml {
 
     def apply(x: Transition): State = macro stateImpl
 
-    def stateImpl(c: whitebox.Context)(x: c.Tree) : c.universe.Tree = {
+    def stateImpl(c: whitebox.Context)(x: c.Tree): c.universe.Tree = {
       import c.universe._
-      val q"..$stats" = x
-      q"""State("id",$initial, $stats)"""
+      val q"..$transitions" = x
+      q"""State($initial, $transitions)"""
     }
   }
 
@@ -25,17 +25,16 @@ package object fsml {
 
     def state(x: Transition): State = macro stateImpl
 
-    def stateImpl(c: whitebox.Context)(x: c.Tree) : c.universe.Tree = {
+    def stateImpl(c: whitebox.Context)(x: c.Tree): c.universe.Tree = {
       import c.universe._
-      val q"..$stats" = x
-      q"""State("id",$initial, $stats)"""
+      val q"..$transitions" = x
+      q"""State(true, $transitions)"""
     }
   }
 
   case class Fsm(states: List[State])
 
-  case class State(id: String, initial: Boolean, transitions: List[Transition]) {
-  }
+  case class State(initial: Boolean, transitions: List[Transition])
 
   case class Transition(input: String, action: Option[String], to: Option[String]) {
     lazy val -> : String => Transition = to => Transition(input, action, Some(to))
