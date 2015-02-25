@@ -6,8 +6,6 @@ import scala.reflect.macros.whitebox
 
 package object fsml {
 
-  type Name = String
-
   object state {
     val initial = false
 
@@ -16,7 +14,7 @@ package object fsml {
     def stateImpl(c: whitebox.Context)(x: c.Tree): c.universe.Tree = {
       import c.universe._
       val q"..$transitions" = x
-      q"""State($initial, $transitions)"""
+      q"""new State($initial, $transitions)"""
     }
   }
 
@@ -28,19 +26,20 @@ package object fsml {
     def stateImpl(c: whitebox.Context)(x: c.Tree): c.universe.Tree = {
       import c.universe._
       val q"..$transitions" = x
-      q"""State(true, $transitions)"""
+      q"""new State($initial, $transitions)"""
     }
   }
 
-  case class Fsm(states: List[State])
-
-  case class State(initial: Boolean, transitions: List[Transition])
-
-  case class Transition(input: String, action: Option[String], to: Option[String]) {
-    lazy val -> : String => Transition = to => Transition(input, action, Some(to))
-    lazy val / : String => Transition = action => Transition(input, Some(action), to)
+  class State(initial: Boolean, ts: => List[Transition]) {
+    lazy val transitions: List[Transition] = ts
   }
 
-  implicit def stringToTransition(id: String): Transition = Transition(id, None, None)
+  class Transition(input: String, action: Option[String], t: => Option[State]) {
+    lazy val to: Option[State] = t
+    val -> : State => Transition = to => new Transition(input, action, Some(to))
+    val / : String => Transition = action => new Transition(input, Some(action), to)
+  }
+
+  implicit val stringToTransition: String => Transition = id => new Transition(id, None, None)
 
 }

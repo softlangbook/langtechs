@@ -3,23 +3,21 @@ import de.sschauss.fsml._
 object Main extends App {
 
 
-  val locked = initial state {
-    "ticket" / "collect" -> "unlocked"
-    "pass" / "alarm" -> "exception"
+  val locked: State = initial state {
+    "ticket" / "collect" -> unlocked
+    "pass" / "alarm" -> exception
   }
 
-  val unlocked = state {
+  val unlocked: State = state {
     "ticket" / "eject"
-    "pass" -> "locked"
+    "pass" -> locked
   }
 
-  val exception = state {
+  val exception: State = state {
     "ticket" / "eject"
     "pass"
     "mute"
-    "release" -> "locked"
+    "release" -> locked
   }
-
-  List(locked, unlocked, exception) foreach println
 
 }
