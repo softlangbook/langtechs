@@ -20,4 +20,6 @@ object Main extends App {
     "release" -> locked
   }
 
+  new Fsm(locked, unlocked, exception).step(Seq("ticket", "pass", "mute"))
+
 }
