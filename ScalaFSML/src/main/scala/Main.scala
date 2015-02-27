@@ -1,25 +1,27 @@
 import de.sschauss.fsml._
 
+
 object Main extends App {
 
+  val turnstileFsm = fsm {
 
-  val locked: State = initial state {
-    "ticket" / "collect" -> unlocked
-    "pass" / "alarm" -> exception
+    def locked: State = initial state {
+      "ticket" / "collect" -> unlocked
+      "pass" / "alarm" -> exception
+    }
+
+    def unlocked: State = state {
+      "ticket" / "eject"
+      "pass" -> locked
+    }
+
+    def exception: State = state {
+      "ticket" / "eject"
+      "pass"
+      "mute"
+      "release" -> locked
+    }
+
   }
-
-  val unlocked: State = state {
-    "ticket" / "eject"
-    "pass" -> locked
-  }
-
-  val exception: State = state {
-    "ticket" / "eject"
-    "pass"
-    "mute"
-    "release" -> locked
-  }
-
-  new Fsm(locked, unlocked, exception).step(Seq("ticket", "pass", "mute"))
 
 }

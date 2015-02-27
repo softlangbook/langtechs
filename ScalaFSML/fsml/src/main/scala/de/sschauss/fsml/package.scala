@@ -1,6 +1,6 @@
 package de.sschauss
 
-import scala.language.implicitConversions
+import scala.language.{postfixOps, implicitConversions}
 import scala.language.experimental.macros
 import scala.reflect.macros.whitebox
 
@@ -11,10 +11,10 @@ package object fsml {
 
     def apply(x: Transition): State = macro stateImpl
 
-    def stateImpl(c: whitebox.Context)(x: c.Tree): c.universe.Tree = {
+    def stateImpl(c: whitebox.Context)(x: c.Tree): c.Tree = {
       import c.universe._
-      val q"..$transitions" = x
-      q"""new State($initial, $transitions)"""
+      val q"..${transitions: List[Tree]}" = x
+      q"""new State($initial, "", $transitions)"""
     }
   }
 
@@ -23,14 +23,14 @@ package object fsml {
 
     def state(x: Transition): State = macro stateImpl
 
-    def stateImpl(c: whitebox.Context)(x: c.Tree): c.universe.Tree = {
+    def stateImpl(c: whitebox.Context)(x: c.Tree): c.Tree = {
       import c.universe._
-      val q"..$transitions" = x
-      q"""new State($initial, $transitions)"""
+      val q"..${transitions: List[Tree]}" = x
+      q"""new State($initial, "", $transitions)"""
     }
   }
 
-  class State(i: Boolean, ts: => List[Transition]) {
+  class State(i: Boolean, id: String, ts: => List[Transition]) {
     val initial = i
     lazy val transitions: List[Transition] = ts
   }
@@ -45,36 +45,32 @@ package object fsml {
 
   implicit val stringToTransition: String => Transition = id => new Transition(id, None, None)
 
+  trait Fsm {
 
-  class Fsm(currentState: State, states: Set[State]) {
-
-    def this(states: State*) = this(states find {
-      _.initial
-    } get, states toSet)
-
-    def step(input: String): Fsm = currentState.transitions find {
-      _.input == input
-    } match {
-      case Some(transition) =>
-        println(s"input: $input")
-        (transition.action, transition.to) match {
-          case (None, None) => this
-          case (None, Some(to)) => new Fsm(to, states)
-          case (Some(action), None) =>
-            println(action)
-            this
-          case (Some(action), Some(to)) =>
-            println(action)
-            new Fsm(to, states)
-        }
-      case None => throw new RuntimeException(s"Invalid input, doesn't match an ${currentState.transitions map {_.input}}")
-    }
-
-    def step(inputs: Seq[String]): Fsm = inputs match {
-      case Nil => this
-      case Seq(i, is@_*) => step(i).step(is)
-    }
+    val states: List[State]
 
   }
+
+  def fsm(x: Unit): Fsm = macro fsmImpl
+
+
+  def fsmImpl(c: whitebox.Context)(x: c.Tree): c.Tree = {
+    import c.universe._
+    val q"..${stateValues: List[Tree]}" = x
+    val stateDefinitions = stateValues collect {
+      case s: DefDef => s.symbol
+    } map {
+      s => reify(c.Expr[State](Ident(s)).splice).tree
+    }
+    val states = ValDef(Modifiers(Flag.LAZY | Flag.OVERRIDE), TermName("states"), TypeTree(typeOf[List[State]]), Apply(Select(reify(List).tree, TermName("apply")), stateDefinitions))
+    q"""
+      import de.sschauss.fsml
+      new Fsm {
+        ..$states
+        ..${x.children}
+      }
+      """
+  }
+
 
 }
