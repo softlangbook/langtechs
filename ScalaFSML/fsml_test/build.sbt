@@ -1,3 +1,6 @@
 name := "FSML-Test"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
+libraryDependencies ++= Seq(
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
+  "org.scalacheck" %% "scalacheck" % "1.12.2" % "test"
+)

@@ -17,15 +17,18 @@
       <sourceFolder url="file://$MODULE_DIR$/../../fsml_test/target/scala-2.11/resource_managed/test" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../fsml_test/target/resolution-cache" />
       <excludeFolder url="file://$MODULE_DIR$/../../fsml_test/target/streams" />
+      <excludeFolder url="file://$MODULE_DIR$/../../fsml_test/target/test-reports" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="fsml" exported="" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-compiler:2.11.5:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.11.5:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scalatest:scalatest_2.11:2.2.4:jar" level="project" />
+    <orderEntry type="module" module-name="fsml_impl" exported="" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-compiler:2.11.5:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.11.5:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-parser-combinators_2.11:1.0.3:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang.modules:scala-xml_2.11:1.0.3:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.scalatest:scalatest_2.11:2.2.4:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scala-sbt:test-interface:1.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scalacheck:scalacheck_2.11:1.12.2:jar" level="project" />
   </component>
 </module>

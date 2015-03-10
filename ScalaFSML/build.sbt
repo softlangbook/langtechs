@@ -1,4 +1,4 @@
-name := "ScalaFSML"
+name := "fsml"
 
 lazy val commonSettings = Seq(
   organization := "de.sschauss",
@@ -6,9 +6,13 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.11.5"
 )
 
-lazy val fsml = project
+lazy val root = project
+  .in(file("."))
+  .aggregate(fsml_impl, fsml_test)
+
+lazy val fsml_impl = project
   .settings(commonSettings: _*)
 
 lazy val fsml_test = project
-  .dependsOn(fsml)
+  .dependsOn(fsml_impl)
   .settings(commonSettings: _*)

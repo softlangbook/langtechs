@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/fsml" />
-            <option value="$PROJECT_DIR$/fsml/project" />
+            <option value="$PROJECT_DIR$/fsml_impl" />
+            <option value="$PROJECT_DIR$/fsml_impl/project" />
             <option value="$PROJECT_DIR$/fsml_test" />
             <option value="$PROJECT_DIR$/fsml_test/project" />
             <option value="$PROJECT_DIR$/project" />
