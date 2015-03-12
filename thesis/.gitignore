@@ -1,3 +1,9 @@
 *.log
 *.toc
 *.aux
+*.bbl
+*.blg
+*.dvi
+*.pdf
+*.xml
+*.bcf
