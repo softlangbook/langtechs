@@ -1,24 +1,26 @@
 \documentclass[12pt, twoside]{report}
-\usepackage[utf8]{inputenc}
-\usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry}
+\usepackage[backend=biber]{biblatex}
 \usepackage{fancyhdr}
+\usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry}
+\usepackage[utf8]{inputenc}
+
+
+\bibliography{bibliography}
 
 \headheight = 16pt
-
 \pagestyle{fancy}
 
 
-\fancyhead[OL,ER]{\rightmark}
+\fancyhead[OL,ER]{\leftmark}
 \fancyhead[OC,EC]{}
-\fancyhead[OR,EL]{\leftmark}
+\fancyhead[OR,EL]{\rightmark}
 \fancyfoot[OL,ER]{}
 \fancyfoot[OC,EC]{}
 \fancyfoot[OR,EL]{\thepage}
 
-
 \title{
   Developing Domain Specific Languages using Language Workbenches \\
-  \vspace{4mm}
+  \vspace{6mm}
   \large{
     Bacherlorthesis
   }
@@ -37,5 +39,6 @@
 \begin{document}
   \maketitle
   \tableofcontents
-  \include{chapters/chapter1}
+  \include{chapters/introduction}
+  \include{chapters/references}
 \end{document}

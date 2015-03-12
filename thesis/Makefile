@@ -1,2 +1,4 @@
 pdf:
-	pdflatex main.tex
+	pdflatex main
+	biber main
+	pdflatex main
