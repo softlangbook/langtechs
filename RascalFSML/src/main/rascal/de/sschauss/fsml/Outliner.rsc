@@ -4,13 +4,13 @@ import util::IDE;
 import main::rascal::de::sschauss::fsml::AST;
 
 public node outliner(FSM f){
-	node outline = "states"(([] | it + outliner(s) | s <- f.states));
+	node outline = "states"([ outliner(s) | s <- f.states]);
 	outline@\loc = f@location;
 	return outline;
 }
 
 public node outliner(STATE s) {
-	node outline = s.id.name("transitions"(([] | it + outliner(t) | t <- s.transitions)));
+	node outline = s.id.name([outliner(t) | t <- s.transitions]);
 	outline@\loc = s@location;
 	return outline;
 }

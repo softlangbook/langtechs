@@ -6,39 +6,6 @@ import main::rascal::de::sschauss::fsml::AST;
 alias Error = tuple[loc l, str msg];
 alias ErrorList = list[Error errors];
 
-ErrorList checkSingleInitial([state(_, _, _)], _) = [];
-
-ErrorList checkSingleInitial([], list[STATE] states) = 
-	[ <i@location, "no initial state"> | state(i, _, _) <- states];
-
-ErrorList checkSingleInitial(list[STATE] is, list[STATE] states) =
-	[ <i@location, "multiple initial states"> | state(i, _, _) <- is ];
-
-ErrorList checkSingleInitial(fsm(states)) =
-	checkSingleInitial([ s | s:state(initial(), _, _) <- states], states);
-	
-ErrorList checkDistinctIds([], _, ErrorList es) = es;
-
-ErrorList checkDistinctIds([id:id(name), ids*], set[ID] dids, ErrorList es) =
-	id in dids 
-		? checkDistinctIds(ids, dids, es + <id@location, "duplicated state id <name>">)
-		: checkDistinctIds(ids, dids + id, es);
-
-ErrorList checkDistinctIds(fsm(states)) =  
-	checkDistinctIds(([] | it + s.id | s <- states), {}, []);
-	
-ErrorList checkResolable({}) = [];	
-	
-ErrorList checkResolvable(set[ID] ids) = 
-	[<id@location, "unresolved id <name>"> | id:id(name) <- ids];
-	
-ErrorList checkResolvable(fsm(states)) =
-	checkResolvable(
-		({} | t.id? ? it + t.id : it | t <- ([] | it + ts | state(_, _, ts) <- states)) // collect referenced states ids 
-		- 
-		{ id | state(_, id, _) <- states } // collect state ids
-	);
-
 ErrorList checkStateDeterministic([], _, ErrorList es) = es;
 
 ErrorList checkStateDeterministic([i:input(name), is*], set[INPUT] dis, ErrorList es) = 
@@ -48,6 +15,43 @@ ErrorList checkStateDeterministic([i:input(name), is*], set[INPUT] dis, ErrorLis
 		
 ErrorList checkStateDeterministic(fsm(states)) =
 	([] | it + checkStateDeterministic(([] | it + t.input | t <- transitions), {}, []) | state(_, _, transitions) <- states);
+	
+
+ErrorList checkResolvable(FSM f) {
+	set[ID] referencedIds = {};
+	set[ID] stateIds = {};
+	visit(f) {
+		case transition(_, ID id) : referencedIds += id; 
+		case transition(_, _, ID id): referencedIds += id;
+		case state(_, id, _): stateIds += id;
+	};
+	return [<id@location, "unresolved state <id.name>"> | id <- referencedIds - stateIds];
+}
+
+ErrorList checkSingleInitial(FSM f) {
+	list[INITIAL] initials = [];
+	list[INITIAL] noninitials = [];
+	visit(f) {
+		case i:initial(): initials += i;
+		case n:noninitial(): noninitials += n;
+	};
+	ErrorList el;
+	switch(initials) {
+		case []: el = [<n@location, "no initial state"> | n <- noninitials];
+		case [initial()]: el = [];
+		default: el = [<i@location, "multiple initial states"> | i <- initials];
+	}
+	return el;
+}
+
+
+ErrorList checkDistinctIds(FSM f)  {
+	list[ID] ids = [];
+	visit(f) {
+		case state(_, id, _): ids = ids + id;
+	};
+	return ([<id@location, "duplicated state id <id.name>"> | id <- (ids - dup(ids))]);
+}
 
 
 ErrorList check(FSM f) =
