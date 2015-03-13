@@ -1,9 +1,9 @@
-initial state locked {
+initial state unlocked {
 	ticket/collect -> unlocked;
 	pass/alarm -> exception;
 }
 
-state unlocked {
+state locked {
  	ticket/eject;
 	pass -> locked;
 }

@@ -2,6 +2,7 @@ module main::rascal::de::sschauss::fsml::Checker
 
 import Prelude;
 import main::rascal::de::sschauss::fsml::AST;
+import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
 alias Error = tuple[loc l, str msg];
 alias ErrorList = list[Error errors];
@@ -49,19 +50,19 @@ ErrorList checkSingleInitial(FSM f) {
 }
 
 
-ErrorList checkDistinctIds(FSM f)  {
-	list[ID] ids = [];
+ErrorList checkDistinctIds(Fsm f)  {
+	list[Id] ids = [];
 	visit(f) {
-		case state(_, id, _): ids = ids + id;
+		case State s: ids = ids + s.id;
 	};
-	return ([<id@location, "duplicated state id <id.name>"> | id <- (ids - dup(ids))]);
+	return ([<id@\loc, "duplicated state id <id>"> | id <- (ids - dup(ids))]);
 }
 
 
-ErrorList check(FSM f) =
+ErrorList check(Fsm f) =
 	([]| it + es | es <- [
-		checkDistinctIds(f),
-		checkSingleInitial(f),
-		checkResolvable(f),
-		checkStateDeterministic(f)
+		checkDistinctIds(f)
+		//checkSingleInitial(f),
+		//checkResolvable(f),
+		//checkStateDeterministic(f)
 	]);

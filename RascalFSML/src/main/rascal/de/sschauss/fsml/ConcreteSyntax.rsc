@@ -6,8 +6,8 @@ extend lang::std::Layout;
 start syntax Fsm = fsm: State* states;
 syntax State = @Foldable state: Initial initial "state" Id id "{" Transition* transitions "}"; 
 syntax Initial = 
-	  initial: "initial"
-	| noninitial: "";
+	  initial: "initial" true
+	| noninitial: "" false;
 syntax Transition = 
 	  transition: Input input";"
 	| transition: Input input "-\>" Id id ";"

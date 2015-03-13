@@ -18,8 +18,7 @@ Tree parser(str x, loc l) {
 }
 
 public Fsm fsmAnnotator (Fsm f) {
-	FSM fsm = implode(#FSM, f);
-	errors = {error(v, l) | <loc l, str v> <- check(fsm)};
+	errors = {error(v, l) | <loc l, str v> <- check(f)};
 	f = ref(f);
 	return f[@messages = errors];
 }
@@ -34,6 +33,7 @@ Fsm ref(Fsm f) {
 	return visit(f){
 		case Transition t => visit(t) {
 			case Id id => id[@link=ids["<id>"]]
+				when "<id>" in ids
 		}
 	}
 }
