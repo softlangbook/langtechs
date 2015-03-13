@@ -1,7 +1,6 @@
 module main::rascal::de::sschauss::fsml::ConcreteSyntax
 
 import Prelude;
-
 extend lang::std::Layout;
 
 start syntax Fsm = fsm: State* states;
@@ -18,4 +17,4 @@ syntax Transition =
 syntax Id = id: Name;
 syntax Input = input: Name;
 syntax Action = action: Name;
-lexical Name = [a-z][a-z0-9]* !>> [a-z0-9];
+lexical Name = ([a-z][a-z0-9]* !>> [a-z0-9]);

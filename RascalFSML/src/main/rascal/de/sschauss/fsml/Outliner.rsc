@@ -4,7 +4,7 @@ import util::IDE;
 import main::rascal::de::sschauss::fsml::AST;
 
 public node outliner(FSM f){
-	node outline = "states"([ outliner(s) | s <- f.states]);
+	node outline = "states"([outliner(s) | s <- f.states]);
 	outline@\loc = f@location;
 	return outline;
 }
