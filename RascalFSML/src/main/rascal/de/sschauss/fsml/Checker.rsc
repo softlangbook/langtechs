@@ -5,16 +5,20 @@ import main::rascal::de::sschauss::fsml::AST;
 
 alias Error = tuple[loc l, str msg];
 alias ErrorList = list[Error errors];
-
-ErrorList checkStateDeterministic([], _, ErrorList es) = es;
-
-ErrorList checkStateDeterministic([i:input(name), is*], set[INPUT] dis, ErrorList es) = 
-	i in dis
-		? checkStateDeterministic(is, dis, es + <i@location, "duplicated input <name>">)
-		: checkStateDeterministic(is, dis + i, es);
 		
-ErrorList checkStateDeterministic(fsm(states)) =
-	([] | it + checkStateDeterministic(([] | it + t.input | t <- transitions), {}, []) | state(_, _, transitions) <- states);
+ErrorList checkStateDeterministic(FSM f) {
+	ErrorList el = [];
+	visit(f) {
+		case state(id, _, transitions): {
+			list[INPUT] inputs = [];
+			visit(transitions) {
+				case INPUT i: inputs += i;
+			};
+			el += ([<i@location, "duplicated input <i.name>"> | i <- (inputs - dup(inputs))]);
+		}
+	};
+	return el;
+}
 	
 
 ErrorList checkResolvable(FSM f) {
