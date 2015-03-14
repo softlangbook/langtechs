@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model modelUID="r:fb52b994-9b87-48d0-8618-554921add774(FSML.typesystem)">
+<model modelUID="r:6c229ab7-2899-47ab-b085-aa30152ae9cc(fsml.behavior)">
   <persistence version="8" />
-  <language namespace="7a5dda62-9140-4668-ab76-d5ed1746f2b2(jetbrains.mps.lang.typesystem)" />
+  <language namespace="af65afd8-f0dd-4942-87d9-63a55f2a9db1(jetbrains.mps.lang.behavior)" />
   <devkit namespace="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
 </model>
 
