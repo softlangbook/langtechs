@@ -74,7 +74,7 @@
       <property role="TrG5h" value="exception" />
       <node concept="Vyh$u" id="5oSJhHHIbwK" role="Vyh$P">
         <node concept="VyhVS" id="5oSJhHHIbwL" role="Vyh$g">
-          <property role="TrG5h" value="ticke" />
+          <property role="TrG5h" value="ticket" />
         </node>
         <node concept="VyhVT" id="5oSJhHHIbwO" role="Vyh$j">
           <property role="TrG5h" value="eject" />
