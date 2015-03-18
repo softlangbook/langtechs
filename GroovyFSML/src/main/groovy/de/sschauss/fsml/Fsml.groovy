@@ -45,10 +45,6 @@ abstract class Fsm {
 
     String name
 
-    protected Map<Integer, String> map = [:]
-
-    protected int currentState
-
     static State initial(@DelegatesTo(value = State, strategy = Closure.DELEGATE_FIRST) State s) {
         s.initial = true
         s
@@ -59,19 +55,14 @@ abstract class Fsm {
         def closure = c.rehydrate(state, this, this)
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.call()
-        state.id = map[currentState]
-        currentState++
         state
     }
 
-    Fsm() {
-        int currentState = 0
+    void init() {
         this.metaPropertyValues.stream().filter {
             PropertyValue mpv -> mpv.type == State.class
         } forEach {
-            PropertyValue mpv ->
-                map.put(currentState, mpv.name)
-                currentState++
+            PropertyValue mpv -> ((State) mpv.value).id = mpv.name
         }
     }
 }
@@ -80,6 +71,10 @@ abstract class Fsm {
 @TypeChecked
 @ToString
 class TurnstileFsm extends Fsm {
+
+    TurnstileFsm() {
+        init() // 
+    }
 
     State locked = initial state {
         take "ticket" trigger "collect" to unlocked
