@@ -45,7 +45,11 @@ abstract class Fsm {
 
     String name
 
-    State initial(@DelegatesTo(value = State, strategy = Closure.DELEGATE_FIRST) State s) {
+    protected Map<Integer, String> map = [:]
+
+    protected int currentState
+
+    static State initial(@DelegatesTo(value = State, strategy = Closure.DELEGATE_FIRST) State s) {
         s.initial = true
         s
     }
@@ -55,21 +59,23 @@ abstract class Fsm {
         def closure = c.rehydrate(state, this, this)
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.call()
-        /*
-        this.metaPropertyValues.stream().filter {
-            mpv -> mpv.type == State.class && mpv.value != null
-        } forEach {
-            mpv -> ((State) mpv.value).id = mpv.name
-        }
-         */
+        state.id = map[currentState]
+        currentState++
         state
     }
 
     Fsm() {
-        name = this.class.getSimpleName()
+        int currentState = 0
+        this.metaPropertyValues.stream().filter {
+            PropertyValue mpv -> mpv.type == State.class
+        } forEach {
+            PropertyValue mpv ->
+                map.put(currentState, mpv.name)
+                currentState++
+        }
     }
-
 }
+
 
 @TypeChecked
 @ToString
