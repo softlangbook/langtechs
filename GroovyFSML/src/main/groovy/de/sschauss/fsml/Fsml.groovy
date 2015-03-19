@@ -59,7 +59,7 @@ abstract class Fsm {
     }
 
     void init() {
-        this.metaPropertyValues.stream().filter {
+        this.metaPropertyValues.stream() filter {
             PropertyValue mpv -> mpv.type == State.class
         } forEach {
             PropertyValue mpv -> ((State) mpv.value).id = mpv.name

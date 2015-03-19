@@ -40,6 +40,10 @@ public set[Contribution] FSMLContrib = {
 };
 
 public void registerFSML() {
-  registerLanguage(FSMLName, FSMLExt, parser);
-  registerContributions(FSMLName, FSMLContrib);
+	registerLanguage(FSMLName, FSMLExt, parser);
+  	registerContributions(FSMLName, FSMLContrib);
+}
+
+public void unregisterFSML() {
+	clearLanguage("FSML");
 }

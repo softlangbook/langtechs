@@ -1,6 +1,7 @@
 module main::rascal::de::sschauss::fsml::Checker
 
 import Prelude;
+import util::Maybe;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
 set[Message] checkStateDeterministic(Fsm f) {
@@ -46,12 +47,46 @@ set[Message] checkSingleInitial(Fsm f) {
 }
 
 
-set[Message] checkDistinctIds(Fsm f)  {
+set[Message] checkDistinctIds(Fsm f) {
 	list[Id] ids = [];
 	visit(f) {
 		case State s: ids = ids + s.id;
 	}
-	return ({error("duplicated state id <id>", id@\loc) | id <- (ids - dup(ids))});
+	return {error("duplicated state id <id>", id@\loc) | id <- (ids - dup(ids))};
+}
+
+
+set[Message] checkReachable(Fsm f) {
+	rel[str, str] initial = {};
+	rel[str, str] relation = {};
+	visit(f) {
+		case (State)`initial state <Id from> {<Transition* ts>}` : visit(ts){
+			case (Transition)`<Input _> / <Action _> -\> <Id to>;`: initial += <"<from>", "<to>">;			
+			case (Transition)`<Input _> -\> <Id to>;`: initial += <"<from>", "<to>">;
+		}
+		
+		case (State)`state <Id from> {<Transition* ts>}` : 	visit(ts){
+			case (Transition)`<Input _> / <Action _> -\> <Id to>;`: relation += <"<from>", "<to>">;
+			case (Transition)`<Input _> -\> <Id to>;`: relation += <"<from>", "<to>">;			
+		}
+	}
+	rel[str, str] previous;
+	do {	
+		previous = initial;		
+		solve(relation) {
+			initial += (initial o relation);
+		}
+	} while(previous != initial);
+	return {error("unreachable state <id>", id@\loc) | id <- {s.id | s <- f.states} - {i | <_, id> <- initial, just(i) := getStateId(id, f) }};;
+}
+
+Maybe[Id] getStateId(str id, Fsm f){
+	visit(f){
+		case State s: {
+			if(id == "<s.id>") return just(s.id);
+		}
+	}
+	return nothing();
 }
 
 
@@ -60,5 +95,6 @@ set[Message] check(Fsm f) =
 		checkDistinctIds(f),
 		checkSingleInitial(f),
 		checkResolvable(f),
-		checkStateDeterministic(f)
+		checkStateDeterministic(f),
+		checkReachable(f)
 	]);
