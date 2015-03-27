@@ -73,7 +73,7 @@ abstract class Fsm {
 class TurnstileFsm extends Fsm {
 
     TurnstileFsm() {
-        init() // 
+        init()
     }
 
     State locked = initial state {
@@ -97,6 +97,6 @@ class TurnstileFsm extends Fsm {
 
 
 static main(String[] args) {
-    def a = new TurnstileFsm()
-    println(a)
+    def turnstileFsm = new TurnstileFsm()
+    println(turnstileFsm)
 }

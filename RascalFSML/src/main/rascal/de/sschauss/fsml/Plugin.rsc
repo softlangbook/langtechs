@@ -6,6 +6,7 @@ import util::Eval;
 import util::ValueUI;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 import main::rascal::de::sschauss::fsml::Checker;
+import main::rascal::de::sschauss::fsml::Generator;
 import main::rascal::de::sschauss::fsml::Outliner;
 import main::rascal::de::sschauss::fsml::Referencer;
 
@@ -30,9 +31,14 @@ public node fsmOutliner(Fsm f){
 	return outline;
 }
 
+public void generateFluent(Fsm f, loc _) {
+	generateFluent(f);
+}
+
 public set[Contribution] FSMLContrib = {
 	popup(
 		menu("FSML",[
+			action("generate fluent Java", generateFluent)
 		])
   	),
   	annotator(fsmAnnotator),
