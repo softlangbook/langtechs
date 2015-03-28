@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ReplState" timestamp="1427559167742">{:repl-history {:ide [], :local [&quot;h&quot; &quot;(clojure-fsml.core/foo 3)&quot; &quot;(require '[clojure-fsml :as c])&quot; &quot;(require '[clojure-fsml.core :as c])&quot; &quot;c/foo 3&quot; &quot;(foo 34)&quot; &quot;(c/foo 45)&quot; &quot;(c/foo 1 \&quot;Simon\&quot;)&quot; &quot;(c/foo \&quot;Simon\&quot;)&quot; &quot;(c/foo \n  \&quot;Simon\&quot;)&quot;], :remote []}}</component>
+</project>
