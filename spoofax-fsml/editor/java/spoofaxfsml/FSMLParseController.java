@@ -1,4 +1,4 @@
-package de.sschauss.fsml;
+package spoofaxfsml;
 
 public class FSMLParseController extends FSMLParseControllerGenerated 
 { }

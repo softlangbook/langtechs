@@ -1,4 +1,4 @@
-package de.sschauss.fsml;
+package spoofaxfsml;
 
 import org.strategoxt.imp.runtime.dynamicloading.Descriptor;
 import org.strategoxt.imp.runtime.services.MetaFileLanguageValidator;

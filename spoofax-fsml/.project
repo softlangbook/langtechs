@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>SpoofaxFSML</name>
+  <name>spoofax-fsml</name>
   <comment></comment>
   <buildSpec>
     <buildCommand>

@@ -13,7 +13,7 @@ imports
 language General properties
   
   name:          FSML
-  id:            de.sschauss.fsml
+  id:            spoofaxfsml
   extends:       Root
   
   description:   "Spoofax-generated editor for the FSML language"
@@ -21,7 +21,7 @@ language General properties
   
   extensions:    fsml
   table:         include/FSML.tbl
-  start symbols: Start
+  start symbols: Fsm
   
   provider:      include/fsml.ctree
   provider:      include/fsml-java.jar

@@ -6,18 +6,20 @@ imports
 
 context-free start-symbols
   
-	Start
+  Fsm
 
 context-free syntax
   
-	Start.Fsm = State*
-	State.InitialState = Initial "state" ID "{" Transition* "}"
-	State.State = "state" ID "{" Transition* "}"
-	Transition.Transition = Input";"
-	Transition.TransitionWithTarget = Input "->" ID";"
-	Transition.TransitionWithAction = Input "/" Action";"
-	Transition.TransitionWithActionAndTarget =	Input "/" Action "->" ID";"
-	Initial.Initial = "initial"
-	Input.Input = ID
-	Action.Action = ID
-	
+  Fsm.Fsm = <<State*>>
+  
+  State.InitialState = <initial state <ID> {<Transition*>}>
+  State.State = <state <ID> {<Transition*>}>
+  
+  Transition.Transition = <<Input>;>
+  Transition.TransitionWithAction = <<Input> / <Action>;>
+  Transition.TransitionWithTarget = <<Input> -\> <ID>;>
+  Transition.TransitionWithActionAndTarget = <<Input> / <Action> -\> <ID>;>
+  
+  Input.Input = <<ID>>
+  Action.Action = <<ID>>
+

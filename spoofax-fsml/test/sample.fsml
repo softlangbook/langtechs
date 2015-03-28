@@ -1,16 +1,16 @@
 initial state locked {
 	ticket / collect -> unlocked;
-	pass / alarm -> exception;
+	pass / alarm -> exception;	
 }
 
-state unlocked { 
-	ticket / eject ;
-	pass -> locked ;
+state unlocked {
+	ticket / eject;
+	pass -> locked;
 }
- 
-state exception {  
-	ticket -> eject ;
+
+state exception {
+	ticket / eject;
 	pass;
 	mute;
-	release -> locked ;
+	release -> locked;
 }

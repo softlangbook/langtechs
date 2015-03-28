@@ -1,4 +1,4 @@
-module names
+module nab/names
 
 imports
   lib/runtime/nabl/-

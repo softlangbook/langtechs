@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: FSML Plug-in
-Bundle-SymbolicName: de.sschauss.fsml;singleton:=true
+Bundle-SymbolicName: spoofaxfsml;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: de.sschauss.fsml.Activator
+Bundle-Activator: spoofaxfsml.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.ui,
@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.spoofax.interpreter.core,
  org.spoofax.terms,
  org.spoofax.interpreter.externaldeps
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: de.sschauss.fsml
+Export-Package: spoofaxfsml
