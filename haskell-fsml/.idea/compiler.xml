@@ -3,8 +3,6 @@
   <component name="CompilerConfiguration">
     <resourceExtensions />
     <wildcardResourcePatterns>
-      <entry name="!dev-resources:*" />
-      <entry name="!resources:*" />
       <entry name="!?*.java" />
       <entry name="!?*.form" />
       <entry name="!?*.class" />
@@ -20,5 +18,9 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="HaskellBuildOptions">
+    <ghcPath>/Library/Frameworks/GHC.framework/Versions/7.8.3-x86_64/usr/bin/ghc</ghcPath>
+    <cabalPath>/usr/bin/cabal</cabalPath>
   </component>
 </project>
