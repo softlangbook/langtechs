@@ -1,10 +1,7 @@
 module Main where
 
-data Fsm = Fsm {states :: [State]} deriving Show
-data State = State {initial:: Bool, id :: String, transitions:: [Transition] } deriving Show
-data Transition = Transition {input :: String, action :: Maybe String, to :: Maybe State} deriving Show
 
-
+{-
 turnstileFsm :: Fsm
 turnstileFsm = Fsm [locked, unlocked, exception]
 locked :: State
@@ -24,7 +21,7 @@ exception = State False "exception" [
         Transition "mute" Nothing Nothing,
         Transition "release" Nothing (Just locked)
     ]
-
+-}
 
 main :: IO()
-main = print turnstileFsm
+main = print "
