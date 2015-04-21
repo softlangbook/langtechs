@@ -1,31 +1,21 @@
-{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Fsml.Quoter where
 
-import Language.Haskell.TH
-import Language.Haskell.TH.Syntax
-import Language.Haskell.TH.Quote
+import           Language.Haskell.TH
+import           Language.Haskell.TH.Quote
 
-import Text.Parsec
-import Text.Parsec.String (Parser)
-import Text.Parsec.Language (emptyDef)
+import           Prelude                   hiding (id)
 
-import qualified Text.Parsec.Expr as Expr
-import qualified Text.Parsec.Token as Token
+import           Text.Parsec               hiding (State)
+import           Text.Parsec.Language      (emptyDef)
+import           Text.Parsec.String        (Parser)
 
-data Transition = Transition Input (Maybe Action) deriving (Eq, Show)
-data Action = Action String deriving (Eq, Show)
-data Input = Input String deriving (Eq, Show)
+import           Fsml.Syntax
 
-instance Lift Input where
-  lift (Input name) = [| Input name |]
-
-instance Lift Action where
-  lift (Action name) = [| Action name |]
-
-instance Lift Transition where
-  lift (Transition input action) = [| Transition input action |]
+import qualified Text.Parsec.Expr          ()
+import qualified Text.Parsec.Token         as Token
 
 lexer :: Token.TokenParser ()
 lexer = Token.makeTokenParser emptyDef
@@ -33,39 +23,78 @@ lexer = Token.makeTokenParser emptyDef
 identifier :: Parser String
 identifier = Token.identifier lexer
 
-
 inputParser :: Parser Input
 inputParser = do
-  name <- identifier
-  return $ Input name
+    name <- identifier
+    return $ Input name
 
 actionParser :: Parser Action
 actionParser = do
-  name <- identifier
-  return $ Action name
+    _ <- string "/"
+    _ <- spaces
+    name <- identifier
+    return $ Action name
+
+targetParser :: Parser Target
+targetParser = do
+    _ <- string "->"
+    _ <- spaces
+    name <- identifier
+    return $ Target name
 
 transitionParser :: Parser Transition
 transitionParser = do
-  input <- inputParser
-  _ <- string "->"
-  action <- optionMaybe actionParser
-  return $ Transition input action
+    input <- inputParser
+    action <- optionMaybe actionParser
+    target <- optionMaybe targetParser
+    _ <- char ';'
+    _ <- spaces
+    return $ Transition input action target
+
+initialParser :: Parser Initial
+initialParser =
+    (string "initial" >> (return $ Initial True))  <|>
+    (string "" >> (return $ Initial False))
+
+idParser :: Parser Id
+idParser = do
+    name <- identifier
+    return $ Id name
+
+stateParser :: Parser State
+stateParser = do
+    initial <- initialParser
+    _ <- spaces
+    _ <- string "state"
+    _ <- spaces
+    id <- idParser
+    _ <- char '{'
+    _ <- spaces
+    transitions <- many transitionParser
+    _ <- char '}'
+    _ <- spaces
+    return $ State initial id transitions
+
+fsmParser :: Parser Fsm
+fsmParser = do
+    states <- many stateParser
+    return $ Fsm states
 
 contents :: Parser a -> Parser a
 contents p = do
-  Token.whiteSpace lexer
-  r <- p
-  eof
-  return r
+    Token.whiteSpace lexer
+    r <- p
+    eof
+    return r
 
-calcExpr :: String -> Q Exp
-calcExpr str = do
-  filename <- loc_filename `fmap` location
-  case parse (contents transitionParser) filename str of
-    Left err -> error (show err)
-    Right tag -> [| tag |]
+fsmExpr :: String -> Q Exp
+fsmExpr str = do
+    filename <- loc_filename `fmap` location
+    case parse (contents fsmParser) filename str of
+        Left err -> error (show err)
+        Right tag -> [| tag |]
 
-calc :: QuasiQuoter
-calc = QuasiQuoter calcExpr err err err
-  where err = error "Only defined for values"
+fsm :: QuasiQuoter
+fsm = QuasiQuoter fsmExpr err err err
+    where err = error "Only defined for values"
 
