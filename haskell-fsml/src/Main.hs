@@ -5,16 +5,22 @@ module Main where
 import           Fsml.Quoter
 import           Fsml.Syntax
 
-turnstileFsm :: Fsm
-turnstileFsm = [fsm|
+locked :: State
+locked = [fsm|
         initial state locked {
-            input / action -> test;
+            input / action -> unlocked;
             pass / alarm -> exception;
         }
+    |]
+unlocked :: State
+unlocked = [fsm|
         state unlocked {
             ticket / eject;
             pass -> locked;
         }
+    |]
+exception :: State
+exception = [fsm|
         state exception {
             ticket / eject;
             pass;
@@ -23,5 +29,9 @@ turnstileFsm = [fsm|
         }
     |]
 
+
 main :: IO ()
-main = print turnstileFsm
+main = do
+    print locked
+    print unlocked
+    print exception

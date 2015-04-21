@@ -1,3 +1,4 @@
+{-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Fsml.Syntax(
@@ -16,7 +17,9 @@ import           Language.Haskell.TH.Syntax
 
 data Fsm = Fsm [State] deriving Show
 data State = State Initial Id [Transition]  deriving Show
-data Transition = Transition Input (Maybe Action) (Maybe Target) deriving Show
+data Transition =
+    Transition Input (Maybe Action) (Maybe Target) |
+    T Input (Maybe Action) (Maybe State) deriving Show
 data Initial = Initial Bool deriving Show
 data Id = Id String deriving Show
 data Action = Action String deriving Show
@@ -30,7 +33,8 @@ instance Lift State where
     lift (State initial id transitions) = [| State initial id transitions |]
 
 instance Lift Transition where
-    lift (Transition input action target) = [| Transition input action target |]
+    lift (Transition input action (Just (Target value))) = [| T input action (Just $(return $ VarE $ mkName value)) |]
+    lift (Transition input action Nothing) = [| T input action Nothing |]
 
 instance Lift Initial where
     lift (Initial value) = [| Initial value |]

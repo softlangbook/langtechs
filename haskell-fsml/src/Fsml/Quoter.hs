@@ -90,11 +90,10 @@ contents p = do
 fsmExpr :: String -> Q Exp
 fsmExpr str = do
     filename <- loc_filename `fmap` location
-    case parse (contents fsmParser) filename str of
+    case parse (contents stateParser) filename str of
         Left err -> error (show err)
         Right tag -> [| tag |]
 
 fsm :: QuasiQuoter
 fsm = QuasiQuoter fsmExpr err err err
     where err = error "Only defined for values"
-
