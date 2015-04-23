@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bd1112c-fd0c-4f4c-97bc-62f70ee1f1bd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/haskell-fsml.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.hs" afterPath="$PROJECT_DIR$/src/Main.hs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fsml/Parser.hs" afterPath="$PROJECT_DIR$/src/Fsml/Parser.hs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fsml/Quoter.hs" afterPath="$PROJECT_DIR$/src/Fsml/Quoter.hs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fsml/Syntax.hs" afterPath="$PROJECT_DIR$/src/Fsml/Syntax.hs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haskell-fsml.cabal" afterPath="$PROJECT_DIR$/haskell-fsml.cabal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mps-fsml/languages/fsml/sandbox/models/fsml/sandbox.mps" afterPath="$PROJECT_DIR$/../mps-fsml/languages/fsml/sandbox/models/fsml/sandbox.mps" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mps-fsml/.mps/workspace.xml" afterPath="$PROJECT_DIR$/../mps-fsml/.mps/workspace.xml" />
     </list>
     <ignored path="haskell-fsml.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,8 +31,8 @@
       <file leaf-file-name="Syntax.hs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Fsml/Syntax.hs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0862069">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.20689656">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -50,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/src/Fsml/Quoter.hs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -60,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/src/Fsml/Parser.hs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -70,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.hs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,10 +86,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Fsml/Syntax.hs" />
         <option value="$PROJECT_DIR$/src/Main.hs" />
-        <option value="$PROJECT_DIR$/src/Fsml/Parser.hs" />
         <option value="$PROJECT_DIR$/src/Fsml/Quoter.hs" />
+        <option value="$PROJECT_DIR$/src/Fsml/Parser.hs" />
+        <option value="$PROJECT_DIR$/src/Fsml/Syntax.hs" />
       </list>
     </option>
   </component>
@@ -527,12 +519,12 @@
       <created>1429781341951</created>
       <option name="number" value="Default" />
       <updated>1429781341951</updated>
-      <workItem from="1429781346843" duration="5191000" />
+      <workItem from="1429781346843" duration="10706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5191000" />
+    <option name="totallyTimeSpent" value="10706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="990" extended-state="6" />
@@ -600,10 +592,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Fsml/Quoter.hs">
+    <entry file="file://$PROJECT_DIR$/src/Main.hs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -611,23 +603,23 @@
     <entry file="file://$PROJECT_DIR$/src/Fsml/Parser.hs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.hs">
+    <entry file="file://$PROJECT_DIR$/src/Fsml/Quoter.hs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Fsml/Syntax.hs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0862069">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.20689656">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>

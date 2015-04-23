@@ -6,21 +6,21 @@ import           Fsml.Quoter
 import           Fsml.Syntax
 
 locked :: State
-locked = [fsm|
+locked = [fsml|
         initial state locked {
             ticket / collect -> unlocked;
             pass / alarm -> exception;
         }
     |]
 unlocked :: State
-unlocked = [fsm|
+unlocked = [fsml|
         state unlocked {
             ticket / eject;
             pass -> locked;
         }
     |]
 exception :: State
-exception = [fsm|
+exception = [fsml|
         state exception {
             ticket / eject;
             pass;

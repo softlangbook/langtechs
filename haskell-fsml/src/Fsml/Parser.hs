@@ -9,15 +9,15 @@ import           Text.Parsec.String   (Parser)
 import qualified Text.Parsec.Token    as Token
 
 fsmlDef :: Token.LanguageDef ()
-fsmlDef = emptyDef {
-        Token.commentStart = "/*",
-        Token.commentEnd = "*/",
-        Token.commentLine = "//",
-        Token.identStart = lower,
-        Token.identLetter = letter,
-        Token.nestedComments = True,
-        Token.reservedNames = ["initial", "state"],
-        Token.reservedOpNames = ["/", "->"]
+fsmlDef = emptyDef
+    { Token.commentStart     = "/*"
+    , Token.commentEnd       = "*/"
+    , Token.commentLine      = "//"
+    , Token.identStart       = lower
+    , Token.identLetter      = letter
+    , Token.nestedComments   = True
+    , Token.reservedNames    = ["initial", "state"]
+    , Token.reservedOpNames  = ["/", "->"]
     }
 
 lexer :: Token.TokenParser ()
@@ -43,14 +43,15 @@ topLevel p = spaces *> p <* spaces
 
 initial :: Parser Bool
 initial =
-    (symbol "initial" >> return True) <|>
-    (symbol "" >> return False)
+        (symbol "initial" >> return True)
+    <|> (symbol ""        >> return False)
 
 identifier :: Parser String
 identifier = Token.identifier lexer
 
 transition :: Parser Transition
-transition = Transition <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> identifier) <* semi
+transition = Transition <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> state) <* semi
 
 state :: Parser State
-state = State <$> initial <*> (reserved "state" *> identifier) <*> braces (many transition)
+state = State  <$> initial <*> (reserved "state" *> identifier) <*> braces (many transition)
+    <|> AState <$> identifier
