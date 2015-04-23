@@ -20,7 +20,6 @@
     </annotationProcessing>
   </component>
   <component name="HaskellBuildOptions">
-    <ghcPath>/Library/Frameworks/GHC.framework/Versions/7.8.3-x86_64/usr/bin/ghc</ghcPath>
     <cabalPath>/usr/bin/cabal</cabalPath>
   </component>
 </project>

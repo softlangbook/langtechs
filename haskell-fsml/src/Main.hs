@@ -8,7 +8,7 @@ import           Fsml.Syntax
 locked :: State
 locked = [fsm|
         initial state locked {
-            input / action -> unlocked;
+            ticket / collect -> unlocked;
             pass / alarm -> exception;
         }
     |]
@@ -29,9 +29,5 @@ exception = [fsm|
         }
     |]
 
-
 main :: IO ()
-main = do
-    print locked
-    print unlocked
-    print exception
+main = print [locked, unlocked, exception]
