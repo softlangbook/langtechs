@@ -5,10 +5,10 @@
 (define fsml-lexer
   (lexer
    ["initial"
-    (cons '(INITIAL)
+    (cons `(INITIAL)
            (fsml-lexer input-port))]
    ["state"
-    (cons '(STATE)
+    (cons `(STATE)
           (fsml-lexer input-port))]
    ["{"
     (cons `(LBRACE)
