@@ -29,5 +29,8 @@ exception = [fsml|
         }
     |]
 
+turnstileFsm :: Fsm
+turnstileFsm = Fsm [locked, unlocked, exception]
+
 main :: IO ()
-main = print [locked, unlocked, exception]
+main = print turnstileFsm

@@ -4,6 +4,9 @@ module Fsml.Syntax where
 
 import           Data.Data
 
+data Fsm = Fsm [State]
+    deriving (Show)
+
 data State = State Bool String [Transition]
            | AState String
     deriving (Data, Show, Typeable)
