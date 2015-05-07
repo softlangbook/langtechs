@@ -6,77 +6,53 @@ import scala.reflect.macros.whitebox
 
 package object fsml {
 
-  implicit val stringToTransition: String => Transition = id => new Transition(id, None, None)
+  implicit val stringToTransition: String => TransitionHelper = id => new TransitionHelper(id, None, None)
+  implicit val transitionHelperToTransition: Transition => TransitionHelper = transition => new TransitionHelper(transition.input, transition.action, transition.target)
 
-  def fsm(x: Unit): Fsm = macro fsmImpl
-
-  def fsmImpl(c: whitebox.Context)(x: c.Tree): c.Tree = {
-    import c.universe._
-    val q"..${stateDefinitions: List[Tree]}" = x
-    val stateSymbols = stateDefinitions collect {
-      case s: DefDef => s.symbol
-    } map {
-      s => reify(c.Expr[State](Ident(s)).splice).tree
-    }
-    val states = ValDef(Modifiers(Flag.LAZY | Flag.OVERRIDE), TermName("states"), TypeTree(typeOf[List[State]]), Apply(Select(reify(List).tree, TermName("apply")), stateSymbols))
-    val fsmTree: c.universe.Tree = q"""
-      import de.sschauss.fsml
-      new de.sschauss.fsml.`package`.Fsm {
-        ..$states
-        ..${x.children}
-      }
-      """
-    // distinct ids and resolvable by design
-    List(checkSingleInitial _, checkDeterministic _) foreach {
-      _(c.eval[Fsm](c.Expr[Fsm](c.untypecheck(fsmTree))))
-    }
-    fsmTree
+  class TransitionHelper(input: String, action: Option[String], target: Option[State]) {
+    val / : String => Transition = a => new Transition(input, Some(a), target)
+    val -> : State => Transition = t => new Transition(input, action, Some(t))
   }
 
-  def checkDeterministic(fsm: Fsm): Unit = {
-    fsm.states map {
-      _.transitions map {
-        _.input
-      }
-    } foreach { ts =>
-      ts groupBy identity foreach {
-        case (i, is) if is.size > 1 => throw new RuntimeException(s"nondeterministic input $i")
-        case _ =>
-      }
-    }
-  }
-
-  def checkSingleInitial(fsm: Fsm): Unit = {
-    fsm.states map {
-      _.initial
-    } count {
-      _ == true
-    } match {
-      case 0 => throw new RuntimeException("no initial state defined")
-      case 1 =>
-      case n => throw new RuntimeException(s"$n initial states defined")
-    }
-  }
 
   trait Fsm {
-
     val states: List[State]
-
   }
 
-  class State(i: Boolean, id: String, ts: => List[Transition]) {
-    lazy val transitions: List[Transition] = ts
-    val initial = i
+  class State(val initial: Boolean, val id: String, transitions: List[Transition])
+
+  class Transition(val input: String, val action: Option[String], `companion target`: => Option[State]) {
+    lazy val target: Option[State] = `companion target`
   }
 
-  class Transition(i: String, a: Option[String], t: => Option[State]) {
-    lazy val to: Option[State] = t
-    val input = i
-    val action = a
-    val -> : State => Transition = t => new Transition(i, a, Some(t))
-    val / : String => Transition = a => new Transition(i, Some(a), t)
-  }
+  object fsm {
+    def apply(x: Unit): Fsm = macro fsmImpl
 
+    def fsmImpl(c: whitebox.Context)(x: c.Tree): c.Tree = {
+      import c.universe._
+      val q"..${stateDefinitions: List[Tree]}" = x
+      val stateSymbols: List[DefDef] = stateDefinitions collect {
+        case s: DefDef => s
+      }
+      val stateIdents = stateSymbols map {
+        s => reify(c.Expr[State](Ident(s.symbol)).splice).tree
+      }
+
+      val stateDefDefs: List[DefDef] = stateSymbols map { d =>
+        val q"new de.sschauss.fsml.`package`.State($initial, $_, $transitions)" = d.rhs
+        val id = q"${d.symbol.name.encodedName.toString}"
+        internal.defDef(d.symbol, q"new de.sschauss.fsml.`package`.State($initial, $id, $transitions)")
+      }
+
+      val statesValDef = q"override lazy val states: List[de.sschauss.fsml.`package`.State] = List(..$stateIdents)"
+      q"""
+      new de.sschauss.fsml.`package`.Fsm {
+        ..$statesValDef
+        ..$stateDefDefs
+      }
+      """
+    }
+  }
 
   object state {
     val initial = false
