@@ -41,13 +41,13 @@ symbol = Token.symbol lexer
 topLevel :: Parser p -> Parser p
 topLevel p = spaces *> p <* spaces
 
+identifier :: Parser String
+identifier = Token.identifier lexer
+
 initial :: Parser Bool
 initial =
         (symbol "initial" >> return True)
     <|> (symbol ""        >> return False)
-
-identifier :: Parser String
-identifier = Token.identifier lexer
 
 transition :: Parser Transition
 transition = Transition <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> state) <* semi
