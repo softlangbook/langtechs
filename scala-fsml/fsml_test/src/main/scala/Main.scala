@@ -2,7 +2,6 @@ import de.sschauss.fsml._
 
 object Main extends App {
 
-
   val turnstileFsm: Fsm = fsm {
     def locked: State = initial state {
       "ticket" / "collect" -> unlocked
@@ -19,6 +18,5 @@ object Main extends App {
       "release" -> locked
     }
   }
-
 
 }

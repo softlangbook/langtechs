@@ -6,23 +6,29 @@ import scala.reflect.macros.whitebox
 
 package object fsml {
 
-  implicit val stringToTransition: String => TransitionHelper = id => new TransitionHelper(id, None, None)
-  implicit val transitionHelperToTransition: Transition => TransitionHelper = transition => new TransitionHelper(transition.input, transition.action, transition.target)
+  sealed trait Node
 
-  class TransitionHelper(input: String, action: Option[String], target: Option[State]) {
-    val / : String => Transition = a => new Transition(input, Some(a), target)
-    val -> : State => Transition = t => new Transition(input, action, Some(t))
-  }
-
-
-  trait Fsm {
+  trait Fsm extends Node {
     val states: List[State]
   }
 
-  class State(val initial: Boolean, val id: String, transitions: List[Transition])
+  class State(val initial: Boolean, val id: String, transitions: List[Transition]) extends Node
 
-  class Transition(val input: String, val action: Option[String], `companion target`: => Option[State]) {
-    lazy val target: Option[State] = `companion target`
+  class Transition(val input: String, val action: Option[String], `target'`: => Option[State]) extends Node {
+    lazy val target: Option[State] = `target'`
+  }
+
+  implicit def stringToTransition(id: String): Transition = new Transition(id, None, None)
+
+  implicit def transitionHelperToTransition(transition: Transition): TransitionHelper =
+    new TransitionHelper(transition.input, transition.action, transition.target)
+
+  implicit def stringToTransitionHelper(id: String): TransitionHelper = new TransitionHelper(id, None, None)
+
+  class TransitionHelper(input: String, action: Option[String], target: Option[State]) {
+    def /(action: String): Transition = new Transition(input, Some(action), target)
+
+    def ->(target: State): Transition = new Transition(input, action, Some(target))
   }
 
   object fsm {
