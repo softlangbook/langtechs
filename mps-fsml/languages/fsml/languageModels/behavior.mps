@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:3c2f5bb6-c72f-4e6f-b327-502e460a8353(fsml.behavior)">
+<model ref="r:306d37a3-a651-42a6-a9a6-5e08981493d5(fsml.behavior)">
   <persistence version="9" />
   <languages>
     <use id="af65afd8-f0dd-4942-87d9-63a55f2a9db1" name="jetbrains.mps.lang.behavior" version="-1" />

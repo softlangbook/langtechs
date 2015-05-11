@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="fsml.runtime" uuid="c28c111e-dea1-4a7d-a53a-6f8f23eddd80" compileInMPS="true">
+<solution name="fsml.runtime" uuid="81d27854-a613-4493-b18b-e97909840c83" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />

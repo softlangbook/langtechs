@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:cc3acd45-7791-412e-afd4-82c5b345c786(fsml.structure)">
+<model ref="r:e51f5db8-42a6-4d8a-b7f0-f72a6137a443(fsml.structure)">
   <persistence version="9" />
   <languages>
     <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="-1" />
@@ -34,77 +34,70 @@
       </concept>
     </language>
   </registry>
-  <node concept="1TIwiD" id="5oSJhHHGcFX">
+  <node concept="1TIwiD" id="5C6J16bWoJC">
     <property role="TrG5h" value="Fsm" />
     <property role="19KtqR" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="5oSJhHHGqgt" role="1TKVEi">
+    <node concept="1TJgyj" id="5C6J16bW$15" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="states" />
       <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="5oSJhHHGqg2" resolve="State" />
+      <ref role="20lvS9" node="5C6J16bWu_e" resolve="State" />
     </node>
   </node>
-  <node concept="1TIwiD" id="5oSJhHHGqfy">
-    <property role="TrG5h" value="Action" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="PrWs8" id="5oSJhHHGqfJ" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
-  </node>
-  <node concept="1TIwiD" id="5oSJhHHGqfz">
-    <property role="TrG5h" value="Input" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="PrWs8" id="5oSJhHHGqfC" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
-  </node>
-  <node concept="1TIwiD" id="5oSJhHHGqfR">
-    <property role="TrG5h" value="Id" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="PrWs8" id="5oSJhHHGqfS" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
-  </node>
-  <node concept="1TIwiD" id="5oSJhHHGqg2">
+  <node concept="1TIwiD" id="5C6J16bWu_e">
     <property role="TrG5h" value="State" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="5oSJhHHGsJb" role="1TKVEi">
+    <node concept="1TJgyj" id="5C6J16bXz1T" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="initial" />
-      <ref role="20lvS9" node="5oSJhHHGsJA" resolve="Initial" />
+      <ref role="20lvS9" node="5C6J16bXz1x" resolve="Initial" />
     </node>
-    <node concept="PrWs8" id="5oSJhHHGqg3" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
-    <node concept="1TJgyj" id="5oSJhHHGqgI" role="1TKVEi">
+    <node concept="1TJgyj" id="5C6J16bW$1b" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="transitions" />
       <property role="20lbJX" value="0..n" />
-      <ref role="20lvS9" node="5oSJhHHGqg5" resolve="Transition" />
+      <ref role="20lvS9" node="5C6J16bWu_f" resolve="Transition" />
+    </node>
+    <node concept="PrWs8" id="5C6J16bXuSb" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
   </node>
-  <node concept="1TIwiD" id="5oSJhHHGqg5">
+  <node concept="1TIwiD" id="5C6J16bWu_f">
     <property role="TrG5h" value="Transition" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyj" id="5oSJhHHGqg6" role="1TKVEi">
-      <property role="20lmBu" value="reference" />
-      <property role="20kJfa" value="target" />
-      <ref role="20lvS9" node="5oSJhHHGqg2" resolve="State" />
-    </node>
-    <node concept="1TJgyj" id="5oSJhHHGqg8" role="1TKVEi">
-      <property role="20lmBu" value="aggregation" />
-      <property role="20kJfa" value="action" />
-      <ref role="20lvS9" node="5oSJhHHGqfy" resolve="Action" />
-    </node>
-    <node concept="1TJgyj" id="5oSJhHHGqgb" role="1TKVEi">
+    <node concept="1TJgyj" id="5C6J16bXvPK" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="input" />
       <property role="20lbJX" value="1" />
-      <ref role="20lvS9" node="5oSJhHHGqfz" resolve="Input" />
+      <ref role="20lvS9" node="5C6J16bXvOC" resolve="Input" />
+    </node>
+    <node concept="1TJgyj" id="5C6J16bW$1I" role="1TKVEi">
+      <property role="20lmBu" value="reference" />
+      <property role="20kJfa" value="target" />
+      <ref role="20lvS9" node="5C6J16bWu_e" resolve="State" />
+    </node>
+    <node concept="1TJgyj" id="5C6J16bXvPv" role="1TKVEi">
+      <property role="20lmBu" value="aggregation" />
+      <property role="20kJfa" value="action" />
+      <ref role="20lvS9" node="5C6J16bXvOV" resolve="Action" />
     </node>
   </node>
-  <node concept="1TIwiD" id="5oSJhHHGsJA">
+  <node concept="1TIwiD" id="5C6J16bXvOC">
+    <property role="TrG5h" value="Input" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="5C6J16bXvOD" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5C6J16bXvOV">
+    <property role="TrG5h" value="Action" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="5C6J16bXvOW" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5C6J16bXz1x">
     <property role="TrG5h" value="Initial" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
   </node>
