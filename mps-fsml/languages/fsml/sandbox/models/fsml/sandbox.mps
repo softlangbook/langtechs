@@ -3,7 +3,6 @@
   <persistence version="9" />
   <languages>
     <use id="c07fade6-62c9-4222-a52b-3d2f0dcdd056" name="fsml" version="-1" />
-    <use id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core" version="-1" />
   </languages>
   <imports />
   <registry>
