@@ -5,6 +5,7 @@
       <modulePath path="$PROJECT_DIR$/languages/fsml/fsml.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/fsml/runtime/fsml.runtime.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/fsml/sandbox/fsml.sandbox.msd" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/mps-fsml.build2/mps-fsml.build.msd" folder="" />
     </projectModules>
   </component>
 </project>
