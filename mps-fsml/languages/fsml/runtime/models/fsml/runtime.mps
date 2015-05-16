@@ -2,7 +2,6 @@
 <model ref="r:20780eff-1266-433d-8cad-f755f70e5c38(fsml.runtime)">
   <persistence version="9" />
   <languages>
-    <use id="c07fade6-62c9-4222-a52b-3d2f0dcdd056" name="fsml" version="0" />
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="-1" />
     <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="-1" />
   </languages>

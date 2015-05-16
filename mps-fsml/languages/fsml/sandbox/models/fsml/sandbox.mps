@@ -79,6 +79,7 @@
       <concept id="1068580123155" name="jetbrains.mps.baseLanguage.structure.ExpressionStatement" flags="nn" index="3clFbF">
         <child id="1068580123156" name="expression" index="3clFbG" />
       </concept>
+      <concept id="1068580123157" name="jetbrains.mps.baseLanguage.structure.Statement" flags="nn" index="3clFbH" />
       <concept id="1068580123136" name="jetbrains.mps.baseLanguage.structure.StatementList" flags="sn" stub="5293379017992965193" index="3clFbS">
         <child id="1068581517665" name="statement" index="3cqZAp" />
       </concept>
@@ -291,6 +292,7 @@
             <ref role="3cqZAo" node="4BZl$1MKFXR" resolve="output" />
           </node>
         </node>
+        <node concept="3clFbH" id="4BZl$1MKHxJ" role="3cqZAp" />
       </node>
     </node>
     <node concept="3Tm1VV" id="3azPfsWKFvx" role="1B3o_S" />
