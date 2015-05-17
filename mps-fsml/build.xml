@@ -27,6 +27,7 @@
       <idea-plugin version="2" xmlns:xi="http://www.w3.org/2001/XInclude">
         <id>mps-fsml</id>
         <name>mps-fsml</name>
+        <description>IntelliJ IDEA plugin for the fsml</description>
         <version>1.0</version>
         <depends>jetbrains.mps.core</depends>
         
@@ -37,6 +38,33 @@
     </echoxml>
     <mkdir dir="${build.tmp}/default/mps-fsml.zip/mps-fsml/languages" />
     <mkdir dir="${build.tmp}/default/mps-fsml.zip/mps-fsml/languages/mps-fsml" />
+    <mkdir dir="${build.tmp}/default/fsml.runtime.jar" />
+    <mkdir dir="${build.tmp}/default/fsml.runtime.jar/META-INF" />
+    <echoxml file="${build.tmp}/default/fsml.runtime.jar/META-INF/module.xml">
+      <module namespace="fsml.runtime" type="solution" uuid="81d27854-a613-4493-b18b-e97909840c83">
+        <dependencies>
+          <module ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" />
+          <module ref="4c6a28d1-2c60-478d-b36e-db9b3cbb21fb(closures.runtime)" />
+          <module ref="9b80526e-f0bf-4992-bdf5-cee39c1833f3(collections.runtime)" />
+        </dependencies>
+        <sources jar="fsml.runtime-src.jar" descriptor="fsml.runtime.msd" />
+      </module>
+    </echoxml>
+    <jar destfile="${build.tmp}/default/mps-fsml.zip/mps-fsml/languages/mps-fsml/fsml.runtime.jar">
+      <fileset dir="${build.tmp}/java/out/fsml.runtime" />
+      <fileset dir="${basedir}/languages/fsml/runtime" includes="icons/**, resources/**" />
+      <fileset dir="${build.tmp}/default/fsml.runtime.jar" />
+    </jar>
+    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-fsml-runtime-models">
+      <fileset dir="${basedir}/languages/fsml/runtime/models" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
+    </copyModels>
+    <jar destfile="${build.tmp}/default/mps-fsml.zip/mps-fsml/languages/mps-fsml/fsml.runtime-src.jar">
+      <fileset dir="${basedir}/languages/fsml/runtime/source_gen">
+        <exclude name="**/trace.info" />
+      </fileset>
+      <zipfileset file="${basedir}/languages/fsml/runtime/fsml.runtime.msd" prefix="module" />
+      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-fsml-runtime-models" prefix="module/models" />
+    </jar>
     <mkdir dir="${build.tmp}/default/fsml.jar" />
     <mkdir dir="${build.tmp}/default/fsml.jar/META-INF" />
     <echoxml file="${build.tmp}/default/fsml.jar/META-INF/module.xml">
@@ -82,33 +110,6 @@
       <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-fsml-generator-template" prefix="module/generator/template" />
       <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-fsml-languageModels" prefix="module/languageModels" />
     </jar>
-    <mkdir dir="${build.tmp}/default/fsml.runtime.jar" />
-    <mkdir dir="${build.tmp}/default/fsml.runtime.jar/META-INF" />
-    <echoxml file="${build.tmp}/default/fsml.runtime.jar/META-INF/module.xml">
-      <module namespace="fsml.runtime" type="solution" uuid="81d27854-a613-4493-b18b-e97909840c83">
-        <dependencies>
-          <module ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)" />
-          <module ref="4c6a28d1-2c60-478d-b36e-db9b3cbb21fb(closures.runtime)" />
-          <module ref="9b80526e-f0bf-4992-bdf5-cee39c1833f3(collections.runtime)" />
-        </dependencies>
-        <sources jar="fsml.runtime-src.jar" descriptor="fsml.runtime.msd" />
-      </module>
-    </echoxml>
-    <jar destfile="${build.tmp}/default/mps-fsml.zip/mps-fsml/languages/mps-fsml/fsml.runtime.jar">
-      <fileset dir="${build.tmp}/java/out/fsml.runtime" />
-      <fileset dir="${basedir}/languages/fsml/runtime" includes="icons/**, resources/**" />
-      <fileset dir="${build.tmp}/default/fsml.runtime.jar" />
-    </jar>
-    <copyModels todir="${build.tmp}/customProcessors/copyModels/languages-fsml-runtime-models">
-      <fileset dir="${basedir}/languages/fsml/runtime/models" includes="**/*.mps, **/*.metadata, **/*.history, **/*.mpsr, **/.model" />
-    </copyModels>
-    <jar destfile="${build.tmp}/default/mps-fsml.zip/mps-fsml/languages/mps-fsml/fsml.runtime-src.jar">
-      <fileset dir="${basedir}/languages/fsml/runtime/source_gen">
-        <exclude name="**/trace.info" />
-      </fileset>
-      <zipfileset file="${basedir}/languages/fsml/runtime/fsml.runtime.msd" prefix="module" />
-      <zipfileset dir="${build.tmp}/customProcessors/copyModels/languages-fsml-runtime-models" prefix="module/models" />
-    </jar>
     <zip destfile="${build.layout}/mps-fsml.zip">
       <fileset dir="${build.tmp}/default/mps-fsml.zip" />
     </zip>
@@ -126,7 +127,7 @@
     <delete dir="${build.layout}" />
   </target>
   
-  <target name="compileJava" depends="java.compile.fsml, java.compile.fsml#6487079096822390410, java.compile.fsml.runtime" />
+  <target name="compileJava" depends="java.compile.fsml.runtime, java.compile.fsml, java.compile.fsml#6487079096822390410" />
   
   <target name="processResources" />
   
@@ -213,6 +214,21 @@
   
   <target name="makeDependents" />
   
+  <target name="java.compile.fsml.runtime" depends="fetchDependencies">
+    <mkdir dir="${basedir}/languages/fsml/runtime/source_gen" />
+    <mkdir dir="${build.tmp}/java/out/fsml.runtime" />
+    <javac destdir="${build.tmp}/java/out/fsml.runtime" fork="true" includeantruntime="false">
+      <compilerarg value="-Xlint:none" />
+      <src>
+        <path location="${basedir}/languages/fsml/runtime/source_gen" />
+      </src>
+      <classpath>
+        <fileset file="${artifacts.mpsPlugin}/mps-core/lib/mps-closures.jar" />
+        <fileset file="${artifacts.mpsPlugin}/mps-core/lib/mps-collections.jar" />
+      </classpath>
+    </javac>
+  </target>
+  
   <target name="java.compile.fsml" depends="java.compile.fsml.runtime, fetchDependencies">
     <mkdir dir="${basedir}/languages/fsml/source_gen" />
     <mkdir dir="${build.tmp}/java/out/fsml" />
@@ -286,21 +302,6 @@
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.core.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.structure.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.traceable.jar" />
-      </classpath>
-    </javac>
-  </target>
-  
-  <target name="java.compile.fsml.runtime" depends="fetchDependencies">
-    <mkdir dir="${basedir}/languages/fsml/runtime/source_gen" />
-    <mkdir dir="${build.tmp}/java/out/fsml.runtime" />
-    <javac destdir="${build.tmp}/java/out/fsml.runtime" fork="true" includeantruntime="false">
-      <compilerarg value="-Xlint:none" />
-      <src>
-        <path location="${basedir}/languages/fsml/runtime/source_gen" />
-      </src>
-      <classpath>
-        <fileset file="${artifacts.mpsPlugin}/mps-core/lib/mps-closures.jar" />
-        <fileset file="${artifacts.mpsPlugin}/mps-core/lib/mps-collections.jar" />
       </classpath>
     </javac>
   </target>
