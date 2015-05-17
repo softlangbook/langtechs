@@ -1,6 +1,6 @@
-module FSML-Refactorings
+module fsml-Refactorings
 
-imports FSML-Refactorings.generated
+imports fsml-Refactorings.generated
 
 refactorings
 

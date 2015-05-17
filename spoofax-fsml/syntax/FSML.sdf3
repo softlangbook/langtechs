@@ -1,4 +1,4 @@
-module FSML
+module fsml
 
 imports
 	
@@ -6,20 +6,9 @@ imports
 
 context-free start-symbols
   
-  Fsm
+  Start
 
 context-free syntax
   
-  Fsm.Fsm = <<State*>>
-  
-  State.InitialState = <initial state <ID> {<Transition*>}>
-  State.State = <state <ID> {<Transition*>}>
-  
-  Transition.Transition = <<Input>;>
-  Transition.TransitionWithAction = <<Input> / <Action>;>
-  Transition.TransitionWithTarget = <<Input> -\> <ID>;>
-  Transition.TransitionWithActionAndTarget = <<Input> / <Action> -\> <ID>;>
-  
-  Input.Input = <<ID>>
-  Action.Action = <<ID>>
+  Start.Dummy = <>
 

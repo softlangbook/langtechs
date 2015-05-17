@@ -1,6 +1,6 @@
-module FSML-Folding
+module fsml-Folding
 
-imports FSML-Folding.generated
+imports fsml-Folding.generated
 
 folding
   

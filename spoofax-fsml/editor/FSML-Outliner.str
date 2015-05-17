@@ -1,11 +1,11 @@
-module editor/FSML-Outliner
+module editor/fsml-Outliner
 
 imports
   
-  include/FSML
+  include/fsml
   lib/runtime/editor/outline-library
   lib/runtime/editor/origins
-  editor/FSML-Outliner.generated
+  editor/fsml-Outliner.generated
 
 rules
   

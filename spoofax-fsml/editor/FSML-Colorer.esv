@@ -1,6 +1,6 @@
-module FSML-Colorer
+module fsml-Colorer
 
-imports FSML-Colorer.generated
+imports fsml-Colorer.generated
 
 colorer
                                                                       

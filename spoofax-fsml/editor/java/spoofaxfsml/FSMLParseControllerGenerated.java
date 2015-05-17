@@ -12,9 +12,9 @@ import org.strategoxt.imp.runtime.dynamicloading.Descriptor;
 import org.strategoxt.imp.runtime.dynamicloading.DescriptorFactory;
 import org.strategoxt.imp.runtime.dynamicloading.DynamicParseController;
 
-public class FSMLParseControllerGenerated extends DynamicParseController 
+public class FsmlParseControllerGenerated extends DynamicParseController 
 { 
-  public static final String LANGUAGE = new String("FSML");
+  public static final String LANGUAGE = new String("fsml");
 
   private static final String TABLE = "/include/" + LANGUAGE + ".tbl";
 
@@ -35,15 +35,15 @@ public class FSMLParseControllerGenerated extends DynamicParseController
 
   protected static synchronized void setDescriptor(Descriptor descriptor)
   { 
-    FSMLParseControllerGenerated.descriptor = descriptor;
+    FsmlParseControllerGenerated.descriptor = descriptor;
   }
 
   protected static void createDescriptor()
   { 
     try
     { 
-      InputStream descriptorStream = FSMLParseControllerGenerated.class.getResourceAsStream(DESCRIPTOR);
-      InputStream table = FSMLParseControllerGenerated.class.getResourceAsStream(TABLE);
+      InputStream descriptorStream = FsmlParseControllerGenerated.class.getResourceAsStream(DESCRIPTOR);
+      InputStream table = FsmlParseControllerGenerated.class.getResourceAsStream(TABLE);
       boolean filesystem = false;
       if(descriptorStream == null && new File("./" + DESCRIPTOR).exists())
       { 
@@ -60,7 +60,7 @@ public class FSMLParseControllerGenerated extends DynamicParseController
       if(table == null)
         throw new BadDescriptorException("Could not load parse table from " + TABLE + " (not found in plugin: " + getPluginLocation() + ")");
       descriptor = DescriptorFactory.load(descriptorStream, table, filesystem ? Path.fromPortableString("./") : null);
-      descriptor.setAttachmentProvider(FSMLParseControllerGenerated.class);
+      descriptor.setAttachmentProvider(FsmlParseControllerGenerated.class);
     }
     catch(BadDescriptorException exc)
     { 
@@ -78,7 +78,7 @@ public class FSMLParseControllerGenerated extends DynamicParseController
 
   private static String getPluginLocation()
   { 
-    return FSMLParseController.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+    return FsmlParseController.class.getProtectionDomain().getCodeSource().getLocation().getFile();
   }
 
   @Override public IParseController getWrapped()

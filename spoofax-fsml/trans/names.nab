@@ -1,8 +1,8 @@
-module nab/names
+module names
 
 imports
 	
-	include/FSML
+	include/fsml
 	
 namespaces
 	

@@ -4,25 +4,28 @@ imports
 
 	libstratego-gpp
 	lib/runtime/refactoring/-
-	src-gen/pp/FSML-pp
+	include/fsml-parenthesize
+	src-gen/pp/fsml-pp
 
 rules
 	
-  pp-FSML-string =
-    prettyprint-SDF-start-symbols
+  pp-fsml-string =
+    parenthesize-fsml
+    ; prettyprint-SDF-start-symbols
     ; !V([], <id>)
     ; box2text-string(|120)
       
-  pp-partial-FSML-string =
-    prettyprint-example
+  pp-partial-fsml-string =
+    parenthesize-fsml
+    ; prettyprint-example
     ; !V([], <id>)
     ; box2text-string(|120)
       
   pp-debug :
     ast -> result
     with
-       result := <pp-FSML-string> ast
-    <+ <bottomup(try(not(is-string); not(is-list); not(pp-FSML-string); debug(!"cannot pp ")))> ast
+       result := <pp-fsml-string> ast
+    <+ <bottomup(try(not(is-string); not(is-list); not(pp-fsml-string); debug(!"cannot pp ")))> ast
     ;  result := ""
 
 rules
@@ -34,5 +37,5 @@ rules
   * Example:
   *   new-text := <construct-textual-change> (old-ast, new-ast)
   */
-  construct-textual-change = construct-textual-change(pp-partial-FSML-string, parenthesize, override-reconstruction, resugar)
+  construct-textual-change = construct-textual-change(pp-partial-fsml-string, parenthesize, override-reconstruction, resugar)
 

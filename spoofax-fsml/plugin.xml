@@ -4,21 +4,21 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            extensions="fsml"
-            description="FSML"
-            language="FSML"
+            extensions="fsm"
+            description="fsml"
+            language="fsml"
             derivedFrom="DynamicRoot"
-            validator="spoofaxfsml.FSMLValidator"
-            validatorClass="spoofaxfsml.FSMLValidator"
+            validator="spoofaxfsml.FsmlValidator"
+            validatorClass="spoofaxfsml.FsmlValidator"
       ></language>
    </extension>
    <extension
          id="spoofaxfsml.parser"
-         name="FSML Parser"
+         name="fsml Parser"
          point="org.eclipse.imp.runtime.parser">
       <parser
-            class="spoofaxfsml.FSMLParseController"
-            language="FSML">
+            class="spoofaxfsml.FsmlParseController"
+            language="fsml">
       </parser>
    </extension>    
 </plugin>

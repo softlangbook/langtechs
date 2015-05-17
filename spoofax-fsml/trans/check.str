@@ -2,7 +2,7 @@ module check
 
 imports
 
-	include/FSML
+	include/fsml
 
 rules // Extensions for error/warning/note reporting
 	

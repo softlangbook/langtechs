@@ -1,6 +1,6 @@
-module FSML-Completions
+module fsml-Completions
 
-imports src-gen/completions/FSML-esv
+imports src-gen/completions/fsml-esv
 
 completions
                                                                    

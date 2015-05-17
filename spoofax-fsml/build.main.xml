@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="FSML" default="all">
+<project name="fsml" default="all">
     
     <!-- Key input modules -->
-    <property name="sdfmodule" value="FSML"/>
-	<property name="metasdfmodule" value="Stratego-FSML"/>
-	<property name="esvmodule" value="FSML"/>
+    <property name="sdfmodule" value="fsml"/>
+	<property name="metasdfmodule" value="Stratego-fsml"/>
+	<property name="esvmodule" value="fsml"/>
 	<property name="strmodule" value="fsml"/>
-	<property name="ppmodule" value="FSML-pp"/>
-	<property name="sigmodule" value="FSML-sig"/> 
+	<property name="ppmodule" value="fsml-pp"/>
+	<property name="sigmodule" value="fsml-sig"/> 
 	
     <!-- Project directories -->
     <property name="trans" location="trans"/>

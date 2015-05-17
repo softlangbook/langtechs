@@ -6,9 +6,9 @@ import org.osgi.framework.BundleContext;
 
 public class Activator extends PluginBase 
 { 
-  public static final String kPluginID = "FSML";
+  public static final String kPluginID = "Fsml";
 
-  public static final String kLanguageName = "FSML";
+  public static final String kLanguageName = "Fsml";
 
   protected static Activator sPlugin;
 

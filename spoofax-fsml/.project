@@ -14,7 +14,7 @@
         <arguments>
             <dictionary>
                 <key>LaunchConfigHandle</key>
-                <value>&lt;project&gt;/.externalToolBuilders/FSML build.main.xml.launch</value>
+                <value>&lt;project&gt;/.externalToolBuilders/fsml build.main.xml.launch</value>
             </dictionary>
         </arguments>
     </buildCommand>
@@ -24,7 +24,7 @@
 		<arguments>
 			<dictionary>
 				<key>LaunchConfigHandle</key>
-				<value>&lt;project&gt;/.externalToolBuilders/FSML clean-project.xml.launch</value>
+				<value>&lt;project&gt;/.externalToolBuilders/fsml clean-project.xml.launch</value>
 			</dictionary>
 		</arguments>
 	</buildCommand>

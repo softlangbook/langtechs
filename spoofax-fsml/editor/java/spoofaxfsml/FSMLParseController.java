@@ -1,4 +1,4 @@
 package spoofaxfsml;
 
-public class FSMLParseController extends FSMLParseControllerGenerated 
+public class FsmlParseController extends FsmlParseControllerGenerated 
 { }

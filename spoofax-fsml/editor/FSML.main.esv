@@ -1,27 +1,27 @@
-module FSML.main
+module fsml.main
 
 imports
-  FSML-Colorer
-  FSML-Completions
-  FSML-Folding
-  FSML-Menus
-  FSML-Refactorings
-  FSML-References
-  FSML-Syntax
-  FSML-Views
+  fsml-Colorer
+  fsml-Completions
+  fsml-Folding
+  fsml-Menus
+  fsml-Refactorings
+  fsml-References
+  fsml-Syntax
+  fsml-Views
 
 language General properties
   
-  name:          FSML
+  name:          fsml
   id:            spoofaxfsml
   extends:       Root
   
-  description:   "Spoofax-generated editor for the FSML language"
+  description:   "Spoofax-generated editor for the fsml language"
   url:           http://strategoxt.org
   
-  extensions:    fsml
-  table:         include/FSML.tbl
-  start symbols: Fsm
+  extensions:    fsm
+  table:         include/fsml.tbl
+  start symbols: Start
   
   provider:      include/fsml.ctree
   provider:      include/fsml-java.jar
@@ -29,3 +29,5 @@ language General properties
   observer:      editor-analyze (multifile)
   
   on save:       editor-save
+  
+  jvm opts:      -server -Xss8m -Xmx1024m

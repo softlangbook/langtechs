@@ -1,6 +1,6 @@
-module FSML-Syntax
+module fsml-Syntax
 
-imports FSML-Syntax.generated
+imports fsml-Syntax.generated
 
 language
                                                                    
