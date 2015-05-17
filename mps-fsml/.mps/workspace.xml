@@ -6,18 +6,7 @@
     </option>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15a286a3-cdbb-4923-bcd9-5eda965f0a40" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.mps/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/solutions/fsml.build/fsml.build.msd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/solutions/fsml.build/models/fsml.mps" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solutions/mps-fsml.build1/models/mps-fsml/build.mps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solutions/mps-fsml.build1/mps-fsml.build.msd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solutions/mps-fsml.build2/models/mps-fsml/build.mps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solutions/mps-fsml.build2/mps-fsml.build.msd" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mps/modules.xml" afterPath="$PROJECT_DIR$/.mps/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mps/workspace.xml" afterPath="$PROJECT_DIR$/.mps/workspace.xml" />
-    </list>
+    <list default="true" id="15a286a3-cdbb-4923-bcd9-5eda965f0a40" name="Default" comment="" />
     <ignored path="Project1.iws" />
     <ignored path=".mps/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
