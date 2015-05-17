@@ -10,5 +10,15 @@ context-free start-symbols
 
 context-free syntax
   
-  Start.Dummy = <>
-
+  Start.Fsm = IState *
+  IState.InitialState = "initial state" ID "{" ITransition * "}"    
+  IState.State = "state" ID "{" ITransition * "}"
+  ITransition.Transition = Input ";"
+  ITransition.TransitionWithAction = Input "/" Action ";"
+  ITransition.TransitionWithTarget = Input "->" Target ";"
+  ITransition.TransitionWithActionAndTarget = Input "/" Action "->" Target ";"
+  
+  Input = ID
+  Action = ID
+  Target = ID
+   	

@@ -4,4 +4,9 @@ imports
 	
 	include/fsml
 rules 
+	generate-java:
+		Transition(input) ->
+		$[
+			new State([input])
+		]
 

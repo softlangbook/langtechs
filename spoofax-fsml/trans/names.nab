@@ -5,6 +5,20 @@ imports
 	include/fsml
 	
 namespaces
+	Fsm IState ITransition Input
 	
 binding rules
-
+	InitialState(id, _):
+		defines IState id
+		scopes ITransition
+	State(id, _):
+		defines IState id
+		scopes ITransition
+	Transition(input):
+		defines ITransition input
+	TransitionWithAction(input, _):
+		defines ITransition input
+	TransitionWithTarget(input, _):
+		defines ITransition input
+	TransitionWithActionAndTarget(input, _, _):
+		defines ITransition input

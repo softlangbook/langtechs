@@ -6,7 +6,7 @@ imports
 
 rules // Extensions for error/warning/note reporting
 	
-	constraint-error:
+	constraint-error:					
 		_ -> <fail>
  
 	constraint-warning:
