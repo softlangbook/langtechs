@@ -25,10 +25,8 @@ rules
     			public static Fsm fsm;
     			
     			static {
-    				// Construct FSM 
     				fsm = new Fsm();
     				
-    				// Declate all States
     				[state'*]    				
 				}
     			
