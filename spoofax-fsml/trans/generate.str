@@ -3,10 +3,11 @@ module generate
 imports
 	
 	include/fsml
-rules 
+rules
 	generate-java:
-		Transition(input) ->
-		$[
-			new State([input])
-		]
-
+		Fsm(transitions) ->
+			$[
+				public class Sample {
+					public static Fsm sample; 	
+				}
+			]

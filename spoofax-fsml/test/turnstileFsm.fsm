@@ -6,10 +6,9 @@ state unlocked {
 	ticket / eject ;
 	pass -> locked ;
 }
-state excpetion { 
-	ticket -> eject ;
+state exception { 
+	ticket / eject ;
 	pass ;
 	mute ;
 	release -> locked ;
 }
-

@@ -6,19 +6,17 @@ imports
 
 context-free start-symbols
   
-  Start
+  Fsm
 
 context-free syntax
   
-  Start.Fsm = IState *
-  IState.InitialState = "initial state" ID "{" ITransition * "}"    
-  IState.State = "state" ID "{" ITransition * "}"
-  ITransition.Transition = Input ";"
-  ITransition.TransitionWithAction = Input "/" Action ";"
-  ITransition.TransitionWithTarget = Input "->" Target ";"
-  ITransition.TransitionWithActionAndTarget = Input "/" Action "->" Target ";"
+  Fsm.Fsm = State *
+  State.State = (Initial ?) "state" ID "{" Transition * "}"    
+  Transition.Transition = Input (Action ?) (Target ?) ";"
   
-  Input = ID
-  Action = ID
-  Target = ID
+  Initial.Initial = "initial"
+  
+  Input.Input = ID
+  Action.Action = "/" ID
+  Target.Target = "->" ID
    	

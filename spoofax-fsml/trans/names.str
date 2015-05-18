@@ -12,10 +12,10 @@ imports
 
 signature
   constructors
-    NablNsFsm         : Namespace
-    NablNsIState      : Namespace
-    NablNsITransition : Namespace
-    NablNsInput       : Namespace
+    NablNsFsm        : Namespace
+    NablNsState      : Namespace
+    NablNsTransition : Namespace
+    NablNsInput      : Namespace
 
 
 signature
@@ -31,57 +31,29 @@ rules
 
 rules
 
-  nabl-get-scope =
-    ?InitialState('id, _)
-    ; ![NablNsITransition()]
-
-  nabl-get-name :
-    InitialState('id, _) -> 'id
-
-  nabl-name-apply(s) =
-    InitialState(s, id)
-
-  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?InitialState('id, _)
-    ; origin-track-forced(
-        InitialState(
-          nabl-def(
-            ?c-uri1__
-          , ?s-uri1__
-          | lang__
-          , ctx__
-          , uniques__
-          , uri__
-          , uri__
-          , NablNsIState()
-          , Unique()
-          , Current()
-          , [NablNsITransition()]
-          , []
-          )
-        , id
-        )
-      |
-      )
-    ; match(child-uris__|c-uri1__)
-    ; match(sibl-uris__|s-uri1__)
-    ; match(implicits__|[])
+  nabl-scoping-site =
+    ?Fsm(_)
+    ; nabl-scope(|[NablNsState()])
 
   nabl-get-scope =
-    ?State('id, _)
-    ; ![NablNsITransition()]
+    ?Fsm(_) ; ![NablNsState()]
+
+  nabl-get-scope =
+    ?State(_, 'id, _)
+    ; ![NablNsTransition()]
 
   nabl-get-name :
-    State('id, _) -> 'id
+    State(_, 'id, _) -> 'id
 
   nabl-name-apply(s) =
-    State(s, id)
+    State(id, s, id)
 
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?State('id, _)
+    ?State(_, 'id, _)
     ; origin-track-forced(
         State(
-          nabl-def(
+          id
+        , nabl-def(
             ?c-uri1__
           , ?s-uri1__
           | lang__
@@ -89,10 +61,10 @@ rules
           , uniques__
           , uri__
           , uri__
-          , NablNsIState()
+          , NablNsState()
           , Unique()
           , Current()
-          , [NablNsITransition()]
+          , [NablNsTransition()]
           , []
           )
         , id
@@ -104,13 +76,13 @@ rules
     ; match(implicits__|[])
 
   nabl-get-name :
-    Transition(input) -> input
+    Transition(input, _, target) -> input
 
   nabl-name-apply(s) =
-    Transition(s)
+    Transition(s, id, id)
 
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?Transition(input)
+    ?Transition(input, _, target)
     ; origin-track-forced(
         Transition(
           nabl-def(
@@ -121,43 +93,13 @@ rules
           , uniques__
           , uri__
           , uri__
-          , NablNsITransition()
+          , NablNsTransition()
           , Unique()
           , Current()
           , []
           , []
           )
-        )
-      |
-      )
-    ; match(child-uris__|c-uri1__)
-    ; match(sibl-uris__|s-uri1__)
-    ; match(implicits__|[])
-
-  nabl-get-name :
-    TransitionWithAction(input, _) -> input
-
-  nabl-name-apply(s) =
-    TransitionWithAction(s, id)
-
-  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?TransitionWithAction(input, _)
-    ; origin-track-forced(
-        TransitionWithAction(
-          nabl-def(
-            ?c-uri1__
-          , ?s-uri1__
-          | lang__
-          , ctx__
-          , uniques__
-          , uri__
-          , uri__
-          , NablNsITransition()
-          , Unique()
-          , Current()
-          , []
-          , []
-          )
+        , id
         , id
         )
       |
@@ -167,66 +109,32 @@ rules
     ; match(implicits__|[])
 
   nabl-get-name :
-    TransitionWithTarget(input, _) -> input
+    Target('id) -> 'id
 
   nabl-name-apply(s) =
-    TransitionWithTarget(s, id)
+    Target(s)
 
-  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?TransitionWithTarget(input, _)
+  nabl-use-site(|lang__, ctx__, uniques__, uris__, states__) =
+    ?Target('id)
     ; origin-track-forced(
-        TransitionWithTarget(
-          nabl-def(
-            ?c-uri1__
-          , ?s-uri1__
+        Target(
+          nabl-use(
           | lang__
           , ctx__
           , uniques__
-          , uri__
-          , uri__
-          , NablNsITransition()
-          , Unique()
-          , Current()
-          , []
-          , []
+          , uris__
+          , [ <{:
+                 id
+                 ; !UseCandidate(
+                      NablNsState()
+                    , []
+                    , Current()
+                    , True()
+                    , []
+                    )
+               }>
+            ]
           )
-        , id
         )
       |
       )
-    ; match(child-uris__|c-uri1__)
-    ; match(sibl-uris__|s-uri1__)
-    ; match(implicits__|[])
-
-  nabl-get-name :
-    TransitionWithActionAndTarget(input, _, _) -> input
-
-  nabl-name-apply(s) =
-    TransitionWithActionAndTarget(s, id, id)
-
-  nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?TransitionWithActionAndTarget(input, _, _)
-    ; origin-track-forced(
-        TransitionWithActionAndTarget(
-          nabl-def(
-            ?c-uri1__
-          , ?s-uri1__
-          | lang__
-          , ctx__
-          , uniques__
-          , uri__
-          , uri__
-          , NablNsITransition()
-          , Unique()
-          , Current()
-          , []
-          , []
-          )
-        , id
-        , id
-        )
-      |
-      )
-    ; match(child-uris__|c-uri1__)
-    ; match(sibl-uris__|s-uri1__)
-    ; match(implicits__|[])

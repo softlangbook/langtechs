@@ -21,7 +21,7 @@ language General properties
   
   extensions:    fsm
   table:         include/fsml.tbl
-  start symbols: Start
+  start symbols: Fsm
   
   provider:      include/fsml.ctree
   provider:      include/fsml-java.jar
