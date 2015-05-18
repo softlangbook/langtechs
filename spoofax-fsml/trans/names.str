@@ -32,11 +32,11 @@ rules
 rules
 
   nabl-scoping-site =
-    ?Fsm(_)
+    ?Fsm(_, _)
     ; nabl-scope(|[NablNsState()])
 
   nabl-get-scope =
-    ?Fsm(_) ; ![NablNsState()]
+    ?Fsm(_, _) ; ![NablNsState()]
 
   nabl-get-scope =
     ?State(_, 'id, _)

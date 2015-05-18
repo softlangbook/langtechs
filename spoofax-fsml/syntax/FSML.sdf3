@@ -10,8 +10,8 @@ context-free start-symbols
 
 context-free syntax
   
-  Fsm.Fsm = State *
-  State.State = (Initial ?) "state" ID "{" Transition * "}"    
+  Fsm.Fsm = "fsm" ID "{" (State *) "}"
+  State.State = (Initial ?) "state" ID "{" (Transition *) "}"    
   Transition.Transition = Input (Action ?) (Target ?) ";"
   
   Initial.Initial = "initial"
