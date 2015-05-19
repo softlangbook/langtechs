@@ -14,3 +14,14 @@ fsm turnstileFsm {
 		release -> locked ;
 	}
 }
+
+/*
+ * Done:
+ *	- distinct ids
+ *	- deterministic
+ *	- resolvable
+ * Todo:
+ *	- single initial
+ *	- reachable	
+ *	
+ */
