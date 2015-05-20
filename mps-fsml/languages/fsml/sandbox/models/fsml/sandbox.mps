@@ -79,7 +79,6 @@
       <concept id="1068580123155" name="jetbrains.mps.baseLanguage.structure.ExpressionStatement" flags="nn" index="3clFbF">
         <child id="1068580123156" name="expression" index="3clFbG" />
       </concept>
-      <concept id="1068580123157" name="jetbrains.mps.baseLanguage.structure.Statement" flags="nn" index="3clFbH" />
       <concept id="1068580123136" name="jetbrains.mps.baseLanguage.structure.StatementList" flags="sn" stub="5293379017992965193" index="3clFbS">
         <child id="1068581517665" name="statement" index="3cqZAp" />
       </concept>
@@ -175,7 +174,6 @@
             <node concept="3hXNvT" id="4BZl$1MJkoH" role="33vP2m">
               <node concept="3hXPlv" id="4BZl$1MJl15" role="3hXfLk">
                 <property role="TrG5h" value="locked" />
-                <node concept="3hW8LK" id="4BZl$1MJl24" role="3hW8LC" />
                 <node concept="3hXPlu" id="4BZl$1MJVYR" role="3hXfLq">
                   <ref role="3hXfLZ" node="4BZl$1MJl32" resolve="unlocked" />
                   <node concept="3hWO4T" id="4BZl$1MJVYS" role="3hWO5x">
@@ -211,6 +209,7 @@
                     <property role="TrG5h" value="pass" />
                   </node>
                 </node>
+                <node concept="3hW8LK" id="33QxA9O$PEB" role="3hW8LC" />
               </node>
               <node concept="3hXPlv" id="4BZl$1MJl55" role="3hXfLk">
                 <property role="TrG5h" value="exception" />
@@ -292,9 +291,9 @@
             <ref role="3cqZAo" node="4BZl$1MKFXR" resolve="output" />
           </node>
         </node>
-        <node concept="3clFbH" id="4BZl$1MKHxJ" role="3cqZAp" />
       </node>
     </node>
+    <node concept="2tJIrI" id="33QxA9O$P_A" role="jymVt" />
     <node concept="3Tm1VV" id="3azPfsWKFvx" role="1B3o_S" />
   </node>
 </model>

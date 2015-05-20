@@ -378,7 +378,7 @@
         <node concept="3clFbJ" id="lDEcpPIm9V" role="3cqZAp">
           <node concept="3clFbS" id="lDEcpPIm9X" role="3clFbx">
             <node concept="34ab3g" id="lDEcpPMC4x" role="3cqZAp">
-              <property role="35gtTG" value="info" />
+              <property role="35gtTG" value="debug" />
               <node concept="3cpWs3" id="lDEcpPNEF_" role="34bqiv">
                 <node concept="Xl_RD" id="lDEcpPNENz" role="3uHU7B">
                   <property role="Xl_RC" value="unreachable states: " />
