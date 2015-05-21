@@ -34,6 +34,9 @@
       <concept id="1188220165133" name="jetbrains.mps.baseLanguage.structure.ArrayLiteral" flags="nn" index="2BsdOp">
         <child id="1188220173759" name="item" index="2BsfMF" />
       </concept>
+      <concept id="1224848483129" name="jetbrains.mps.baseLanguage.structure.IBLDeprecatable" flags="ng" index="IEa8$">
+        <property id="1224848525476" name="isDeprecated" index="IEkAT" />
+      </concept>
       <concept id="1154032098014" name="jetbrains.mps.baseLanguage.structure.AbstractLoopStatement" flags="nn" index="2LF5Ji">
         <child id="1154032183016" name="body" index="2LFqv$" />
       </concept>
@@ -72,6 +75,8 @@
         <child id="5680397130376446158" name="type" index="1tU5fm" />
       </concept>
       <concept id="1068580123132" name="jetbrains.mps.baseLanguage.structure.BaseMethodDeclaration" flags="ng" index="3clF44">
+        <property id="4276006055363816570" name="isSynchronized" index="od$2w" />
+        <property id="1181808852946" name="isFinal" index="DiZV1" />
         <child id="1068580123133" name="returnType" index="3clF45" />
         <child id="1068580123134" name="parameter" index="3clF46" />
         <child id="1068580123135" name="body" index="3clF47" />
@@ -153,16 +158,11 @@
       </node>
     </node>
     <node concept="2tJIrI" id="4BZl$1MJZo8" role="jymVt" />
-    <node concept="2YIFZL" id="4BZl$1MJj_1" role="jymVt">
+    <node concept="2YIFZL" id="3rAnA9iMoDl" role="jymVt">
       <property role="TrG5h" value="main" />
-      <node concept="37vLTG" id="4BZl$1MJj_2" role="3clF46">
-        <property role="TrG5h" value="args" />
-        <node concept="10Q1$e" id="4BZl$1MJj_3" role="1tU5fm">
-          <node concept="17QB3L" id="4BZl$1MJj_4" role="10Q1$1" />
-        </node>
-      </node>
-      <node concept="3cqZAl" id="4BZl$1MJj_5" role="3clF45" />
-      <node concept="3Tm1VV" id="4BZl$1MJj_6" role="1B3o_S" />
+      <property role="IEkAT" value="false" />
+      <property role="DiZV1" value="false" />
+      <property role="od$2w" value="false" />
       <node concept="3clFbS" id="4BZl$1MJj_7" role="3clF47">
         <node concept="3cpWs8" id="4BZl$1MJkl5" role="3cqZAp">
           <node concept="3cpWsn" id="4BZl$1MJkl6" role="3cpWs9">
@@ -192,6 +192,7 @@
                     <property role="TrG5h" value="alarm" />
                   </node>
                 </node>
+                <node concept="3hW8LK" id="3rAnA9iMoOa" role="3hW8LC" />
               </node>
               <node concept="3hXPlv" id="4BZl$1MJl32" role="3hXfLk">
                 <property role="TrG5h" value="unlocked" />
@@ -209,7 +210,6 @@
                     <property role="TrG5h" value="pass" />
                   </node>
                 </node>
-                <node concept="3hW8LK" id="33QxA9O$PEB" role="3hW8LC" />
               </node>
               <node concept="3hXPlv" id="4BZl$1MJl55" role="3hXfLk">
                 <property role="TrG5h" value="exception" />
@@ -292,6 +292,14 @@
           </node>
         </node>
       </node>
+      <node concept="37vLTG" id="4BZl$1MJj_2" role="3clF46">
+        <property role="TrG5h" value="args" />
+        <node concept="10Q1$e" id="4BZl$1MJj_3" role="1tU5fm">
+          <node concept="17QB3L" id="4BZl$1MJj_4" role="10Q1$1" />
+        </node>
+      </node>
+      <node concept="3cqZAl" id="4BZl$1MJj_5" role="3clF45" />
+      <node concept="3Tm1VV" id="4BZl$1MJj_6" role="1B3o_S" />
     </node>
     <node concept="2tJIrI" id="33QxA9O$P_A" role="jymVt" />
     <node concept="3Tm1VV" id="3azPfsWKFvx" role="1B3o_S" />

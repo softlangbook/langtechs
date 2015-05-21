@@ -52,13 +52,11 @@
     <language id="d7a92d38-f7db-40d0-8431-763b0c3c9f20" name="jetbrains.mps.lang.intentions">
       <concept id="1192794744107" name="jetbrains.mps.lang.intentions.structure.IntentionDeclaration" flags="ig" index="2S6QgY" />
       <concept id="1192794782375" name="jetbrains.mps.lang.intentions.structure.DescriptionBlock" flags="in" index="2S6ZIM" />
-      <concept id="1192795771125" name="jetbrains.mps.lang.intentions.structure.IsApplicableBlock" flags="in" index="2SaL7w" />
       <concept id="1192795911897" name="jetbrains.mps.lang.intentions.structure.ExecuteBlock" flags="in" index="2Sbjvc" />
       <concept id="1192796902958" name="jetbrains.mps.lang.intentions.structure.ConceptFunctionParameter_node" flags="nn" index="2Sf5sV" />
       <concept id="2522969319638091381" name="jetbrains.mps.lang.intentions.structure.BaseIntentionDeclaration" flags="ig" index="2ZfUlf">
         <reference id="2522969319638198290" name="forConcept" index="2ZfgGC" />
         <child id="2522969319638198291" name="executeFunction" index="2ZfgGD" />
-        <child id="2522969319638093995" name="isApplicableFunction" index="2ZfVeh" />
         <child id="2522969319638093993" name="descriptionFunction" index="2ZfVej" />
       </concept>
     </language>
@@ -70,7 +68,6 @@
         <child id="1144104376918" name="parameter" index="1xVPHs" />
       </concept>
       <concept id="1171407110247" name="jetbrains.mps.lang.smodel.structure.Node_GetAncestorOperation" flags="nn" index="2Xjw5R" />
-      <concept id="1171999116870" name="jetbrains.mps.lang.smodel.structure.Node_IsNullOperation" flags="nn" index="3w_OXm" />
       <concept id="1172008320231" name="jetbrains.mps.lang.smodel.structure.Node_IsNotNullOperation" flags="nn" index="3x8VRR" />
       <concept id="1144101972840" name="jetbrains.mps.lang.smodel.structure.OperationParm_Concept" flags="ng" index="1xMEDy">
         <child id="1207343664468" name="conceptArgument" index="ri$Ld" />
@@ -198,21 +195,6 @@
         <node concept="3clFbF" id="33QxA9O$0Kp" role="3cqZAp">
           <node concept="Xl_RD" id="33QxA9O$0Ko" role="3clFbG">
             <property role="Xl_RC" value="Make Initial" />
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="2SaL7w" id="33QxA9O$1Gb" role="2ZfVeh">
-      <node concept="3clFbS" id="33QxA9O$1Gc" role="2VODD2">
-        <node concept="3clFbF" id="33QxA9O$1Nt" role="3cqZAp">
-          <node concept="2OqwBi" id="33QxA9O$cJS" role="3clFbG">
-            <node concept="2OqwBi" id="33QxA9O$2cB" role="2Oq$k0">
-              <node concept="2Sf5sV" id="33QxA9O$1Ns" role="2Oq$k0" />
-              <node concept="3TrEf2" id="33QxA9O$ctE" role="2OqNvi">
-                <ref role="3Tt5mk" to="nh3v:5C6J16bXz1T" />
-              </node>
-            </node>
-            <node concept="3w_OXm" id="33QxA9O$d7n" role="2OqNvi" />
           </node>
         </node>
       </node>
