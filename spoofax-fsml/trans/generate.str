@@ -38,7 +38,7 @@ rules
 	to-java:
 		State(Some(intial), id_, transition*) ->
 	    $[
-    	fsm.getStates().add(new State(true, [id_]));     
+    	fsm.getStates().add(new State(true, "[id_])");     
  	[transition'*]]
 	    with transition'* := <to-java> transition*
 	    
@@ -46,7 +46,7 @@ rules
 	to-java:
 		State(None(), id_, transition*) ->
 	    $[
-		fsm.getStates().add(new State(false, [id_]));	      
+		fsm.getStates().add(new State(false, "[id_])");	      
   	[transition'*]]
 	    with transition'* := <to-java> transition*
  	
@@ -79,13 +79,13 @@ rules
  		with input' := <to-java> input
 
 	to-java:
-		Input(input) -> input
+		Input(input) -> $["[input]"]
 
 	to-java:
-		Action(action) -> action
+		Action(action) -> $["[action]"]
 
 	to-java:
-		Target(target) -> target
+		Target(target) -> $["[target]"]
 	        
 	to-java:
     	t* -> <map(to-java)> t*

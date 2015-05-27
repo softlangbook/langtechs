@@ -8,16 +8,16 @@
             description="fsml"
             language="fsml"
             derivedFrom="DynamicRoot"
-            validator="spoofaxfsml.FsmlValidator"
-            validatorClass="spoofaxfsml.FsmlValidator"
+            validator="de.sschauss.fsml.FsmlValidator"
+            validatorClass="de.sschauss.fsml.FsmlValidator"
       ></language>
    </extension>
    <extension
-         id="spoofaxfsml.parser"
+         id="de.sschauss.fsml.parser"
          name="fsml Parser"
          point="org.eclipse.imp.runtime.parser">
       <parser
-            class="spoofaxfsml.FsmlParseController"
+            class="de.sschauss.fsml.FsmlParseController"
             language="fsml">
       </parser>
    </extension>    

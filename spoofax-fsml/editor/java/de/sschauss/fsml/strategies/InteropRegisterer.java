@@ -1,4 +1,4 @@
-package spoofaxfsml.strategies;
+package de.sschauss.fsml.strategies;
 
 import org.strategoxt.lang.JavaInteropRegisterer;
 import org.strategoxt.lang.Strategy;

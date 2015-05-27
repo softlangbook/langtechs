@@ -13,7 +13,7 @@ imports
 language General properties
   
   name:          fsml
-  id:            spoofaxfsml
+  id:            de.sschauss.fsml
   extends:       Root
   
   description:   "Spoofax-generated editor for the fsml language"

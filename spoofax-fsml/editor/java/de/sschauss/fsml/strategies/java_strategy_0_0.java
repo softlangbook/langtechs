@@ -1,4 +1,4 @@
-package spoofaxfsml.strategies;
+package de.sschauss.fsml.strategies;
 
 import org.spoofax.interpreter.terms.IStrategoTerm;
 import org.spoofax.interpreter.terms.ITermFactory;

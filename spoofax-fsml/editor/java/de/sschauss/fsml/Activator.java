@@ -1,4 +1,4 @@
-package spoofaxfsml;
+package de.sschauss.fsml;
 
 import org.eclipse.imp.preferences.PreferencesService;
 import org.eclipse.imp.runtime.PluginBase;

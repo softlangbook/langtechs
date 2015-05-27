@@ -1,4 +1,4 @@
-package spoofaxfsml;
+package de.sschauss.fsml;
 
 import java.io.InputStream;
 import java.io.IOException;
