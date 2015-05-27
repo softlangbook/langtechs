@@ -7,8 +7,8 @@
   </languages>
   <imports>
     <import index="l3u7" ref="r:20780eff-1266-433d-8cad-f755f70e5c38(fsml.runtime)" />
-    <import index="e2lb" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/f:java_stub#6354ebe7-c22a-4a0f-ac54-50b52ab9b065#java.lang(JDK/java.lang@java_stub)" implicit="true" />
     <import index="fxg7" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/f:java_stub#6354ebe7-c22a-4a0f-ac54-50b52ab9b065#java.io(JDK/java.io@java_stub)" implicit="true" />
+    <import index="e2lb" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/f:java_stub#6354ebe7-c22a-4a0f-ac54-50b52ab9b065#java.lang(JDK/java.lang@java_stub)" implicit="true" />
   </imports>
   <registry>
     <language id="c07fade6-62c9-4222-a52b-3d2f0dcdd056" name="fsml">
@@ -54,7 +54,6 @@
       <concept id="1070475926800" name="jetbrains.mps.baseLanguage.structure.StringLiteral" flags="nn" index="Xl_RD">
         <property id="1070475926801" name="value" index="Xl_RC" />
       </concept>
-      <concept id="1081236700938" name="jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" flags="ig" index="2YIFZL" />
       <concept id="1070533707846" name="jetbrains.mps.baseLanguage.structure.StaticFieldReference" flags="nn" index="10M0yZ">
         <reference id="1144433057691" name="classifier" index="1PxDUh" />
       </concept>
@@ -81,6 +80,7 @@
         <child id="1068580123134" name="parameter" index="3clF46" />
         <child id="1068580123135" name="body" index="3clF47" />
       </concept>
+      <concept id="1068580123165" name="jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" flags="ig" index="3clFb_" />
       <concept id="1068580123155" name="jetbrains.mps.baseLanguage.structure.ExpressionStatement" flags="nn" index="3clFbF">
         <child id="1068580123156" name="expression" index="3clFbG" />
       </concept>
@@ -158,7 +158,7 @@
       </node>
     </node>
     <node concept="2tJIrI" id="4BZl$1MJZo8" role="jymVt" />
-    <node concept="2YIFZL" id="3rAnA9iMoDl" role="jymVt">
+    <node concept="3clFb_" id="4F5YvnjKYML" role="jymVt">
       <property role="TrG5h" value="main" />
       <property role="IEkAT" value="false" />
       <property role="DiZV1" value="false" />
@@ -192,7 +192,7 @@
                     <property role="TrG5h" value="alarm" />
                   </node>
                 </node>
-                <node concept="3hW8LK" id="3rAnA9iMoOa" role="3hW8LC" />
+                <node concept="3hW8LK" id="4F5YvnjLiFH" role="3hW8LC" />
               </node>
               <node concept="3hXPlv" id="4BZl$1MJl32" role="3hXfLk">
                 <property role="TrG5h" value="unlocked" />

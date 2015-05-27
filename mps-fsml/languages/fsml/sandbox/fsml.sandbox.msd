@@ -9,6 +9,7 @@
   <dependencies>
     <dependency reexport="false">6354ebe7-c22a-4a0f-ac54-50b52ab9b065(JDK)</dependency>
     <dependency reexport="false">81d27854-a613-4493-b18b-e97909840c83(fsml.runtime)</dependency>
+    <dependency reexport="false">9b80526e-f0bf-4992-bdf5-cee39c1833f3(collections.runtime)</dependency>
   </dependencies>
   <usedLanguages>
     <usedLanguage>c07fade6-62c9-4222-a52b-3d2f0dcdd056(fsml)</usedLanguage>
