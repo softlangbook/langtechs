@@ -69,7 +69,7 @@ rules // Editor services
     with
     	ext      := <get-extension> path;
       filename := <guarantee-extension(|$[pp.[ext]])> path;
-      result   := <pp-debug> selected
+      result   := <pp-fsml-string> selected
 
 rules // Debugging
 	
