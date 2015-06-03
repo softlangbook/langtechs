@@ -13,7 +13,11 @@ imports
 rules
 	
 	pp-fsml-string:
-		ast -> <pp-fsm> ast
+		ast ->
+			<log(|Error(),  <box2text-string(|12313)> x)> 	
+			ast
+		with
+			x := <pp-fsm> ast
 		
   	pp-partial-fsml-string:
 		ast -> ast
@@ -22,41 +26,41 @@ rules
 		ast -> ast
 
 	pp-fsm:
-		Fsm(states*) -> 
-			<log(|Error(), <box2text-string(|1)>[H([], [states'*])])>
-			[H([], [states'*])]
+		Fsm(states) ->
+			[H([SOpt(HS(), "0")], [states'])]
 		with
-			states'* := <pp-V-list(pp-state)> states*
+			states' := <pp-V-list(pp-state)> states
 			
 	pp-state:
-		State(initial, id_, transition*) -> [H([], [initial', "state", id_', transitions'])]
+		State(initial, id_, transition*) -> 
+			[H([SOpt(HS(), "0")], [initial', S("state "), id_', S(" {"), transitions', S("}")])]
 		with
 			initial' := <pp-option(pp-initial)> initial;
 			id_' := <prettyprint-ID> id_;
 			transitions' := <pp-V-list(pp-transition)> transition*
 			
 	pp-initial:
-		Initial() -> [H([], [S("initial ")])]
+		Initial() -> [H([SOpt(HS(), "0")], [S("initial ")])]
 		
 	pp-transition:
-		Transition(input, action, target) -> [H([], [input', action', target'])]
+		Transition(input, action, target) -> [H([SOpt(HS(), "0")], [input', action', target'])]
 		with
 			input' := <pp-input> input;
 			action' := <pp-option(pp-action)> action;
 			target' := <pp-option(pp-target)> target
 			
 	pp-input:
-		Input(id_) -> [H([], [id_'])]
+		Input(id_) -> [H([SOpt(HS(), "0")], [id_'])]
 		with
 			id_' := <prettyprint-ID> id_
 
 	pp-action:
-		Action(id_) -> [H([], [id_'])]
+		Action(id_) -> [H([SOpt(HS(), "0")], [S(" / "), id_'])]
 		with
 			id_' := <prettyprint-ID> id_
 			
 	pp-target:
-		Target(id_) -> [H([], [id_'])]
+		Target(id_) -> [H([SOpt(HS(), "0")], [S(" -> "), id_'])]
 		with
 			id_' := <prettyprint-ID> id_			
 		
