@@ -1,6 +1,6 @@
 [
-   Fsm               -- KW["fsm"] _1 KW["{"] _2 KW["}"],
-   Fsm.2:iter-star   -- _1,
+   Fsm               -- _1,
+   Fsm.1:iter-star   -- _1,
    State             -- _1 KW["state"] _2 KW["{"] _3 KW["}"],
    State.1:opt       -- _1,
    State.3:iter-star -- _1,

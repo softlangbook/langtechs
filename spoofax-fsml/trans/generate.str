@@ -16,11 +16,11 @@ rules
 	*/
 	
 	to-java:
-    	Fsm(id_, state*) ->
+    	Fsm(state*) ->
 	    $[
 	    	package de.sschauss.fsml;
     		
-    		public class [id_] {
+    		public class Sample {
     			
     			public static Fsm fsm;
     			

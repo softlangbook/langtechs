@@ -9,7 +9,7 @@ namespaces
 	
 binding rules	
 
-	Fsm(_, _):		
+	Fsm(_):		
 		scopes State
 		
 	State(_, id, _):

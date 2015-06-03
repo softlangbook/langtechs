@@ -7,11 +7,27 @@ imports
 rules // Extensions for error/warning/note reporting
 	
 	constraint-error:
-		_ -> <fail>
+		Fsm(states*) -> (states*, $[no initial state defined])
+			with
+				s* := <initial-states> states*;
+				n := <length> s*
+			where 
+				<lt> (n, 1)
+			
+	constraint-error:
+		Fsm(states*) -> (s*, $[multiple([n]) initial states defined])
+			with
+				s* := <initial-states> states*;
+				n := <length> s*
+			where 
+				<gt> (n, 1)
  
 	constraint-warning:
 		_ -> <fail>
 		
 	constraint-note:
 		_ -> <fail>
+		
+	initial-states:
+		states* -> <filter(?State(Some(initial), _, _))> states*
 

@@ -1,18 +1,16 @@
-fsm TurnstileFsm { 
-	initial state locked { 
-		ticket / collect -> unlocked;
-		pass / alarm -> exception;	
-	}	
-	state unlocked { 
-		ticket / eject;
-		pass -> locked;			
-	}
-	state exception {
-		ticket / eject;
-		pass;
-		mute;
-		release -> locked;
-	}
+initial state locked { 
+	ticket / collect -> unlocked;
+	pass / alarm -> exception;	
+}	
+state unlocked { 
+	ticket / eject;
+	pass -> locked;			
+}
+state exception {
+	ticket / eject;
+	pass;
+	mute;
+	release -> locked;
 }
 
 /*
@@ -20,8 +18,8 @@ fsm TurnstileFsm {
  *	- distinct ids
  *	- deterministic
  *	- resolvable
+ *  - single initial
  * Todo:
- *	- single initial
  *	- reachable	
  *	
  */
