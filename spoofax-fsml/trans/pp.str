@@ -14,8 +14,8 @@ rules
 	
 	pp-fsml-string:
 		ast ->
-			<log(|Error(),  <box2text-string(|12313)> x)> 	
-			ast
+			<log(|Error(),  <box2text-string(|120)> x)> 	
+			<box2text-string(|120)> x
 		with
 			x := <pp-fsm> ast
 		
@@ -33,7 +33,7 @@ rules
 			
 	pp-state:
 		State(initial, id_, transition*) -> 
-			[H([SOpt(HS(), "0")], [initial', S("state "), id_', S(" {"), transitions', S("}")])]
+			[H([SOpt(HS(), "0")], [initial', S("state "), id_', V([SOpt(HS(), "0")], [S(" {"), Z([SOpt(HS(), "0")], [transitions', S("}")])])])]
 		with
 			initial' := <pp-option(pp-initial)> initial;
 			id_' := <prettyprint-ID> id_;
@@ -43,7 +43,7 @@ rules
 		Initial() -> [H([SOpt(HS(), "0")], [S("initial ")])]
 		
 	pp-transition:
-		Transition(input, action, target) -> [H([SOpt(HS(), "0")], [input', action', target'])]
+		Transition(input, action, target) -> [H([SOpt(HS(), "0")], [input', action', target', S(";")])]
 		with
 			input' := <pp-input> input;
 			action' := <pp-option(pp-action)> action;
