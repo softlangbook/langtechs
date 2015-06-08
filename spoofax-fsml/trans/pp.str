@@ -18,9 +18,11 @@ rules
 		with
 			x := <pp-fsm> ast
 		
-  	pp-partial-fsml-string = pp-fsml-string
+  	pp-partial-fsml-string:
+  		ast -> ast
 	      
-  	pp-debug = pp-fsml-string
+  	pp-debug:
+  		ast -> ast
   	
 	pp-fsm:
 		Fsm(states) ->

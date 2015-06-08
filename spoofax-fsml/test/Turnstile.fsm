@@ -1,6 +1,6 @@
 initial state locked { 
 	ticket / collect -> unlocked;
-	pass / alarm -> exception;	
+	pass / alarm -> exception;
 }	
 state unlocked { 
 	ticket / eject;
@@ -12,14 +12,3 @@ state exception {
 	mute;
 	release -> locked;
 }
-
-/*
- * Done:
- *	- distinct ids
- *	- deterministic
- *	- resolvable
- *  - single initial
- * Todo:
- *	- reachable	
- *	
- */
