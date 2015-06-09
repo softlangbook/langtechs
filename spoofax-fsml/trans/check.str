@@ -6,7 +6,7 @@ imports
 	runtime/nabl/-
   	names
 	
-rules // Extensions for error/warning/note reporting
+rules
 	
 	constraint-error:
 		Fsm(states*) -> (states*, $[no initial state defined])
@@ -26,7 +26,6 @@ rules // Extensions for error/warning/note reporting
  
 	constraint-warning:
 		Fsm(state*) ->
-			//<log(|Error(), unreachable-state*)> 
 			(unreachable-state*, $[unreachable state])
 			with
 				initial-state* := <initial-states> state*;

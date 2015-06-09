@@ -11,9 +11,6 @@ rules
 			result	 := <to-java> selected
 			
 rules
-	/*
-		id = keyword ???
-	*/
 	
 	to-java:
     	Fsm(state*) ->
@@ -42,7 +39,6 @@ rules
  	[transition'*]]
 	    with transition'* := <to-java> transition*
 	    
-	// TODO: refactor (special initial node ?)	    
 	to-java:
 		State(None(), id_, transition*) ->
 	    $[
