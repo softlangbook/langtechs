@@ -5,6 +5,16 @@ module Main where
 import           Fsml.Quoter
 import           Fsml.Syntax
 
+{-
+    Done:
+        - resolvable
+        - deterministic
+    Todo:
+        - single initial
+        - reachable
+        - distinct ids
+-}
+
 locked :: State
 locked = [fsml|
         initial state locked {
