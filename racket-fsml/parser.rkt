@@ -3,17 +3,10 @@
   parser-tools/yacc
   parser-tools/lex
   (prefix-in : parser-tools/lex-sre)
+  syntax/strip-context
   "main.rkt")
 
-(provide
- (rename-out
-  [fsml-read read]
-  [fsml-read-syntax read-syntax]))
-
-(define (fsml-read in)
-  (syntax->datum (read-syntax #f in)))
-(define (fsml-read-syntax src in)
-  (parse-fsml in))
+(provide parse-fsml)
 
 (define-tokens fsml-tokens (STRING))
 (define-empty-tokens fsml-empty-tokens (INITIAL STATE LBRACE RBRACE SEMI SLASH ARROW EOF))
@@ -33,16 +26,19 @@
 (define fsml-parser
   (parser
    (tokens fsml-tokens fsml-empty-tokens)
-   (start parse-state)
+   (start parse-state-list)
    (end EOF)
    (error
     (lambda (tok-ok? tok-name tok-value start-pos end-pos)
       (error (~a "unexpected token " tok-name " at " start-pos " " end-pos))))
    (src-pos)
    (grammar
+    (parse-state-list
+     ((parse-state) (list $1))
+     ((parse-state parse-state-list) (list* $1 $2)))
     (parse-state
      ((INITIAL STATE STRING LBRACE parse-transition-list RBRACE) (id `(initial state ,$3 ,$5)))
-     ((STATE STRING LBRACE parse-transition-list RBRACE) (State $2 $4)))
+     ((STATE STRING LBRACE parse-transition-list RBRACE) (id `(state ,$2 ,$4))))
     (parse-transition-list
      ((parse-transition) (list $1))
      ((parse-transition parse-transition-list) (list* $1 $2)))
@@ -58,8 +54,5 @@
 
 (define (parse-fsml input)
   (fsml-parser (lex-fsml fsml-lexer input)))
-
-(parse-fsml (open-input-string "initial state locked { ticket / collect -> unlocked; }" ))
-
 
 

@@ -12,15 +12,15 @@
 (define-syntax (initial stx)
   (syntax-case stx ()
     [(_ state id (transition ...))
-     (with-syntax ([name (format-id stx "~a" #'id)])
-       #'(define name (State #t (symbol->string 'id) (list transition ...))))]))
+     (with-syntax ([name (datum->syntax #'id (string->symbol (syntax->datum #'id)))])
+       #'(define name (State #t id (list transition ...))))]))
     
 
 (define-syntax (state stx)
   (syntax-case stx ()
-    [(_ id transition ...)
-     (with-syntax ([name (format-id stx "~a" #'id)])
-       #'(define name (State #f (symbol->string 'id) (list transition ...))))]))
+    [(_ id (transition ...))
+     (with-syntax ([name (datum->syntax #'id (string->symbol (syntax->datum #'id)))])
+       #'(define name (State #f id (list transition ...))))]))
 
 (define-syntax (transition stx)
   (syntax-case stx (-> /)
