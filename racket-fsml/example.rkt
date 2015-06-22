@@ -1,0 +1,15 @@
+#lang planet sschauss/fsml
+initial state locked {
+                      ticket / collect -> unlocked;
+                      pass / alarm -> exception;      
+}
+state unlocked {
+                      ticket / eject;
+                      pass -> locked;      
+}
+state exception {
+                      ticket / eject;
+                      pass;
+                      mute;
+                      realease -> locked;
+}
