@@ -1,59 +1,44 @@
 #lang racket
-(require parser-tools/lex)
-(require (prefix-in : parser-tools/lex-sre))
+(require (for-syntax racket/syntax))
 
-(define fsml-lexer
-  (lexer
-   ["initial"
-    (cons `(INITIAL)
-           (fsml-lexer input-port))]
-   ["state"
-    (cons `(STATE)
-          (fsml-lexer input-port))]
-   ["{"
-    (cons `(LBRACE)
-          (fsml-lexer input-port))]
-   ["}"
-    (cons `(RBRACE)
-          (fsml-lexer input-port))]
-   ["->"
-    (cons `(ARROW)
-          (fsml-lexer input-port))]
-   ["/"
-    (cons `(SLASH)
-          (fsml-lexer input-port))]
-   [";"
-    (cons `(SEMI)
-          (fsml-lexer input-port))]
-   [(:& (:+ alphabetic) (complement (:or "initial" "state")))
-    (cons `(STRING ,(string->symbol lexeme))
-          (fsml-lexer input-port))]
-   [whitespace 
-    (fsml-lexer input-port)]
-   
-   [(eof)
-    '()]))
+(provide (all-defined-out))
 
-(define turnstile-fsm
-  "
-    initial state locked {
-      ticket / collect -> unlocked;
-    }
-    state unlocked {
-      ticket / eject;
-    }
-  ")
- 
-(define test
-  (fsml-lexer (open-input-string turnstile-fsm)))
+(define-struct Fsm (states))
+(define-struct State (initial id transitions))
+(define-struct Transition (input action target))
+(define-struct None())
+(define-struct Just (a))
 
-#|
-(struct None())
-(struct (a) Just ([a : a]))
+(define-syntax (initial stx)
+  (syntax-case stx ()
+    [(_ state id (transition ...))
+     (with-syntax ([name (datum->syntax #'id (string->symbol (syntax->datum #'id)))])
+       #'(define name (State #t id (list transition ...))))]))
+    
 
-(define-type (Maybe a) (U None (Just a)))
+(define-syntax (state stx)
+  (syntax-case stx ()
+    [(_ id (transition ...))
+     (with-syntax ([name (datum->syntax #'id (string->symbol (syntax->datum #'id)))])
+       #'(define name (State #f id (list transition ...))))]))
 
-(struct Fsm ([states : (Listof State)]))
-(struct State ([initial : Boolean] [id : String] [transitions : (Listof Transition)]))
-(struct Transition ([input : String] [action : (Maybe String)] [target : State]))
-|#
+(define-syntax (transition stx)
+  (syntax-case stx (-> /)
+    [(_ input)
+       #'(Transition input (None) (None))]
+    [(_ input / action)
+       #'(Transition input (Just action) (None))]
+    [(_ input -> target)
+       #'(Transition input (None) (Just target))]
+    [(_ input / action -> target)
+       #'(Transition input (Just action) (Just target))]))
+
+(define-syntax (-> stx)
+  (syntax-case stx ()
+    [(_)
+     '()]))
+
+(define-syntax (/ stx)
+  (syntax-case stx ()
+    [(_)
+     '()]))
