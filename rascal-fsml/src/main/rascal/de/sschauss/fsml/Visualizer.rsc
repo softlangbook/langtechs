@@ -14,10 +14,16 @@ public void visualize(Tree t) {
 		case State state : {
 			nodes += getFigure(state);
 			visit(state.transitions) {
-				case (Transition)`<Input _> / <Action _> -\> <Id to>;`: {
-					edges += getFigure(state.id, to);
+				case (Transition)`<Input _>;`: {
+					edges += getFigure(state.id, state.id);
+				}	
+				case (Transition)`<Input _> / <Action _>;`: {
+					edges += getFigure(state.id, state.id);
 				}				
 				case (Transition)`<Input _> -\> <Id to>;`: {
+					edges += getFigure(state.id, to);
+				}
+				case (Transition)`<Input _> / <Action _> -\> <Id to>;`: {
 					edges += getFigure(state.id, to);
 				}	
 			}	
