@@ -86,7 +86,7 @@ private set[Message] checkReachable(Fsm f) {
 			initial += (initial o relation);
 		}
 	} while(previous != initial);
-	return {error("unreachable state <id>", id@\loc) | id <- {s.id | s <- f.states} - {i | <_, id> <- initial, just(i) := getStateId(id, f) }};;
+	return {warning("unreachable state <id>", id@\loc) | id <- {s.id | s <- f.states} - {i | <_, id> <- initial, just(i) := getStateId(id, f) }};;
 }
 
 private Maybe[Id] getStateId(str id, Fsm f){
