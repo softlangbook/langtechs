@@ -4,7 +4,16 @@ import Prelude;
 import util::Maybe;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-set[Message] checkStateDeterministic(Fsm f) {
+public set[Message] check(Fsm f) =
+	({}| it + es | es <- [
+		checkDistinctIds(f),
+		checkSingleInitial(f),
+		checkResolvable(f),
+		checkStateDeterministic(f),
+		checkReachable(f)
+	]);
+	
+private set[Message] checkStateDeterministic(Fsm f) {
 	set[Message] el = {};
 	visit(f) {
 		case State s: {
@@ -19,7 +28,7 @@ set[Message] checkStateDeterministic(Fsm f) {
 }
 	
 
-set[Message] checkResolvable(Fsm f) {
+private set[Message] checkResolvable(Fsm f) {
 	set[Id] referencedIds = {};
 	set[Id] stateIds = {};
 	visit(f) {
@@ -30,7 +39,7 @@ set[Message] checkResolvable(Fsm f) {
 	return {error("unresolved state <id>", id@\loc) | id <- referencedIds - stateIds};
 }
 
-set[Message] checkSingleInitial(Fsm f) {
+private set[Message] checkSingleInitial(Fsm f) {
 	list[Initial] initials = [];
 	list[Initial] noninitials = [];
 	set[Message] el = {};
@@ -47,7 +56,7 @@ set[Message] checkSingleInitial(Fsm f) {
 }
 
 
-set[Message] checkDistinctIds(Fsm f) {
+private set[Message] checkDistinctIds(Fsm f) {
 	list[Id] ids = [];
 	visit(f) {
 		case State s: ids = ids + s.id;
@@ -56,7 +65,7 @@ set[Message] checkDistinctIds(Fsm f) {
 }
 
 
-set[Message] checkReachable(Fsm f) {
+private set[Message] checkReachable(Fsm f) {
 	rel[str, str] initial = {};
 	rel[str, str] relation = {};
 	visit(f) {
@@ -80,7 +89,7 @@ set[Message] checkReachable(Fsm f) {
 	return {error("unreachable state <id>", id@\loc) | id <- {s.id | s <- f.states} - {i | <_, id> <- initial, just(i) := getStateId(id, f) }};;
 }
 
-Maybe[Id] getStateId(str id, Fsm f){
+private Maybe[Id] getStateId(str id, Fsm f){
 	visit(f){
 		case State s: {
 			if(id == "<s.id>") return just(s.id);
@@ -88,13 +97,3 @@ Maybe[Id] getStateId(str id, Fsm f){
 	}
 	return nothing();
 }
-
-
-set[Message] check(Fsm f) =
-	({}| it + es | es <- [
-		checkDistinctIds(f),
-		checkSingleInitial(f),
-		checkResolvable(f),
-		checkStateDeterministic(f),
-		checkReachable(f)
-	]);

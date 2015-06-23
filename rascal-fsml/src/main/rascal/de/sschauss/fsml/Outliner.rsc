@@ -8,13 +8,13 @@ public node outliner(Fsm f){
 	return outline;
 }
 
-public node outliner(State s) {
+private node outliner(State s) {
 	node outline = "<s.id>"([outliner(t) | t <- s.transitions]);
 	outline@\loc = s@\loc;
 	return outline;
 }
 
-public node outliner(Transition t) {
+private node outliner(Transition t) {
 	node outline = "<t.input>"();
 	outline@\loc = t@\loc;
 	return outline;

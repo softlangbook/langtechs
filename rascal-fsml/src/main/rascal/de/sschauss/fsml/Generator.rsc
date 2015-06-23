@@ -3,7 +3,7 @@ module main::rascal::de::sschauss::fsml::Generator
 import Prelude;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-str generate(Fsm f) =
+private str generate(Fsm f) =
 	"// BEGIN ...
 	'package org.softlang.fluent;
 	'
@@ -23,7 +23,7 @@ str generate(Fsm f) =
 	'}
 	'// END ...";
 	
-str generate(Transition t) {
+private str generate(Transition t) {
 	switch(t){
 		case (Transition)`<Input input>;`: return "\"<input>\", null, null";
 		case (Transition)`<Input input> / <Action action>;`: return "\"<input>\", \"<action>\", null";
