@@ -31,7 +31,7 @@ public node fsmOutliner(Fsm f){
 	return outline;
 }
 
-public void generateFluent(Fsm f, loc _) {
+public void generateFluent(Tree f, loc _) {
 	generateFluent(f);
 }
 
