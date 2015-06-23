@@ -5,13 +5,11 @@ import util::Maybe;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
 public set[Message] check(Fsm f) =
-	({}| it + es | es <- [
-		checkDistinctIds(f),
-		checkSingleInitial(f),
-		checkResolvable(f),
-		checkStateDeterministic(f),
-		checkReachable(f)
-	]);
+	checkDistinctIds(f) +
+	checkSingleInitial(f) +
+	checkResolvable(f) +
+	checkStateDeterministic(f) +
+	checkReachable(f);
 	
 private set[Message] checkStateDeterministic(Fsm f) {
 	set[Message] el = {};
