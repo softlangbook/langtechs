@@ -9,6 +9,7 @@ import main::rascal::de::sschauss::fsml::Checker;
 import main::rascal::de::sschauss::fsml::Generator;
 import main::rascal::de::sschauss::fsml::Outliner;
 import main::rascal::de::sschauss::fsml::Referencer;
+import main::rascal::de::sschauss::fsml::Visualizer;
 
 
 private str FSMLName = "FSML";
@@ -24,8 +25,6 @@ public Fsm fsmAnnotator (Fsm f) {
 	return f[@messages = errors];
 }
 
-
-
 public node fsmOutliner(Fsm f){
 	node outline= outliner(f);
 	return outline;
@@ -35,10 +34,15 @@ public void generateFluent(Tree f, loc _) {
 	generateFluent(f);
 }
 
+public void visualize(Tree f, loc _) {
+	visualize(f);
+}
+
 public set[Contribution] FSMLContrib = {
 	popup(
-		menu("FSML",[
-			action("generate fluent Java", generateFluent)
+		menu("FSML", [
+			action("generate fluent Java", generateFluent),
+			action("view parse Tree", visualize)
 		])
   	),
   	annotator(fsmAnnotator),
@@ -52,4 +56,9 @@ public void registerFSML() {
 
 public void unregisterFSML() {
 	clearLanguage("FSML");
+}
+
+public void reregisterFSML() {
+	unregisterFSML();
+	registerFSML();
 }
