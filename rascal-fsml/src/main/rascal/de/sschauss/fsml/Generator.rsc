@@ -32,6 +32,6 @@ private str generate(Transition t) {
 	}
 }	
 	
-void generateFluent(Fsm f){
+public void generateFluent(Fsm f){
 	writeFile(|project://rascal-fsml/src/gen/java/org/softlang/fluent/Sample.java|, generate(f));
 }

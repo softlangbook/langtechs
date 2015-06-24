@@ -38,16 +38,16 @@ private set[Message] checkResolvable(Fsm f) {
 }
 
 private set[Message] checkSingleInitial(Fsm f) {
-	list[Initial] initials = [];
-	list[Initial] noninitials = [];
+	set[State] initialStates = {};
+	set[State] noninitialStates = {};
 	set[Message] el = {};
 	visit(f) {
-		case i: (Initial)`initial`: initials += i;
-		case i: (Initial)``: noninitials += i;
+		case state: (State)`initial state <Id _> { <Transition* _> }`: initialStates += state;
+		case state: (State)`state <Id _> { <Transition* _> }`: noninitialStates += state;
 	}
-	switch(initials) {
-		case []: el = {error("no initial state", n@\loc) | n <- noninitials};
-		case [X, Y, N*]: el = {error("multiple initial states", i@\loc) | i <- initials};
+	switch(initialStates) {
+		case {}: el = {error("no initial state", n@\loc) | n <- noninitialStates};
+		case {X, Y, N*}: el = {error("multiple initial states", i@\loc) | i <- initialStates};
 		default: el = {};
 	}
 	return el;
@@ -68,7 +68,7 @@ private set[Message] checkReachable(Fsm f) {
 	rel[str, str] relation = {};
 	visit(f) {
 		case (State)`initial state <Id from> {<Transition* ts>}` : visit(ts){
-			case (Transition)`<Input _> / <Action _> -\> <Id to>;`: initial += <"<from>", "<to>">;			
+			case (Transition)`<Input _> / <Action _>  -\> <Id to>;`: initial += <"<from>", "<to>">;			
 			case (Transition)`<Input _> -\> <Id to>;`: initial += <"<from>", "<to>">;
 		}
 		

@@ -12,32 +12,28 @@ public void visualize(Tree t) {
 	list[Edge] edges = [];
 	visit(t) {
 		case State state : {
-			nodes += getFigure(state);
-			visit(state.transitions) {
-				case (Transition)`<Input _>;`: {
-					edges += getFigure(state.id, state.id);
-				}	
-				case (Transition)`<Input _> / <Action _>;`: {
-					edges += getFigure(state.id, state.id);
-				}				
-				case (Transition)`<Input _> -\> <Id to>;`: {
-					edges += getFigure(state.id, to);
-				}
-				case (Transition)`<Input _> / <Action _> -\> <Id to>;`: {
-					edges += getFigure(state.id, to);
-				}	
-			}	
+			nodes += makeNode(state);
+			edges += makeEdges(state);
 		}
 	}
 	render(graph(nodes, edges, hint("layered"), gap(200)));
 }
 
-private Figure getFigure(State state) {
+private Figure makeNode(State state) {
 	return ellipse(text("<state.id>"),  id("<state.id>"), fillColor(gray(200)), gap(4));
 }
 
-private Edge getFigure(Id from, Id to) {
-	return edge("<from>", "<to>", toArrow(triangle(10, fillColor("black")))); 
+private list[Edge] makeEdges(State state) {
+	list[Edge] edges = [];
+	visit(state) {
+		case (Transition)`<Input _>;`: edges += makeEdge(state.id, state.id);
+		case (Transition)`<Input _> / <Action _>;`: edges += makeEdge(state.id, state.id);
+		case (Transition)`<Input _> -\> <Id to>;`:  edges += makeEdge(state.id, to);
+		case (Transition)`<Input _> / <Action _> -\> <Id to>;`: edges += makeEdge(state.id, to);	
+	}
+	return edges; 
 }
+
+private Edge makeEdge(Id from, Id to) = edge("<from>", "<to>", toArrow(triangle(10, fillColor("black"))));
 
 
