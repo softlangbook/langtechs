@@ -7,8 +7,10 @@ import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 public void generateJava(Fsm fsm, loc location) =
 	writeFile(|<location.scheme>://<location.authority>/src/gen/java/org/softlang/fluent/<generate(location)>.java|, generate(fsm, location));
 
-private str generate(loc location) =
-	head(split(".", last(split("/", location.path))));
+private str generate(loc location) {
+	str filename = last(split("/", location.path));
+	return toUpperCase(stringChar(charAt(filename, 0))) + substring(head(split(".", filename)), 1);
+}
 
 private str generate((Fsm)`<State* states>`, loc location) =
 	"package org.softlang.fluent;
