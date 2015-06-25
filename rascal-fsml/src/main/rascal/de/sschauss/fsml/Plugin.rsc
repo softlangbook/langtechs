@@ -1,13 +1,14 @@
 module main::rascal::de::sschauss::fsml::Plugin
 
 import Prelude;
-import util::IDE;
 import util::Eval;
+import util::IDE;
 import util::ValueUI;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 import main::rascal::de::sschauss::fsml::Checker;
 import main::rascal::de::sschauss::fsml::Generator;
 import main::rascal::de::sschauss::fsml::Outliner;
+import main::rascal::de::sschauss::fsml::Proposer;
 import main::rascal::de::sschauss::fsml::Referencer;
 import main::rascal::de::sschauss::fsml::Visualizer;
 
@@ -45,7 +46,8 @@ private set[Contribution] FSMLContrib = {
 		])
   	),
   	annotator(fsmAnnotator),
-  	outliner(fsmOutliner)
+  	outliner(fsmOutliner),
+  	proposer(makePropose, "(\\s | [a-z0-9])*")
 };
 
 public void registerFSML() {
