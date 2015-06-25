@@ -4,8 +4,8 @@ import Prelude;
 import String;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-public void generateJava(Fsm fsm, loc location) =
-	writeFile(|<location.scheme>://<location.authority>/src/gen/java/org/softlang/fluent/<generate(location)>.java|, generate(fsm, location));
+public void generateJava(Tree tree, loc location) =
+	writeFile(|<location.scheme>://<location.authority>/src/gen/java/org/softlang/fluent/<generate(location)>.java|, generate(tree, location));
 
 private str generate(loc location) {
 	str filename = last(split("/", location.path));

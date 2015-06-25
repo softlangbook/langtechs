@@ -4,7 +4,7 @@ import Prelude;
 import String;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-public void format(Fsm fsm, loc location) = writeFile(location, trim(pp(fsm)));
+public void format(Tree tree, loc location) = writeFile(location, trim(pp(tree)));
 
 private str pp((Fsm)`<State* states>`) =
 	"<for (state <- states){><pp(state)>\n<}>";
