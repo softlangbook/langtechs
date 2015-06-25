@@ -1,37 +1,45 @@
 module main::rascal::de::sschauss::fsml::Generator
 
 import Prelude;
+import String;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-str generate(Fsm f) =
-	"// BEGIN ...
-	'package org.softlang.fluent;
+public void generateJava(Tree tree, loc location) =
+	writeFile(|<location.scheme>://<location.authority>/src/gen/java/org/softlang/fluent/<generate(location)>.java|, generate(tree, location));
+
+private str generate(loc location) {
+	str filename = last(split("/", location.path));
+	return toUpperCase(stringChar(charAt(filename, 0))) + substring(head(split(".", filename)), 1);
+}
+
+private str generate((Fsm)`<State* states>`, loc location) =
+	"package org.softlang.fluent;
 	'
 	'import static org.softlang.fluent.FsmlImpl.fsm;
 	'
-	'public class Sample {
+	'public class <generate(location)> {
 	'	
-	'	public static final
-	'// END ...
-	'	Fsml sample =
-	'		fsm()<for (s <- f.states){>
-	'			.state(\"<s.id>\")
-	'				<for (t <- s.transitions){>.transition(<generate(t)>)
-	'				<}><}>
-	'			;
-	'// BEGIN ...
+	'	public static final Fsml <toUpperCase(generate(location))> =
+	'		fsm()
+	'			<trim(generate(states))>;
 	'}
-	'// END ...";
+	";
 	
-str generate(Transition t) {
-	switch(t){
-		case (Transition)`<Input input>;`: return "\"<input>\", null, null";
-		case (Transition)`<Input input> / <Action action>;`: return "\"<input>\", \"<action>\", null";
-		case (Transition)`<Input input> -\> <Id id>;`: return "\"<input>\", null, \"<id>\"";
-		case (Transition)`<Input input> / <Action action> -\> <Id id>;`: return "\"<input>\", \"<action>\", \"<id>\"";
-	}
-}	
+private str generate(State* states) =
+	"<for (state <- states){>.<trim(generate(state))>\n<}>";
 	
-void generateFluent(Fsm f){
-	writeFile(|project://rascal-fsml/src/gen/java/org/softlang/fluent/Sample.java|, generate(f));
-}
+	
+private str generate(State state) =
+	"state(\"<state.id>\")\n<for(transition <- state.transitions){>\t.<generate(transition)>\n<}>";
+	
+private str generate((Transition)`<Input input>;`) =
+	"transition(\"<input>\", null, null)";
+	
+private str generate ((Transition)`<Input input> / <Action action>;`) = 
+	"transition(\"<input>\", \"<action>\", null)";
+	
+private str generate ((Transition)`<Input input> -\> <Id id>;`) = 
+	"transition(\"<input>\", null, \"<id>\")";
+	
+private str generate ((Transition)`<Input input> / <Action action> -\> <Id id>;`) = 
+	"transition(\"<input>\", \"<action>\", \"<id>\")";
