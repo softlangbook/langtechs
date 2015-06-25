@@ -7,7 +7,7 @@ import vis::KeySym;
 import vis::Render;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-public void visualize(Tree t) {
+public void visualize(Tree t, loc location) {
 	list[Figure] nodes = [];
 	list[Edge] edges = [];
 	visit(t) {

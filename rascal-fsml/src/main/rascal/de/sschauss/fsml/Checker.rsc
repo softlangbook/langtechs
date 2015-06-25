@@ -67,11 +67,13 @@ private set[Message] checkReachable(Fsm f) {
 	rel[str, str] initial = {};
 	rel[str, str] relation = {};
 	visit(f) {
-		case (State)`initial state <Id from> {<Transition* ts>}` : visit(ts){
-			case (Transition)`<Input _> -\> <Id to>;`: initial += <"<from>", "<to>">;
-			case (Transition)`<Input _> / <Action _>  -\> <Id to>;`: initial += <"<from>", "<to>">;			
-		}
-		
+		case (State)`initial state <Id from> {<Transition* ts>}` : {
+			initial += <"<from>", "<from>">;
+			visit(ts){
+				case (Transition)`<Input _> -\> <Id to>;`: initial += <"<from>", "<to>">;
+				case (Transition)`<Input _> / <Action _>  -\> <Id to>;`: initial += <"<from>", "<to>">;			
+			}
+		}		
 		case (State)`state <Id from> {<Transition* ts>}` : 	visit(ts){
 			case (Transition)`<Input _> -\> <Id to>;`: relation += <"<from>", "<to>">;			
 			case (Transition)`<Input _> / <Action _> -\> <Id to>;`: relation += <"<from>", "<to>">;

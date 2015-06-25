@@ -8,6 +8,7 @@ import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 import main::rascal::de::sschauss::fsml::Checker;
 import main::rascal::de::sschauss::fsml::Generator;
 import main::rascal::de::sschauss::fsml::Outliner;
+import main::rascal::de::sschauss::fsml::Formatter;
 import main::rascal::de::sschauss::fsml::Proposer;
 import main::rascal::de::sschauss::fsml::Referencer;
 import main::rascal::de::sschauss::fsml::Visualizer;
@@ -25,28 +26,16 @@ private Fsm fsmAnnotator (Fsm f) {
 	return f[@messages = errors];
 }
 
-private node fsmOutliner(Fsm f){
-	node outline= outliner(f);
-	return outline;
-}
-
-private void generateFluent(Tree f, loc _) {
-	generateFluent(f);
-}
-
-private void visualize(Tree f, loc _) {
-	visualize(f);
-}
-
 private set[Contribution] FSMLContrib = {
 	popup(
 		menu("FSML", [
-			action("Generate Java", generateFluent),
+			action("Format", format),
+			action("Generate Java", generateJava),
 			action("Visualize", visualize)
 		])
   	),
   	annotator(fsmAnnotator),
-  	outliner(fsmOutliner),
+  	outliner(makeFsmOutliner),
   	proposer(makePropose, "(\\s | [a-z0-9])*")
 };
 
