@@ -54,11 +54,11 @@ package object fsml {
 
       val stateDefDefs: List[DefDef] = stateSymbols map { d =>
         val q"new de.sschauss.fsml.`package`.State($initial, $_, $transitions)" = d.rhs
-        val id = q"${d.symbol.name.encodedName.toString}"
+        val id: Tree = q"${d.symbol.name.encodedName.toString}"
         internal.defDef(d.symbol, q"new de.sschauss.fsml.`package`.State($initial, $id, $transitions)")
       }
 
-      val statesValDef = q"override lazy val states: List[de.sschauss.fsml.`package`.State] = List(..$stateIdents)"
+      val statesValDef: Tree = q"override lazy val states: List[de.sschauss.fsml.`package`.State] = List(..$stateIdents)"
       val fsmTree: Tree = q"""
       new de.sschauss.fsml.`package`.Fsm {
         ..$statesValDef
@@ -75,6 +75,7 @@ package object fsml {
     val initial = false
 
     def apply(x: Transition): State = macro stateImpl
+    def apply(x: Unit): State = macro stateImpl
 
     def stateImpl(c: whitebox.Context)(x: c.Tree): c.Tree = {
       import c.universe._
@@ -111,12 +112,13 @@ package object fsml {
     }
 
   def checkDeterministic(fsm: Fsm): Unit =
-    fsm.states.foreach { state => state.transitions groupBy {
-      _.input
-    } foreach {
-      case (input, transitions) if transitions.size > 1 => throw new RuntimeException(s"input $input not deterministic in state ${state.id}")
-      case _ =>
-    }
+    fsm.states.foreach {
+      state => state.transitions groupBy {
+        _.input
+      } foreach {
+        case (input, transitions) if transitions.size > 1 => throw new RuntimeException(s"input $input not deterministic in state ${state.id}")
+        case _ =>
+      }
     }
 
 
@@ -126,7 +128,9 @@ package object fsml {
     } toSet) toList match {
       case Nil =>
       case state :: states => throw new RuntimeException(s"unreachable states ${
-        (state :: states) map { _.id } reduce { (left, right) => s"$left, $right" }
+        (state :: states) map {
+          _.id
+        } reduce { (left, right) => s"$left, $right" }
       }")
     }
 

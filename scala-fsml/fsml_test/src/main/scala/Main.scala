@@ -18,4 +18,5 @@ object Main extends App {
       "release" -> locked
     }
   }
+
 }
