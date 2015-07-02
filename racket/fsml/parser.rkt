@@ -4,7 +4,7 @@
   parser-tools/lex
   (prefix-in : parser-tools/lex-sre)
   syntax/strip-context
-  "main.rkt")
+  "syntax.rkt")
 
 (provide parse-fsml)
 

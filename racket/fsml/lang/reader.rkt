@@ -12,7 +12,7 @@
   (syntax-case (parse-fsml in) ()
       [(state ...)
        #'(module fsml racket
-           (require (planet sschauss/fsml/main))
+           (require fsml/syntax)
            (provide (all-defined-out))
            state ...)]))
   
