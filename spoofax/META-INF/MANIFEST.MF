@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.spoofax.interpreter.core,
  org.spoofax.terms,
  org.spoofax.interpreter.externaldeps
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.sschauss.fsml
