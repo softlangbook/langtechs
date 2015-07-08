@@ -2,12 +2,12 @@ import de.sschauss.fsml._
 
 object ReachabilityNotOk {
 
-  fsm {
+  """fsm {
     def stateA = initial state {
       "eventI" / "actionI" -> stateB
     }
     def stateB = state { }
     def stateC = state { }
-  }
+  }"""
 
 }

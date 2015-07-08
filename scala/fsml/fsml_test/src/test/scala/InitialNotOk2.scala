@@ -2,7 +2,7 @@ import de.sschauss.fsml._
 
 object InitialNotOk2 {
 
-  fsm {
+  """fsm {
     def stateA: State = initial state{
       "eventI" / "actionI" -> stateC
     }
@@ -10,6 +10,6 @@ object InitialNotOk2 {
       "eventI" / "actionII" -> stateC
     }
     def stateC: State = state { }
-  }
+  }"""
 
 }

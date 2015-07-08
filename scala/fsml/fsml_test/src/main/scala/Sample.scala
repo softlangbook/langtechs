@@ -1,6 +1,6 @@
 import de.sschauss.fsml._
 
-object Main extends App {
+object Sample extends App {
 
   val turnstileFsm: Fsm = fsm {
     def locked: State = initial state {
