@@ -3,7 +3,7 @@ import de.sschauss.fsml._
 object InitialNotOk1 {
 
   fsm {
-    def stateA: State = initial state {
+    def stateA: State = state {
       "eventI" / "actionI" -> stateB
     }
     def stateB: State = state {
