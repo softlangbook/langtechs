@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info>
+  <concept fqn="jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <root nodeRef="r:2fb733e9-faad-46d2-b089-aa8af0db4b29(fsml.sandbox)/4524322011154247216">
+    <file name="Sample.java">
+      <node id="4524322011156778655" at="14,0,15,0" concept="2" trace="SAMPLE" />
+      <node id="4257036327115846993" at="15,42,16,87" concept="1" />
+      <node id="4257036327115851901" at="16,87,17,59" concept="1" />
+      <node id="4257036327117446136" at="17,59,18,49" concept="0" />
+      <node id="4257036327115838498" at="15,0,20,0" concept="3" trace="main#([Ljava/lang/String;)V" />
+      <scope id="4257036327115838504" at="15,42,18,49">
+        <var name="input" id="4257036327115846996" />
+        <var name="output" id="4257036327115851904" />
+      </scope>
+      <scope id="4257036327115838498" at="15,0,20,0">
+        <var name="args" id="4257036327115838499" />
+      </scope>
+      <unit id="4524322011154247216" at="12,0,22,0" name="fsml.sandbox.Sample" />
+    </file>
+  </root>
+</debug-info>
+
