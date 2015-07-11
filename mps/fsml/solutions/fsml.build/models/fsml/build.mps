@@ -127,9 +127,12 @@
           <node concept="2Ry0Ak" id="3Gk1ZKpNvs6" role="2Ry0An">
             <property role="2Ry0Am" value=".." />
             <node concept="2Ry0Ak" id="3Gk1ZKpNvs9" role="2Ry0An">
-              <property role="2Ry0Am" value="ide" />
+              <property role="2Ry0Am" value=".." />
               <node concept="2Ry0Ak" id="3Gk1ZKpNvsk" role="2Ry0An">
-                <property role="2Ry0Am" value="intellij" />
+                <property role="2Ry0Am" value="ide" />
+                <node concept="2Ry0Ak" id="3Gk1ZKpOdDy" role="2Ry0An">
+                  <property role="2Ry0Am" value="intellij" />
+                </node>
               </node>
             </node>
           </node>
@@ -145,12 +148,15 @@
             <property role="2Ry0Am" value=".." />
             <node concept="2Ry0Ak" id="3Gk1ZKpNvsH" role="2Ry0An">
               <property role="2Ry0Am" value=".." />
-              <node concept="2Ry0Ak" id="3Gk1ZKpNvsM" role="2Ry0An">
-                <property role="2Ry0Am" value=".IntelliJIdea14" />
-                <node concept="2Ry0Ak" id="3Gk1ZKpNvsR" role="2Ry0An">
-                  <property role="2Ry0Am" value="config" />
-                  <node concept="2Ry0Ak" id="3Gk1ZKpNvsW" role="2Ry0An">
-                    <property role="2Ry0Am" value="plugins" />
+              <node concept="2Ry0Ak" id="3Gk1ZKpOdEt" role="2Ry0An">
+                <property role="2Ry0Am" value=".." />
+                <node concept="2Ry0Ak" id="3Gk1ZKpOdEu" role="2Ry0An">
+                  <property role="2Ry0Am" value=".IntelliJIdea14" />
+                  <node concept="2Ry0Ak" id="3Gk1ZKpOdEv" role="2Ry0An">
+                    <property role="2Ry0Am" value="config" />
+                    <node concept="2Ry0Ak" id="3Gk1ZKpOdEw" role="2Ry0An">
+                      <property role="2Ry0Am" value="plugins" />
+                    </node>
                   </node>
                 </node>
               </node>
