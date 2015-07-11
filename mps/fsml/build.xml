@@ -3,8 +3,8 @@
   <property name="build.dir" location="build" />
   <property name="build.tmp" location="${build.dir}/tmp/fsml" />
   <property name="build.layout" location="${build.dir}/artifacts/fsml" />
-  <property name="idea_home" location="${basedir}/../../ide/intellij" />
-  <property name="plugins_home" location="${basedir}/../../../.IntelliJIdea14/config/plugins" />
+  <property name="idea_home" location="${basedir}/../../../ide/intellij" />
+  <property name="plugins_home" location="${basedir}/../../../../.IntelliJIdea14/config/plugins" />
   <property name="artifacts.mpsPlugin" location="${plugins_home}" />
   <property name="artifacts.IDEA" location="${idea_home}" />
   <property file="${artifacts.mpsPlugin}/build.properties" prefix="import.mpsPlugin" />
