@@ -10,4 +10,4 @@ syntax Transition = transition: Input input ("/" Action action)? ("-\>" Id id)? 
 syntax Id = Name;
 syntax Input = Name;
 syntax Action = Name;
-lexical Name = ([a-z][a-z0-9]* !>> [a-z0-9]);
+lexical Name = ([a-zA-Z][a-zA-Z0-9]* !>> [a-zA-Z0-9]);
