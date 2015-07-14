@@ -43,6 +43,7 @@ public void registerFSML() {
 	registerLanguage(FSMLName, FSMLExt, parser);
   	registerContributions(FSMLName, FSMLContrib);
 }
+
 public void unregisterFSML() {
        clearLanguage("FSML");
 }
