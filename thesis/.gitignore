@@ -5,6 +5,7 @@
 *.blg
 *.dvi
 *.pdf
-*.xml
+*.run.xml
 *.bcf
 *.out
+*.swp
