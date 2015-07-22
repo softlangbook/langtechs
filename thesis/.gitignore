@@ -9,3 +9,5 @@
 *.bcf
 *.out
 *.swp
+*.lof
+*.lot
