@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f5bd414-bea9-48bf-b536-b99ac66a44f7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solutions/fsml.build/models/fsml/build.mps" afterPath="$PROJECT_DIR$/solutions/fsml.build/models/fsml/build.mps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solutions/fsml.build/fsml.build.msd" afterPath="$PROJECT_DIR$/solutions/fsml.build/fsml.build.msd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mps/modules.xml" afterPath="$PROJECT_DIR$/.mps/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/languages/fsml/languageModels/typesystem.mps" afterPath="$PROJECT_DIR$/languages/fsml/languageModels/typesystem.mps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mps/workspace.xml" afterPath="$PROJECT_DIR$/.mps/workspace.xml" />
     </list>
     <ignored path="fsml.iws" />
     <ignored path=".mps/workspace.xml" />
@@ -30,7 +25,7 @@
       <list>
         <TabState>
           <option name="title" value="Console" />
-          <option name="history" value="kaurqQAABAAHKC/e/WIGNU5xnMTw42J+iVoAABhUZW1wTW9kZWxfMTMyMTAyNzExNDQyNjUXSJItFXS9kk88v8oFDQbvzzsAAC5UZW1wTW9kdWxlOTIyZDE1NzQtYmQ5Mi00ZjNjLWJmY2EtMDUwZDA2ZWZjZjNi/////6urq6taWlpaAALOq1GVJepPIpuSEDuVyowMAAAXamV0YnJhaW5zLm1wcy5sYW5nLmNvcmUAAQAAARA5bqqkAAANSU5hbWVkQ29uY2VwdAASAAEAAAEQOW7AQQAABG5hbWUAAAAA3hrYbW5QSgKzBtTRf2TDdQAAGmpldGJyYWlucy5tcHMuY29uc29sZS5iYXNlAAMV+zQFH3JaLAAAC0NvbnNvbGVSb290ABIAAAAAAAIV+zQFH3JbrwAAB2hpc3RvcnkAFfs0BR9yW7EAAA1jb21tYW5kSG9sZGVyAATicWCstEhLAAANQ29tbWFuZEhvbGRlcgASAAAAAAAACoNfKMGqAr4AAAdIaXN0b3J5ABIAAAAAAAClpaWlAAXeGthtblBKArMG1NF/ZMN1AQAAAAX/////8maR0g3vTAauxiy5DErwpAAAHWpldGJyYWlucy5tcHMuY29uc29sZS5zY3JpcHRz/////xqFVMTrhEO6jDRvDZDG51oAAB9qZXRicmFpbnMubXBzLmNvbnNvbGUuYmxDb21tYW5k/////6Xk3lNGo0TaqrNo/fHDTtAAACFqZXRicmFpbnMubXBzLmNvbnNvbGUuaWRlQ29tbWFuZHP/////mVpzlH92S4upKcU0SHCBBgAAJmpldGJyYWlucy5tcHMuY29uc29sZS5pbnRlcm5hbENvbW1hbmRz/////wAAAAEXSPvCXdJdpEg6ixlwko4bYtcAACRqZXRicmFpbnMubXBzLmRldmtpdC5nZW5lcmFsLXB1cnBvc2UAAAAFByg1mx0rd8RG35vysly+oyJUAAAkamV0YnJhaW5zLm1wcy5jb25zb2xlLmJhc2Uuc3RydWN0dXJlcP////8HKOcS81NcPEKIrc6HyValL/sAACdqZXRicmFpbnMubXBzLmNvbnNvbGUuc2NyaXB0cy5zdHJ1Y3R1cmVw/////wcok1ug7nKRTKqoB9duj8aTkQAAKWpldGJyYWlucy5tcHMuY29uc29sZS5ibENvbW1hbmQuc3RydWN0dXJlcP////8HKBNaYG8DdkxcmrhAMPBRoGIAACtqZXRicmFpbnMubXBzLmNvbnNvbGUuaWRlQ29tbWFuZHMuc3RydWN0dXJlcP////8HKJBEUgapc0wdt2Aw5cd7dJcAADBqZXRicmFpbnMubXBzLmNvbnNvbGUuaW50ZXJuYWxDb21tYW5kcy5zdHJ1Y3R1cmVw/////7q6uroAAAABAAEYW9BXT/klhzn//3sAAAAAAAAAAAACAAMYW9BXT/klh28AAHsAAAAAAAAAAAAAfQACGFvQV0/5JYdwAAF7AAEAAAEAAAAJAAAAAAAAAAB9fQ==" />
+          <option name="history" value="kaurqQAABAAHKMlKcXgBE0ollJzzMsTc2hIAABhUZW1wTW9kZWxfMjYyNzY3NjExMzMwNTgXSC93ruTSNUJ7lUaLkW6kAMQAAC5UZW1wTW9kdWxlMmY3N2FlZTQtZDIzNS00MjdiLTk1NDYtOGI5MTZlYTQwMGM0/////6urq6taWlpaAALOq1GVJepPIpuSEDuVyowMAAAXamV0YnJhaW5zLm1wcy5sYW5nLmNvcmUAAQAAARA5bqqkAAANSU5hbWVkQ29uY2VwdAASAAEAAAEQOW7AQQAABG5hbWUAAAAA3hrYbW5QSgKzBtTRf2TDdQAAGmpldGJyYWlucy5tcHMuY29uc29sZS5iYXNlAAMV+zQFH3JaLAAAC0NvbnNvbGVSb290ABIAAAAAAAIV+zQFH3JbrwAAB2hpc3RvcnkAFfs0BR9yW7EAAA1jb21tYW5kSG9sZGVyAATicWCstEhLAAANQ29tbWFuZEhvbGRlcgASAAAAAAAACoNfKMGqAr4AAAdIaXN0b3J5ABIAAAAAAAClpaWlAAXeGthtblBKArMG1NF/ZMN1AQAAAAX/////8maR0g3vTAauxiy5DErwpAAAHWpldGJyYWlucy5tcHMuY29uc29sZS5zY3JpcHRz/////xqFVMTrhEO6jDRvDZDG51oAAB9qZXRicmFpbnMubXBzLmNvbnNvbGUuYmxDb21tYW5k/////6Xk3lNGo0TaqrNo/fHDTtAAACFqZXRicmFpbnMubXBzLmNvbnNvbGUuaWRlQ29tbWFuZHP/////mVpzlH92S4upKcU0SHCBBgAAJmpldGJyYWlucy5tcHMuY29uc29sZS5pbnRlcm5hbENvbW1hbmRz/////wAAAAEXSPvCXdJdpEg6ixlwko4bYtcAACRqZXRicmFpbnMubXBzLmRldmtpdC5nZW5lcmFsLXB1cnBvc2UAAAAFByg1mx0rd8RG35vysly+oyJUAAAkamV0YnJhaW5zLm1wcy5jb25zb2xlLmJhc2Uuc3RydWN0dXJlcP////8HKOcS81NcPEKIrc6HyValL/sAACdqZXRicmFpbnMubXBzLmNvbnNvbGUuc2NyaXB0cy5zdHJ1Y3R1cmVw/////wcok1ug7nKRTKqoB9duj8aTkQAAKWpldGJyYWlucy5tcHMuY29uc29sZS5ibENvbW1hbmQuc3RydWN0dXJlcP////8HKBNaYG8DdkxcmrhAMPBRoGIAACtqZXRicmFpbnMubXBzLmNvbnNvbGUuaWRlQ29tbWFuZHMuc3RydWN0dXJlcP////8HKJBEUgapc0wdt2Aw5cd7dJcAADBqZXRicmFpbnMubXBzLmNvbnNvbGUuaW50ZXJuYWxDb21tYW5kcy5zdHJ1Y3R1cmVw/////7q6uroAAAABAAEYENN8xvsUXo3//3sAAAAAAAAAAAACAAMYENN8xvsUXo4AAHsAAAAAAAAAAAAAfQACGBDTfMb7FF6PAAF7AAEAAAEAAAAJAAAAAAAAAAB9fQ==" />
         </TabState>
       </list>
     </option>
@@ -51,119 +46,65 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReachabilityNotOk" pinned="false" current-in-tab="false">
-        <entry file="mps://node://fsml.test/fsml.test.nodetests/ReachabilityNotOk">
+      <file leaf-file-name="Fsm" pinned="false" current-in-tab="false">
+        <entry file="mps://node://fsml/fsml.structure/Fsm">
           <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+            <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
               <memento viewPositionX="0" viewPositionY="0">
                 <selectionStack>
                   <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
                     <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="31" />
-                    <property name="caretXRelative" value="0" />
-                    <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="Constant_62u4bw_a0" cellNumber="0" isInList="false">
-                      <node node_reference="r:2a224562-5fad-4457-a52e-9a86fdd4b379(fsml.test.nodetests)/6615883853602327077" />
-                    </cellInfo>
-                  </stackElement>
-                </selectionStack>
-                <errorMarkers />
-                <folded />
-              </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-                <selectionStack />
-                <errorMarkers />
-                <folded />
-              </inspectorMemento>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sample" pinned="false" current-in-tab="false">
-        <entry file="mps://node://fsml.sandbox/fsml.sandbox/Sample">
-          <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-              <memento viewPositionX="0" viewPositionY="0">
-                <selectionStack>
-                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                    <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="311" />
-                    <property name="caretXRelative" value="0" />
-                    <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="empty_initial" cellNumber="0" isInList="false">
-                      <node node_reference="r:2fb733e9-faad-46d2-b089-aa8af0db4b29(fsml.sandbox)/6850743906156988551" />
-                    </cellInfo>
-                  </stackElement>
-                </selectionStack>
-                <errorMarkers />
-                <folded />
-              </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-                <selectionStack />
-                <errorMarkers />
-                <folded />
-              </inspectorMemento>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fsml" pinned="false" current-in-tab="true">
-        <entry file="mps://node://fsml.build/fsml.build/fsml">
-          <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-              <memento viewPositionX="0" viewPositionY="38">
-                <selectionStack>
-                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                    <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="15" />
-                    <property name="caretXRelative" value="0" />
-                    <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="Constant_vny568_a22a" cellNumber="0" isInList="false">
-                      <node node_reference="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" />
-                    </cellInfo>
-                  </stackElement>
-                </selectionStack>
-                <errorMarkers />
-                <folded />
-              </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-                <selectionStack />
-                <errorMarkers />
-                <folded />
-              </inspectorMemento>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mpsPlugin" pinned="false" current-in-tab="false">
-        <entry file="mps://node://jetbrains.mps.ide.build/jetbrains.mps.ide.build/mpsPlugin">
-          <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-              <memento viewPositionX="0" viewPositionY="0">
-                <selectionStack>
-                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                    <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="63" />
+                    <property name="caretX" value="231" />
                     <property name="caretXRelative" value="4" />
                     <property name="sideSelectDirection" value="NONE" />
                     <cellInfo cellId="property_name" cellNumber="0" isInList="false">
-                      <node node_reference="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)/5148601452480491524" />
+                      <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011156771047" />
                     </cellInfo>
                   </stackElement>
                 </selectionStack>
                 <errorMarkers />
                 <folded />
               </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
+              <inspectorMemento currentlyEditedNode="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" viewPositionX="0" viewPositionY="0">
                 <selectionStack />
                 <errorMarkers />
                 <folded />
               </inspectorMemento>
+              <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011156771044" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="State" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Input" pinned="false" current-in-tab="false">
+        <entry file="mps://node://fsml/fsml.structure/Input">
+          <provider selected="true" editor-type-id="MPSFileEditor">
+            <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
+              <memento viewPositionX="0" viewPositionY="0">
+                <selectionStack>
+                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                    <property name="hasNonTrivialSelection" value="false" />
+                    <property name="caretX" value="231" />
+                    <property name="caretXRelative" value="4" />
+                    <property name="sideSelectDirection" value="NONE" />
+                    <cellInfo cellId="property_name" cellNumber="0" isInList="false">
+                      <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155373995" />
+                    </cellInfo>
+                  </stackElement>
+                </selectionStack>
+                <errorMarkers />
+                <folded />
+              </memento>
+              <inspectorMemento currentlyEditedNode="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" viewPositionX="0" viewPositionY="0">
+                <selectionStack />
+                <errorMarkers />
+                <folded />
+              </inspectorMemento>
+              <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155373992" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="State" pinned="false" current-in-tab="true">
         <entry file="mps://node://fsml/fsml.structure/State">
           <provider selected="true" editor-type-id="MPSFileEditor">
             <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
@@ -171,78 +112,23 @@
                 <selectionStack>
                   <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
                     <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="95" />
-                    <property name="caretXRelative" value="4" />
+                    <property name="caretX" value="591" />
+                    <property name="caretXRelative" value="60" />
                     <property name="sideSelectDirection" value="NONE" />
                     <cellInfo cellId="property_name" cellNumber="0" isInList="false">
-                      <node node_reference="r:6139291b-5401-465d-ba30-ab70bd7eeb5c(fsml.intentions)/4524322011157657428" />
+                      <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" />
                     </cellInfo>
                   </stackElement>
                 </selectionStack>
                 <errorMarkers />
                 <folded />
               </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
+              <inspectorMemento currentlyEditedNode="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" viewPositionX="0" viewPositionY="0">
                 <selectionStack />
                 <errorMarkers />
                 <folded />
               </inspectorMemento>
-              <node node_ref="r:6139291b-5401-465d-ba30-ab70bd7eeb5c(fsml.intentions)/4524322011157657428" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MakeInitial" pinned="false" current-in-tab="false">
-        <entry file="mps://node://fsml.test/fsml.test.editortest/MakeInitial">
-          <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-              <memento viewPositionX="0" viewPositionY="0">
-                <selectionStack>
-                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                    <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="151" />
-                    <property name="caretXRelative" value="56" />
-                    <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="Constant_tembgk_a" cellNumber="0" isInList="false">
-                      <node node_reference="r:2fdebbc2-c8de-45fb-8c07-2514d59537a4(fsml.test.editortest)/6615883853602788173" />
-                    </cellInfo>
-                  </stackElement>
-                </selectionStack>
-                <errorMarkers />
-                <folded />
-              </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-                <selectionStack />
-                <errorMarkers />
-                <folded />
-              </inspectorMemento>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseEditorTestBody" pinned="false" current-in-tab="false">
-        <entry file="mps://node://jetbrains.mps.lang.test.runtime/jetbrains.mps.lang.test.runtime/BaseEditorTestBody">
-          <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-              <memento viewPositionX="0" viewPositionY="0">
-                <selectionStack>
-                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellSelection">
-                    <property name="caretX" value="0" />
-                    <property name="caretXRelative" value="-95" />
-                    <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="Collection_qwezdt_a" cellNumber="0" isInList="false">
-                      <node node_reference="r:00000000-0000-4000-0000-011c895903a2(jetbrains.mps.lang.test.runtime)/6874623769544140684" />
-                    </cellInfo>
-                  </stackElement>
-                </selectionStack>
-                <errorMarkers />
-                <folded />
-              </memento>
-              <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-                <selectionStack />
-                <errorMarkers />
-                <folded />
-              </inspectorMemento>
+              <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155631272" />
             </state>
           </provider>
         </entry>
@@ -347,7 +233,6 @@
     </navigator>
     <panes>
       <pane id="Favorites" />
-      <pane id="FileSystem" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -383,61 +268,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.intentions">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Empty">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Project">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="fsml.typesystem">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Empty">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Project">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.behavior">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Empty">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Project">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.constraints">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -456,10 +287,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="fsml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.test.nodetests">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -495,53 +322,10 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.sandbox">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.sandbox">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Empty">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Project">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Empty">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Project">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.build">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fsml.build">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="FileSystem" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -808,7 +592,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1926" y="36" width="2540" height="1390" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Bookmarks" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Model Checker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -825,7 +609,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34798807" sideWeight="0.60971785" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34798807" sideWeight="0.60971785" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5611285" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="RefactoringView" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -869,32 +653,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="mps://node://fsml#7850929120050058963/fsml.generator.template.main@generator/main">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-          <memento viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="191" />
-                <property name="caretXRelative" value="4" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
-                  <node node_reference="r:732bd968-1cbe-4092-aa2f-b0a9f780c93d(fsml.generator.template.main@generator)/7850929120050058964" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <folded />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:d133ee2a-5f23-4996-9f69-d87bbf01dce7(fsml.editor)/4524322011154287780" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <folded />
-          </inspectorMemento>
-        </state>
-      </provider>
-    </entry>
     <entry file="mps://node://fsml/fsml.structure/Fsm">
       <provider selected="true" editor-type-id="MPSFileEditor">
         <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
@@ -1868,33 +1626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="mps://node://fsml/fsml.structure/Input">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
-          <memento viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="271" />
-                <property name="caretXRelative" value="44" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
-                  <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155373995" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <folded />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:2a224562-5fad-4457-a52e-9a86fdd4b379(fsml.test.nodetests)/6615883853602271212" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <folded />
-          </inspectorMemento>
-          <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155373992" />
-        </state>
-      </provider>
-    </entry>
     <entry file="mps://node://fsml.test/fsml.test.nodetests/IdsNotOk">
       <provider selected="true" editor-type-id="MPSFileEditor">
         <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
@@ -2017,65 +1748,20 @@
             <errorMarkers />
             <folded />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <folded />
-          </inspectorMemento>
-        </state>
-      </provider>
-    </entry>
-    <entry file="mps://node://fsml/fsml.structure/State">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
-          <memento viewPositionX="0" viewPositionY="0">
+          <inspectorMemento currentlyEditedNode="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" viewPositionX="0" viewPositionY="0">
             <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="95" />
-                <property name="caretXRelative" value="4" />
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellSelection">
+                <property name="caretX" value="0" />
+                <property name="caretXRelative" value="-15" />
                 <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
-                  <node node_reference="r:6139291b-5401-465d-ba30-ab70bd7eeb5c(fsml.intentions)/4524322011157657428" />
+                <cellInfo cellId="Collection_c84kqv_a_0" cellNumber="0" isInList="false">
+                  <node node_reference="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" />
                 </cellInfo>
               </stackElement>
             </selectionStack>
             <errorMarkers />
             <folded />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <folded />
           </inspectorMemento>
-          <node node_ref="r:6139291b-5401-465d-ba30-ab70bd7eeb5c(fsml.intentions)/4524322011157657428" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="mps://node://fsml/fsml.structure/Fsm">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
-          <memento viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="151" />
-                <property name="caretXRelative" value="4" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
-                  <node node_reference="r:58959aaf-bfb9-4a71-b862-816460a5ed9b(fsml.behavior)/4524322011154967676" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <folded />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:58959aaf-bfb9-4a71-b862-816460a5ed9b(fsml.behavior)/4524322011154967676" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <folded />
-          </inspectorMemento>
-          <node node_ref="r:58959aaf-bfb9-4a71-b862-816460a5ed9b(fsml.behavior)/4524322011154967676" />
         </state>
       </provider>
     </entry>
@@ -2097,8 +1783,17 @@
             <errorMarkers />
             <folded />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
+          <inspectorMemento currentlyEditedNode="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellSelection">
+                <property name="caretX" value="0" />
+                <property name="caretXRelative" value="-15" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Collection_c84kqv_a_0" cellNumber="0" isInList="false">
+                  <node node_reference="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
             <errorMarkers />
             <folded />
           </inspectorMemento>
@@ -2123,7 +1818,7 @@
             <errorMarkers />
             <folded />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
+          <inspectorMemento currentlyEditedNode="r:2fdebbc2-c8de-45fb-8c07-2514d59537a4(fsml.test.editortest)/6615883853602788173" viewPositionX="0" viewPositionY="0">
             <selectionStack />
             <errorMarkers />
             <folded />
@@ -2148,7 +1843,7 @@
             <errorMarkers />
             <folded />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
+          <inspectorMemento currentlyEditedNode="r:00000000-0000-4000-0000-011c895903a2(jetbrains.mps.lang.test.runtime)/6874623769544140684" viewPositionX="0" viewPositionY="0">
             <selectionStack />
             <errorMarkers />
             <folded />
@@ -2159,7 +1854,7 @@
     <entry file="mps://node://fsml.build/fsml.build/fsml">
       <provider selected="true" editor-type-id="MPSFileEditor">
         <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-          <memento viewPositionX="0" viewPositionY="38">
+          <memento viewPositionX="0" viewPositionY="0">
             <selectionStack>
               <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
                 <property name="hasNonTrivialSelection" value="false" />
@@ -2174,8 +1869,17 @@
             <errorMarkers />
             <folded />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
+          <inspectorMemento currentlyEditedNode="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellSelection">
+                <property name="caretX" value="0" />
+                <property name="caretXRelative" value="-15" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Collection_c84kqv_a_0" cellNumber="0" isInList="false">
+                  <node node_reference="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
             <errorMarkers />
             <folded />
           </inspectorMemento>
@@ -2200,11 +1904,126 @@
             <errorMarkers />
             <folded />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:f5e55a70-b4ca-4e6a-87cc-df5161dd4983(fsml.build)/4257036327118037540" viewPositionX="0" viewPositionY="0">
+          <inspectorMemento currentlyEditedNode="r:874d959d-e3b4-4d04-b931-ca849af130dd(jetbrains.mps.ide.build)/5148601452480491524" viewPositionX="0" viewPositionY="0">
             <selectionStack />
             <errorMarkers />
             <folded />
           </inspectorMemento>
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://jetbrains.mps.lang.smodel#1139186730696/jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator/mc_node_operations">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+          <memento viewPositionX="0" viewPositionY="471">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellSelection">
+                <property name="caretX" value="0" />
+                <property name="caretXRelative" value="-31" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Collection_c84kqv_a" cellNumber="0" isInList="false">
+                  <node node_reference="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <folded />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellSelection">
+                <property name="caretX" value="0" />
+                <property name="caretXRelative" value="-15" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Collection_c84kqv_a_0" cellNumber="0" isInList="false">
+                  <node node_reference="r:00000000-0000-4000-0000-011c89590303(jetbrains.mps.lang.smodel.generator.baseLanguage.template.main@generator)/1171307842939" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <folded />
+          </inspectorMemento>
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://fsml/fsml.structure/Fsm">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
+          <memento viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="231" />
+                <property name="caretXRelative" value="4" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
+                  <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011156771047" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <folded />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <folded />
+          </inspectorMemento>
+          <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011156771044" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://fsml/fsml.structure/Input">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
+          <memento viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="231" />
+                <property name="caretXRelative" value="4" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
+                  <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155373995" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <folded />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <folded />
+          </inspectorMemento>
+          <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155373992" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://fsml/fsml.structure/State">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editorTabs.TabbedEditor$TabbedEditorState">
+          <memento viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="591" />
+                <property name="caretXRelative" value="60" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="property_name" cellNumber="0" isInList="false">
+                  <node node_reference="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <folded />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/1212449918750703630" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <folded />
+          </inspectorMemento>
+          <node node_ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)/4524322011155631272" />
         </state>
       </provider>
     </entry>
