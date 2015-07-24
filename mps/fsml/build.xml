@@ -34,11 +34,7 @@
           <module ref="4c6a28d1-2c60-478d-b36e-db9b3cbb21fb(closures.runtime)" />
           <module ref="9b80526e-f0bf-4992-bdf5-cee39c1833f3(collections.runtime)" />
           <module ref="878f9fc2-8329-46b7-81d8-f91074dcb3cc(fsml.runtime)" />
-          <module ref="a3e4657f-a76c-45bb-bbda-c764596ecc65(jetbrains.mps.baseLanguage.logging.runtime)" />
-          <module ref="d44dab97-aaac-44cb-9745-8a14db674c03(jetbrains.mps.baseLanguage.tuples.runtime)" />
           <module ref="83f155ff-422c-4b5a-a2f2-b459302dd215(jetbrains.mps.baseLanguage.unitTest.libs)" />
-          <module ref="2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)" />
-          <module ref="d7eb0a2a-bd50-4576-beae-e4a89db35f20(jetbrains.mps.lang.scopes.runtime)" />
           <module ref="707c4fde-f79a-44b5-b3d7-b5cef8844ccf(jetbrains.mps.lang.test.runtime)" />
           <module ref="9a4afe51-f114-4595-b5df-048ce3c596be(jetbrains.mps.runtime)" />
         </dependencies>
@@ -69,6 +65,7 @@
       <idea-plugin version="2" xmlns:xi="http://www.w3.org/2001/XInclude">
         <id>fsml</id>
         <name>fsml</name>
+        <description>DSL for FSML</description>
         <version>1.0</version>
         <depends>jetbrains.mps.core</depends>
         
@@ -238,7 +235,6 @@
       <library file="${artifacts.mpsPlugin}/mps-core/languages/make/jetbrains.mps.make.reduced.jar" />
       <library file="${artifacts.mpsPlugin}/mps-core/languages/make/jetbrains.mps.make.script.jar" />
       <library file="${artifacts.mpsPlugin}/mps-core/languages/make/jetbrains.mps.tool.gentest.jar" />
-      <library file="${artifacts.mpsPlugin}/mps-core/languages/xml/jetbrains.mps.core.xml.jar" />
       <library file="${artifacts.mpsPlugin}/mps-core/lib/mps-closures.jar" />
       <library file="${artifacts.mpsPlugin}/mps-core/lib/mps-collections.jar" />
       <library file="${artifacts.mpsPlugin}/mps-core/lib/mps-core.jar" />
@@ -398,10 +394,10 @@
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/baseLanguage/jetbrains.mps.baseLanguage.unitTest.libs/jmock-junit4-2.5.1.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/baseLanguage/jetbrains.mps.baseLanguage.unitTest.libs/objenesis-1.0.jar" />
         <fileset file="${artifacts.IDEA}/lib/ant/lib/ant.jar" />
-        <fileset file="${artifacts.IDEA}/lib/log4j.jar" />
         <fileset file="${artifacts.IDEA}/lib/junit-4.11.jar" />
         <fileset file="${artifacts.IDEA}/lib/annotations.jar" />
         <fileset file="${artifacts.IDEA}/lib/jdom.jar" />
+        <fileset file="${artifacts.IDEA}/lib/log4j.jar" />
         <fileset file="${artifacts.IDEA}/lib/ecj-4.4.jar" />
         <fileset file="${artifacts.IDEA}/lib/trove4j.jar" />
         <fileset file="${artifacts.IDEA}/lib/xstream-1.4.3.jar" />
@@ -412,7 +408,6 @@
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/baseLanguage/jetbrains.mps.baseLanguage.blTypes.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/baseLanguage/jetbrains.mps.baseLanguage.scopes.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.core.jar" />
-        <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.scopes.runtime.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.structure.jar" />
         <fileset file="${artifacts.mpsTesting}/mps-testing/languages/languageDesign/jetbrains.mps.lang.test.runtime.jar" />
         <fileset file="${artifacts.mpsPlugin}/mps-core/languages/languageDesign/jetbrains.mps.lang.traceable.jar" />

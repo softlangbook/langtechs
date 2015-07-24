@@ -77,6 +77,7 @@
         <child id="6592112598314499028" name="dependencies" index="m$_yJ" />
         <child id="6592112598314499021" name="name" index="m$_yQ" />
         <child id="6592112598314855574" name="containerName" index="m_cZH" />
+        <child id="2172791612906637490" name="description" index="3s6cr7" />
       </concept>
       <concept id="6592112598314498926" name="jetbrains.mps.build.mps.structure.BuildMpsLayout_Plugin" flags="ng" index="m$_wl">
         <reference id="6592112598314801433" name="plugin" index="m_rDy" />
@@ -124,6 +125,18 @@
   <node concept="1l3spW" id="3Gk1ZKpNu8$">
     <property role="TrG5h" value="fsml" />
     <property role="2DA0ip" value="../../" />
+    <node concept="2sgV4H" id="5JglOZTfmrG" role="1l3spa">
+      <ref role="1l3spb" to="ffeo:ymnOULAEsd" resolve="mpsTesting" />
+      <node concept="398BVA" id="5JglOZTfmwj" role="2JcizS">
+        <ref role="398BVh" node="5JglOZTfmsn" resolve="mps_plugins_home" />
+      </node>
+    </node>
+    <node concept="2sgV4H" id="3Gk1ZKpNu8H" role="1l3spa">
+      <ref role="1l3spb" to="ffeo:4tNwrSpaf04" resolve="mpsPlugin" />
+      <node concept="398BVA" id="3Gk1ZKpNu8I" role="2JcizS">
+        <ref role="398BVh" node="3Gk1ZKpNu8E" resolve="idea_plugins_home" />
+      </node>
+    </node>
     <node concept="398rNT" id="3Gk1ZKpNu8E" role="1l3spd">
       <property role="TrG5h" value="idea_plugins_home" />
       <node concept="55IIr" id="3Gk1ZKpNvs$" role="398pKh">
@@ -202,18 +215,6 @@
         <ref role="398BVh" node="3Gk1ZKpNu8B" resolve="mps_home" />
       </node>
     </node>
-    <node concept="2sgV4H" id="5JglOZTfmrG" role="1l3spa">
-      <ref role="1l3spb" to="ffeo:ymnOULAEsd" resolve="mpsTesting" />
-      <node concept="398BVA" id="5JglOZTfmwj" role="2JcizS">
-        <ref role="398BVh" node="5JglOZTfmsn" resolve="mps_plugins_home" />
-      </node>
-    </node>
-    <node concept="2sgV4H" id="3Gk1ZKpNu8H" role="1l3spa">
-      <ref role="1l3spb" to="ffeo:4tNwrSpaf04" resolve="mpsPlugin" />
-      <node concept="398BVA" id="3Gk1ZKpNu8I" role="2JcizS">
-        <ref role="398BVh" node="3Gk1ZKpNu8E" resolve="idea_plugins_home" />
-      </node>
-    </node>
     <node concept="1l3spV" id="3Gk1ZKpNu96" role="1l3spN">
       <node concept="L2wRC" id="5JglOZTfbUg" role="39821P">
         <ref role="L2wRA" node="5JglOZTfb1T" resolve="fsml.test" />
@@ -250,6 +251,11 @@
       <node concept="3_J27D" id="3Gk1ZKpNu94" role="m_cZH">
         <node concept="3Mxwew" id="3Gk1ZKpNu95" role="3MwsjC">
           <property role="3MwjfP" value="fsml" />
+        </node>
+      </node>
+      <node concept="3_J27D" id="13jvcrV6qAg" role="3s6cr7">
+        <node concept="3Mxwew" id="13jvcrV6qAi" role="3MwsjC">
+          <property role="3MwjfP" value="DSL for FSML" />
         </node>
       </node>
     </node>

@@ -5,8 +5,6 @@
     <use id="8585453e-6bfb-4d80-98de-b16074f1d86c" name="jetbrains.mps.lang.test" version="-1" />
     <use id="1e0d5fd6-c07a-4df5-9c9b-c73735ba6c37" name="fsml" version="-1" />
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="-1" />
-    <use id="28f9e497-3b42-4291-aeba-0a1039153ab1" name="jetbrains.mps.lang.plugin" version="-1" />
-    <use id="760a0a8c-eabb-4521-8bfd-65db761a9ba3" name="jetbrains.mps.baseLanguage.logging" version="-1" />
   </languages>
   <imports>
     <import index="1pii" ref="r:6139291b-5401-465d-ba30-ab70bd7eeb5c(fsml.intentions)" />
@@ -25,6 +23,9 @@
         <property id="1229194968595" name="cellId" index="LIFWd" />
         <property id="1932269937152561478" name="useLabelSelection" index="OXtK3" />
         <property id="1229432188737" name="isLastPosition" index="ZRATv" />
+      </concept>
+      <concept id="5097124989038916362" name="jetbrains.mps.lang.test.structure.TestInfo" flags="ng" index="2XOHcx">
+        <property id="5097124989038916363" name="projectPath" index="2XOHcw" />
       </concept>
       <concept id="1225989773458" name="jetbrains.mps.lang.test.structure.InvokeIntentionStatement" flags="nn" index="1MFPAf">
         <reference id="1225989811227" name="intention" index="1MFYO6" />
@@ -130,6 +131,9 @@
         <ref role="1MFYO6" to="1pii:3V9BInOy7tk" resolve="Make_Initial" />
       </node>
     </node>
+  </node>
+  <node concept="2XOHcx" id="13jvcrV6pii">
+    <property role="2XOHcw" value="/home/simon/development/bscthesis/mps/fsml/" />
   </node>
 </model>
 
