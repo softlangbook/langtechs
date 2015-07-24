@@ -131,7 +131,7 @@
               <node concept="2Ry0Ak" id="3Gk1ZKpNvsk" role="2Ry0An">
                 <property role="2Ry0Am" value="ide" />
                 <node concept="2Ry0Ak" id="3Gk1ZKpOdDy" role="2Ry0An">
-                  <property role="2Ry0Am" value="intellij" />
+                  <property role="2Ry0Am" value="idea" />
                 </node>
               </node>
             </node>
