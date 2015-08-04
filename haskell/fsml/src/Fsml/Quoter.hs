@@ -1,34 +1,62 @@
+{-# LANGUAGE TemplateHaskell #-}
+
 module Fsml.Quoter where
 
-import           Data.Generics
-import           Data.List                 (nub)
-import           Fsml.Parser               (state, topLevel)
-import           Fsml.Syntax
-import           Language.Haskell.TH
-import           Language.Haskell.TH.Quote
-import           Text.Parsec               (parse)
+import Fsml.Ast
+import Fsml.Parser               (fsm, topLevel)
+import Fsml.Runtime
+import Language.Haskell.TH
+import Language.Haskell.TH.Quote
+import Text.Parsec               (parse)
 
 fsml :: QuasiQuoter
 fsml = QuasiQuoter
-    { quoteExp  = quoteStateExp
+    { quoteExp  = undefined
     , quotePat  = undefined
     , quoteType = undefined
-    , quoteDec  = undefined
+    , quoteDec  = quoteFsmlDec
     }
 
-quoteStateExp :: String -> Q Exp
-quoteStateExp str = do
+quoteFsmlDec :: String -> Q [Dec]
+quoteFsmlDec str = do
     filename <- loc_filename `fmap` location
-    case parse (topLevel state) filename str of
+    case parse (topLevel fsm) filename str of
         Left err  -> error (show err)
-        Right tag -> dataToExpQ (const Nothing `extQ` antiStateExp) tag
+        Right ast -> return (toFsmDec ast)
 
-antiStateExp :: State -> Maybe ExpQ
-antiStateExp (AState name) = Just $ varE $ mkName name
-antiStateExp (State _ _ transitions)
-    | checkDeterministic transitions [] = Nothing
-    | otherwise                         = error "non deterministic input"
+toFsmDec :: FsmNode -> [Dec]
+toFsmDec fsm@(FsmNode name states) = [ValD (VarP (mkName name)) (NormalB fsmExp) stateDecs]
+    where
+        fsmExp     = toFsmExp fsm
+        stateDecs  = map toStateDec states
 
-checkDeterministic :: [Transition] -> [String] -> Bool
-checkDeterministic [] inputs = length (nub inputs) == length inputs
-checkDeterministic (Transition input _ _:transitions) inputs = checkDeterministic transitions (input:inputs)
+toFsmExp :: FsmNode -> Exp
+toFsmExp (FsmNode _ states) = AppE (ConE 'Fsm) (ListE stateVarExps)
+    where
+        stateVarExps = map (\(StateNode _ id _) -> VarE (mkName id)) states
+
+toStateDec :: StateNode -> Dec
+toStateDec state@(StateNode _ id _) = ValD (VarP (mkName id)) (NormalB stateExp) []
+    where
+        stateExp = toStateExp state
+
+toStateExp :: StateNode -> Exp
+toStateExp (StateNode initial id transitions) = AppE (AppE (AppE (ConE 'State) (ConE 'True)) idExp) transitionExp
+   where
+       idExp = toStringExp id
+       transitionExp = ListE (map toTransitionExp transitions)
+
+
+toTransitionExp :: TransitionNode -> Exp
+toTransitionExp (TransitionNode input action target) = AppE (AppE (AppE (ConE 'Transition) inputExp) actionExp) targetExp
+    where
+        inputExp  = toStringExp input
+        actionExp = case action of
+                        Nothing     -> ConE 'Nothing
+                        Just string -> AppE (ConE 'Just) (toStringExp string)
+        targetExp = case target of
+                        Nothing     -> ConE 'Nothing
+                        Just string -> AppE (ConE 'Just) (VarE (mkName string))
+
+toStringExp :: String -> Exp
+toStringExp string = LitE (StringL string)

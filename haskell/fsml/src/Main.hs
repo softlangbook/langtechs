@@ -2,47 +2,27 @@
 
 module Main where
 
-import           Fsml.Quoter
-import           Fsml.Syntax
+import Prelude        hiding (id)
+import Fsml.Quoter
+import Fsml.Runtime
+import Data.Maybe
 
-{-
-    Done:
-        - resolvable
-        - deterministic
-    Todo:
-        - single initial
-        - reachable
-        - distinct ids
--}
-
-locked :: State
-locked = [fsml|
-        initial state locked {
-            ticket / collect -> unlocked;
-            pass / alarm -> exception;
-        }
-    |]
-unlocked :: State
-unlocked = [fsml|
-        state unlocked {
-            ticket / eject;
-            pass -> locked;
-        }
-    |]
-exception :: State
-exception = [fsml|
-        state exception {
-            ticket / eject;
-            pass;
-            mute;
-            release -> locked;
-        }
-    |]
-
-
-
-turnstileFsm :: Fsm
-turnstileFsm = Fsm [locked, unlocked, exception]
+[fsml|
+    turnstileFsm = initial state locked {
+                       ticket / collect -> unlocked;
+                       pass / alarm -> exception;
+                   }
+                   state unlocked {
+                       ticket / eject;
+                       pass -> locked;
+                   }
+                   state exception {
+                       ticket / eject;
+                       pass;
+                       mute;
+                       release -> locked;
+                   }
+|]
 
 main :: IO ()
 main = print turnstileFsm
