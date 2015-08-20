@@ -1,1 +1,79 @@
 \chapter{Features}
+
+\section{eDSL Features}
+
+\subsection{Haskell}
+
+Template Haskell is an language extension for Haskell 98 orignally designed by \citeauthor{sheard2002template} for the Glasgow Haskell Compiler which provides type-safe compile-time meta-programming facilties \cite{sheard2002template}.
+
+The following noticeable features are provided by Template Haskell.
+
+\subsubsection{Quotation}
+
+Quotation transforms concrete syntax to a Haskell AST at compile time.
+Template Haskell provides quotation for:
+\begin{itemize}
+	\item expressions
+	\item top-level declarations
+	\item types
+	\item and patterns.
+\end{itemize}
+
+\begin{figure}[h]
+	\begin{subfigure}[b]{0.55\linewidth}
+		\lstinputlisting[language=Haskell]{haskell/QuotedExp.hs}
+		\caption{Haskell source code \label{fig:haskell/QuotedExp/source}}
+	\end{subfigure}
+	\hspace{0.1\linewidth}
+	\begin{subfigure}[b]{0.35\textwidth}
+		\begin{forest}
+			[TupE 
+				[LitE 
+					[IntegerL 
+						[1]
+					]
+				]
+				[ListE 
+					[LitE 
+						[IntegerL 
+							[2]
+						]
+					]
+					[LitE
+						[IntegerL 
+							[3]
+						]
+					]
+				]
+			]
+		\end{forest}
+		\caption{Haskell AST \label{fig:haskell/QuotedExp/ast}}
+	\end{subfigure}
+	\caption{Template Haskell Quoted Expression \label{fig:haskell/QuotedExp}}
+\end{figure}
+
+Figure \ref{fig:haskell/QuotedExp/source} shows quotation of the expression \lstinline{(1 [2, 3])} and its resulting AST representation.
+
+
+\subsubsection{Quasi-Quotation}
+
+Quasi-Quotation in Template Haskell works much like Quotation does.
+
+\subsubsection{Splicing}
+
+Splicing transforms a Haskell AST to concrete syntax at compile time.
+The spliced AST must represent either a
+\begin{itemize}
+	\item expression
+	\item pattern
+	\item type
+	\item or a list of declerations.
+\end{itemize}
+
+\begin{figure}[h]
+	\lstinputlisting[language=Haskell]{haskell/SplicedExp.hs}
+	\caption{Template Haskell Spliced Expression \label{fig:haskell/SplicedExp}}
+\end{figure}
+
+Figure \ref{fig:haskell/SplicedExp} shows splicing of the quoted expression shown in Figure \ref{fig:haskell/QuotedExp} back to the concrete syntax representation.
+
