@@ -1,7 +1,7 @@
 module Fsml.Parser where
 
 import           Control.Applicative  hiding (many, (<|>))
-import           Fsml.Syntax
+import           Fsml.Ast
 import           Text.Parsec          hiding (State)
 import qualified Text.Parsec.Expr     ()
 import           Text.Parsec.Language (emptyDef)
@@ -17,7 +17,7 @@ fsmlDef = emptyDef
     , Token.identLetter      = letter
     , Token.nestedComments   = True
     , Token.reservedNames    = ["initial", "state"]
-    , Token.reservedOpNames  = ["/", "->"]
+    , Token.reservedOpNames  = ["=", "/", "->"]
     }
 
 lexer :: Token.TokenParser ()
@@ -49,9 +49,12 @@ initial =
         (symbol "initial" >> return True)
     <|> (symbol ""        >> return False)
 
-transition :: Parser Transition
-transition = Transition <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> state) <* semi
 
-state :: Parser State
-state = State  <$> initial <*> (reserved "state" *> identifier) <*> braces (many transition)
-    <|> AState <$> identifier
+transition :: Parser TransitionNode
+transition = TransitionNode <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> identifier) <* semi
+
+state :: Parser StateNode
+state = StateNode  <$> initial <*> (reserved "state" *> identifier) <*> braces (many transition)
+
+fsm :: Parser FsmNode
+fsm = FsmNode <$> (identifier <* reserved "=") <*> (many state)

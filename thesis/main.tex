@@ -1,13 +1,15 @@
 \documentclass[12pt, twoside]{report}
-\usepackage[backend=biber, sorting=nty]{biblatex}
+\usepackage[backend=biber, sorting=nty, style=ieee]{biblatex}
 \usepackage{fancyhdr}
 \usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{forest}
+\usepackage{subcaption}
 
 \bibliography{bibliography}
-
 
 \pagestyle{fancy}
 \headheight = 16pt
@@ -17,6 +19,10 @@
 \fancyfoot[OL,ER]{}
 \fancyfoot[OC,EC]{}
 \fancyfoot[OR,EL]{\thepage}
+
+\lstset{
+	frame=single
+}
 
 
 \begin{document}
