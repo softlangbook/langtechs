@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="fsml.build" uuid="339e3b72-291d-4d5b-9465-f993bba3d822" compileInMPS="true">
+<solution name="fsml.build" uuid="8cd17496-97e6-4da0-b64c-33ce2268642e" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
