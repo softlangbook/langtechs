@@ -6,6 +6,7 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.0-M1",
   scalacOptions ++= Seq(
     "-Xlog-free-terms",
+    "-Ymacro-debug-lite",
     "-unchecked",
     "-deprecation",
     "-feature"

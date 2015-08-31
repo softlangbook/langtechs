@@ -4,4 +4,4 @@ module SplicedExp where
 import QuotedExp
 
 splicedExp :: Num a => (a, [a])
-splicedExp = $quotedExp -- (1, [2, 3])
+splicedExp = $quotedExp

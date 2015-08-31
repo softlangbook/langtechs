@@ -8,19 +8,19 @@ import Fsml.Runtime
 import Data.Maybe
 
 [fsml|
-    turnstileFsm = initial state locked {
-                       ticket / collect -> unlocked;
-                       pass / alarm -> exception;
+  turnstileFsm = initial state locked {
+                     ticket / collect -> unlocked;
+                     pass   / alarm   -> exception;
                    }
                    state unlocked {
-                       ticket / eject;
-                       pass -> locked;
+                     ticket / eject;
+                     pass -> locked;
                    }
                    state exception {
-                       ticket / eject;
-                       pass;
-                       mute;
-                       release -> locked;
+                     ticket / eject;
+                     pass;
+                     mute;
+                     release -> locked;
                    }
 |]
 

@@ -1,5 +1,10 @@
 \chapter{Features}
 
+This chapter tries to itentify features provided by mature language workbenches and general purpose languages to build domain-specific languages.
+
+\section{Language Workbench Features}
+
+
 \section{eDSL Features}
 
 \subsection{Haskell}
@@ -10,7 +15,7 @@ The following noticeable features are provided by Template Haskell.
 
 \subsubsection{Quotation}
 
-Quotation transforms concrete syntax to a Haskell AST at compile time.
+Quotation transforms Haskell concrete syntax to Haskell AST at compile time.
 Template Haskell provides quotation for:
 \begin{itemize}
 	\item expressions
@@ -19,45 +24,40 @@ Template Haskell provides quotation for:
 	\item and patterns.
 \end{itemize}
 
+\lstinputlisting[caption={Template Haskell quoted expression}, label={lst:haskell/QuotedExp/source}, language=Haskell]{haskell/QuotedExp.hs}
 \begin{figure}[h]
-	\begin{subfigure}[b]{0.55\linewidth}
-		\lstinputlisting[language=Haskell]{haskell/QuotedExp.hs}
-		\caption{Haskell source code \label{fig:haskell/QuotedExp/source}}
-	\end{subfigure}
-	\hspace{0.1\linewidth}
-	\begin{subfigure}[b]{0.35\textwidth}
-		\begin{forest}
-			[TupE 
+	\centering
+	\begin{forest}
+		[TupE 
+			[LitE 
+				[IntegerL 
+					[1]
+				]
+			]
+			[ListE 
 				[LitE 
 					[IntegerL 
-						[1]
+						[2]
 					]
 				]
-				[ListE 
-					[LitE 
-						[IntegerL 
-							[2]
-						]
-					]
-					[LitE
-						[IntegerL 
-							[3]
-						]
+				[LitE
+					[IntegerL 
+						[3]
 					]
 				]
 			]
-		\end{forest}
-		\caption{Haskell AST \label{fig:haskell/QuotedExp/ast}}
-	\end{subfigure}
-	\caption{Template Haskell Quoted Expression \label{fig:haskell/QuotedExp}}
+		]
+	\end{forest}
+	\caption{Template Haskell AST \label{fig:haskell/QuotedExp/ast}}
 \end{figure}
 
-Figure \ref{fig:haskell/QuotedExp/source} shows quotation of the expression \lstinline{(1 [2, 3])} and its resulting AST representation.
+Listing \ref{lst:haskell/QuotedExp/source} shows quotation of the expression \lstinline{(1 [2, 3])} and its resulting AST representation in Figure \ref{fig:haskell/QuotedExp/ast}.
 
 
 \subsubsection{Quasi-Quotation}
 
 Quasi-Quotation in Template Haskell works much like Quotation does.
+Instead of Haskell concrete syntax the quasi-quoter takes an arbitrary string.
 
 \subsubsection{Splicing}
 
@@ -70,10 +70,14 @@ The spliced AST must represent either a
 	\item or a list of declerations.
 \end{itemize}
 
-\begin{figure}[h]
-	\lstinputlisting[language=Haskell]{haskell/SplicedExp.hs}
-	\caption{Template Haskell Spliced Expression \label{fig:haskell/SplicedExp}}
-\end{figure}
+\lstinputlisting[caption={Template Haskell Spliced Expression}, label={lst:haskell/SplicedExp/source}, language=Haskell]{haskell/SplicedExp.hs}
 
-Figure \ref{fig:haskell/SplicedExp} shows splicing of the quoted expression shown in Figure \ref{fig:haskell/QuotedExp} back to the concrete syntax representation.
+Listing \ref{lst:haskell/SplicedExp/source} shows splicing of the quoted expression shown in Listing \ref{lst:haskell/QuotedExp/source} back to the concrete syntax representation.
+The spliced expression results in the corresponding Haskell source code \lstinline{(1 [2, 3])}.
+
+\subsection{Scala}
+
+
+\section{Feature Model}
+
 
