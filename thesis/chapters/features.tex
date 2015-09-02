@@ -5,6 +5,19 @@ This chapter tries to itentify features provided by mature language workbenches 
 \section{Language Workbench Features}
 
 
+\subsection{MPS}
+
+\subsection{Rascal}
+
+\subsection{Spoofax}
+
+\citeauthor{kats2010spoofax} describe Spoofax as a Language Workbench for efficient, agile development of software languages with state-of-the-art IDE support \cite{kats2010spoofax}.
+Spoofax uses several metalanguages for specific tasks. 
+
+\subsubsection{SDF3}
+
+SDF3 
+
 \section{eDSL Features}
 
 \subsection{Haskell}
@@ -23,6 +36,8 @@ Template Haskell provides quotation for:
 	\item types
 	\item and patterns.
 \end{itemize}
+
+Listing \ref{lst:haskell/QuotedExp/source} shows quotation of the expression \lstinline{(1 [2, 3])} and its resulting AST representation in Figure \ref{fig:haskell/QuotedExp/ast}.
 
 \lstinputlisting[caption={Template Haskell quoted expression}, label={lst:haskell/QuotedExp/source}, language=Haskell]{haskell/QuotedExp.hs}
 \begin{figure}[h]
@@ -51,9 +66,6 @@ Template Haskell provides quotation for:
 	\caption{Template Haskell AST \label{fig:haskell/QuotedExp/ast}}
 \end{figure}
 
-Listing \ref{lst:haskell/QuotedExp/source} shows quotation of the expression \lstinline{(1 [2, 3])} and its resulting AST representation in Figure \ref{fig:haskell/QuotedExp/ast}.
-
-
 \subsubsection{Quasi-Quotation}
 
 Quasi-Quotation in Template Haskell works much like Quotation does.
@@ -70,13 +82,22 @@ The spliced AST must represent either a
 	\item or a list of declerations.
 \end{itemize}
 
-\lstinputlisting[caption={Template Haskell Spliced Expression}, label={lst:haskell/SplicedExp/source}, language=Haskell]{haskell/SplicedExp.hs}
-
 Listing \ref{lst:haskell/SplicedExp/source} shows splicing of the quoted expression shown in Listing \ref{lst:haskell/QuotedExp/source} back to the concrete syntax representation.
 The spliced expression results in the corresponding Haskell source code \lstinline{(1 [2, 3])}.
+\lstinputlisting[caption={Template Haskell Spliced Expression}, label={lst:haskell/SplicedExp/source}, language=Haskell]{haskell/SplicedExp.hs}
+
+
+\subsubsection{Limitations}
+
+GHC stage restriction
+
+\subsection{Racket}
+
+Racket reader lang
 
 \subsection{Scala}
 
+Scala Macros
 
 \section{Feature Model}
 
