@@ -13,15 +13,15 @@ import main::rascal::de::sschauss::fsml::Proposer;
 import main::rascal::de::sschauss::fsml::Referencer;
 import main::rascal::de::sschauss::fsml::Visualizer;
 
-private str FSMLName = "FSML";
-private str FSMLExt = "fsml";
+private str FSML_NAME = "FSML";
+private str FSML_EXT = "fsml";
 
 private Tree parser(str x, loc l) {
     return parse(#Fsm, x, l);
 }
 
-private Fsm fsmAnnotator (Fsm f) {
-	set[Message] errors = check(f);
+private Fsm annotateFsm (Fsm f) {
+	set[Message] errors = checkConstraints(f);
 	f = reference(f);
 	return f[@messages = errors];
 }
@@ -34,21 +34,12 @@ private set[Contribution] FSMLContrib = {
 			action("Visualize", visualize)
 		])
   	),
-  	annotator(fsmAnnotator),
-  	outliner(makeFsmOutliner),
+  	annotator(annotateFsm),
+  	outliner(outlineFsm),
   	proposer(makePropose, "(\\s | [a-z0-9])*")
 };
 
 public void registerFSML() {
-	registerLanguage(FSMLName, FSMLExt, parser);
-  	registerContributions(FSMLName, FSMLContrib);
-}
-
-public void unregisterFSML() {
-       clearLanguage("FSML");
-}
-
-public void reregisterFSML() {
-       unregisterFSML();
-       registerFSML();
+	registerLanguage(FSML_NAME, FSML_EXT, parser);
+  	registerContributions(FSML_NAME, FSMLContrib);
 }

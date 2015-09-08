@@ -1,6 +1,5 @@
 module main::rascal::de::sschauss::fsml::ConcreteSyntax
 
-import Prelude;
 extend lang::std::Layout;
 
 start syntax Fsm = @Foldabel fsm: State* states;

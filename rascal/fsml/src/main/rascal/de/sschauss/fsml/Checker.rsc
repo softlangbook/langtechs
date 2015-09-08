@@ -4,7 +4,7 @@ import Prelude;
 import util::Maybe;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
-public set[Message] check(Fsm f) =
+public set[Message] checkConstraints(Fsm f) =
 	checkDistinctIds(f) +
 	checkSingleInitial(f) +
 	checkResolvable(f) +
@@ -64,35 +64,43 @@ private set[Message] checkDistinctIds(Fsm f) {
 
 
 private set[Message] checkReachable(Fsm f) {
-	rel[str, str] initial = {};
-	rel[str, str] relation = {};
+	rel[State, State] initial = {};
+	rel[State, State] relation = {};
 	visit(f) {
-		case (State)`initial state <Id from> {<Transition* ts>}` : {
-			initial += <"<from>", "<from>">;
-			visit(ts){
-				case (Transition)`<Input _> -\> <Id to>;`: initial += <"<from>", "<to>">;
-				case (Transition)`<Input _> / <Action _>  -\> <Id to>;`: initial += <"<from>", "<to>">;			
-			}
-		}		
-		case (State)`state <Id from> {<Transition* ts>}` : 	visit(ts){
-			case (Transition)`<Input _> -\> <Id to>;`: relation += <"<from>", "<to>">;			
-			case (Transition)`<Input _> / <Action _> -\> <Id to>;`: relation += <"<from>", "<to>">;
-		}
+		case state: (State)`initial state <Id _> {<Transition* ts>}`:
+			initial += <state, state> + getStateRelation(f, state);
+		case state: (State)`state <Id _> {<Transition* ts>}`:
+			relation += getStateRelation(f, state);
 	}
-	rel[str, str] previous;
-	do {	
-		previous = initial;		
-		solve(relation) {
+	solve(initial) {
 			initial += (initial o relation);
-		}
-	} while(previous != initial);
-	return {warning("unreachable state <id>", id@\loc) | id <- {s.id | s <- f.states} - {i | <_, id> <- initial, just(i) := getStateId(id, f) }};;
+	}
+	set[State] unreachableStates = {s | s <- f.states} - {s | <_, s> <- initial};
+	return {warning("unreachable state <s.id>", s.id@\loc) | s <- unreachableStates};
 }
 
-private Maybe[Id] getStateId(str id, Fsm f){
+private rel[State, State] addState(rel[State, State] relation, Fsm f, State state, Id id){
+	if(just(target) := getStateId(id, f)){
+		relation += <state, target>;
+	}
+	return relation;		
+}
+
+private rel[State, State] getStateRelation(Fsm f, State state) {
+	rel[State, State] relation = {};
+	visit(state){
+		case (Transition)`<Input _> -\> <Id id>;`: 
+			if(just(target) := getStateId(id, f)){relation += <state, target>;}			
+		case (Transition)`<Input _> / <Action _> -\> <Id id>;`:
+			if(just(target) := getStateId(id, f)){relation += <state, target>;}
+	}
+	return relation;
+}
+
+private Maybe[State] getStateId(Id id, Fsm f){
 	visit(f){
 		case State s: {
-			if(id == "<s.id>") return just(s.id);
+			if(id == s.id) return just(s);
 		}
 	}
 	return nothing();
