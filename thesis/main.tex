@@ -8,6 +8,10 @@
 \usepackage{listings}
 \usepackage{forest}
 \usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{sourcecodepro}
+\usepackage[T1]{fontenc}
 
 \bibliography{bibliography}
 
@@ -20,18 +24,55 @@
 \fancyfoot[OC,EC]{}
 \fancyfoot[OR,EL]{\thepage}
 \fancypagestyle{plain}{
-	\fancyhf{}\fancyfoot[OR,EL]{\thepage}
+	\fancyhf{}
+	\fancyfoot[OR,EL]{\thepage}
 	\renewcommand{\headrulewidth}{0pt}
 }
 
 
 \lstset{
+	aboveskip=2em,
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=true,
+	breaklines=true,
 	captionpos=b,
 	frame=single,
 	numbers=left,
-	xleftmargin=1.5em
+	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+	tabsize=2,
+	title=\lstname,
+	xleftmargin=2em
 }
 
+\lstdefinelanguage{rascal}{
+	morekeywords={
+		case,
+		class,
+		default,
+		do,
+		extend,
+		import,
+		final,
+		lexical,
+		loc,
+		module,
+		package,
+		private,
+		public,
+		rel,
+		return,
+		set,
+		solve,
+		start,
+		static,
+		str,
+		syntax,
+		switch,
+		visit,
+		while,
+		o
+	}
+}
 
 \begin{document}
 \include{cover}
@@ -44,8 +85,9 @@
 \pagenumbering{arabic}\setcounter{page}{1}
 \include{chapters/introduction}
 \include{chapters/background}
-\include{chapters/features}
+\include{chapters/related_work}
 \include{chapters/implementation}
+\include{chapters/features}
 \include{chapters/conclusion}
 \include{chapters/bibliography}
 \end{document}
