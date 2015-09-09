@@ -5,27 +5,36 @@ import util::Maybe;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
 
 public set[Message] checkConstraints(Fsm f) =
-	checkDistinctIds(f) +
 	checkSingleInitial(f) +
+	checkDistinctIds(f) +
 	checkResolvable(f) +
 	checkStateDeterministic(f) +
 	checkReachable(f);
-	
-private set[Message] checkStateDeterministic(Fsm f) {
-	set[Message] el = {};
+
+private set[Message] checkSingleInitial(Fsm f) {
+	set[State] initialStates = {};
+	set[State] noninitialStates = {};
+	set[Message] messages = {};
 	visit(f) {
-		case State s: {
-			list[Input] inputs = [];
-			visit(s.transitions) {
-				case Input i: inputs += i;
-			};
-			el += ({error("duplicated input <i>", i@\loc) | i <- (inputs - dup(inputs))});
-		}
-	};
-	return el;
+		case state: (State)`initial state <Id _> { <Transition* _> }`: initialStates += state;
+		case state: (State)`state <Id _> { <Transition* _> }`: noninitialStates += state;
+	}
+	switch(initialStates) {
+		case {}: messages = {error("no initial state defined", n@\loc) | n <- noninitialStates};
+		case {X, Y, N*}: messages = {error("multiple initial states defined", i@\loc) | i <- initialStates};
+		default: el = {};
+	}
+	return messages;
+}
+
+private set[Message] checkDistinctIds(Fsm f) {
+	list[Id] ids = [];
+	visit(f) {
+		case State s: ids = ids + s.id;
+	}
+	return {error("state with ID <id> already defined", id@\loc) | id <- (ids - dup(ids))};
 }
 	
-
 private set[Message] checkResolvable(Fsm f) {
 	set[Id] referencedIds = {};
 	set[Id] stateIds = {};
@@ -36,32 +45,20 @@ private set[Message] checkResolvable(Fsm f) {
 	}
 	return {error("unresolved state <id>", id@\loc) | id <- referencedIds - stateIds};
 }
-
-private set[Message] checkSingleInitial(Fsm f) {
-	set[State] initialStates = {};
-	set[State] noninitialStates = {};
-	set[Message] el = {};
+	
+private set[Message] checkStateDeterministic(Fsm f) {
+	set[Message] messages = {};
 	visit(f) {
-		case state: (State)`initial state <Id _> { <Transition* _> }`: initialStates += state;
-		case state: (State)`state <Id _> { <Transition* _> }`: noninitialStates += state;
-	}
-	switch(initialStates) {
-		case {}: el = {error("no initial state", n@\loc) | n <- noninitialStates};
-		case {X, Y, N*}: el = {error("multiple initial states", i@\loc) | i <- initialStates};
-		default: el = {};
-	}
-	return el;
+		case State s: {
+			list[Input] inputs = [];
+			visit(s.transitions) {
+				case Input i: inputs += i;
+			};
+			messages += ({error("input <i> already defined in state <s.id>", i@\loc) | i <- (inputs - dup(inputs))});
+		}
+	};
+	return messages;
 }
-
-
-private set[Message] checkDistinctIds(Fsm f) {
-	list[Id] ids = [];
-	visit(f) {
-		case State s: ids = ids + s.id;
-	}
-	return {error("duplicated state id <id>", id@\loc) | id <- (ids - dup(ids))};
-}
-
 
 private set[Message] checkReachable(Fsm f) {
 	rel[State, State] initial = {};
@@ -77,13 +74,6 @@ private set[Message] checkReachable(Fsm f) {
 	}
 	set[State] unreachableStates = {s | s <- f.states} - {s | <_, s> <- initial};
 	return {warning("unreachable state <s.id>", s.id@\loc) | s <- unreachableStates};
-}
-
-private rel[State, State] addState(rel[State, State] relation, Fsm f, State state, Id id){
-	if(just(target) := getStateId(id, f)){
-		relation += <state, target>;
-	}
-	return relation;		
 }
 
 private rel[State, State] getStateRelation(Fsm f, State state) {

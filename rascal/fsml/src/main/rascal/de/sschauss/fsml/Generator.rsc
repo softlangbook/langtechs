@@ -1,5 +1,6 @@
 module main::rascal::de::sschauss::fsml::Generator
 
+import List;
 import Prelude;
 import String;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
@@ -21,23 +22,22 @@ private str fsmToJava((Fsm)`<State* states>`, loc location) =
 	'	
 	'	public static final Fsml <toUpperCase(getFileName(location))> =
 	'		fsm()
-	'			<trim(statesToJava(states))>;
+	'			<intercalate("\n", [stateToJava(s) | s <- states])>;
 	'}
 	";
-private str statesToJava(State* states) =
-       "<for (state <- states){>.<trim(stateToJava(state))>\n<}>";	
 	
 private str stateToJava(State state) =
-	"state(\"<state.id>\")\n<for(t <- state.transitions){>\t.<transitionToJava(t)>\n<}>";
+	".state(\"<state.id>\")
+	'	<intercalate("\n", [transitionToJava(t) | t <- state.transitions])>";
 	
 private str transitionToJava((Transition)`<Input input>;`) =
-	"transition(\"<input>\", null, null)";
+	".transition(\"<input>\", null, null)";
 	
 private str transitionToJava((Transition)`<Input input> / <Action action>;`) = 
-	"transition(\"<input>\", \"<action>\", null)";
+	".transition(\"<input>\", \"<action>\", null)";
 	
 private str transitionToJava((Transition)`<Input input> -\> <Id id>;`) = 
-	"transition(\"<input>\", null, \"<id>\")";
+	".transition(\"<input>\", null, \"<id>\")";
 	
 private str transitionToJava((Transition)`<Input input> / <Action action> -\> <Id id>;`) = 
-	"transition(\"<input>\", \"<action>\", \"<id>\")";
+	".transition(\"<input>\", \"<action>\", \"<id>\")";
