@@ -3,6 +3,7 @@ module main::rascal::de::sschauss::fsml::Checker
 import Prelude;
 import util::Maybe;
 import main::rascal::de::sschauss::fsml::ConcreteSyntax;
+import main::rascal::de::sschauss::fsml::Util;
 
 public set[Message] checkConstraints(Fsm f) =
 	checkSingleInitial(f) +
@@ -32,7 +33,7 @@ private set[Message] checkDistinctIds(Fsm f) {
 	visit(f) {
 		case State s: ids = ids + s.id;
 	}
-	return {error("state with ID <id> already defined", id@\loc) | id <- (ids - dup(ids))};
+	return {error("state with ID <id> already defined", id@\loc) | id <- getDuplicates(ids)};
 }
 	
 private set[Message] checkResolvable(Fsm f) {
@@ -54,7 +55,7 @@ private set[Message] checkStateDeterministic(Fsm f) {
 			visit(s.transitions) {
 				case Input i: inputs += i;
 			};
-			messages += ({error("input <i> already defined in state <s.id>", i@\loc) | i <- (inputs - dup(inputs))});
+			messages += ({error("input <i> already defined in state <s.id>", i@\loc) | i <- getDuplicates(inputs)});
 		}
 	};
 	return messages;

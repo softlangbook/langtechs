@@ -1,7 +1,11 @@
 initial state stateA {
-  eventI/actionI -> stateZ;
+	eventI / actionI -> stateZ;
 }
+
 state stateA {
-  eventII/actionII -> stateZ;
+	eventII / actionII -> stateZ;
 }
-state stateZ { }
+
+state stateZ {
+	
+}

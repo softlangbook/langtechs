@@ -2,57 +2,7 @@
 
 \section{MPS}
 
-\section{Rascal}
-
-\subsection{Syntax Definition}
-
-In Rascal a language syntax is defined using context-free grammars.
-The modular definition allows extending and combining of languages \cite{van2011rascal}.
-
-\autoref{lst:rsc/cs} shows the syntax definition of the FSML in Rascal.
-First the layout module from Rascals standart library is extended, which ensures whitespaces are skipped.
-Extending a module makes every definition local available for the extending module.
-The definition of \lstinline[language=rascal]{Fsm} indicates the start symbol, followed by defining the remaining nonterminals.
-Each syntax production rule can be labeled by a identifier as for every symbol in these production rules a postfix label can be defined.
-Further \lstinline{Name} is defined as a lexical production rule.
-
-The distinction between lexical and syntax rules is necessary due to the fact that Rascal interleaves the layout nonterminals with the syntax production rules before generating a parser.
-This step is skipped for lexical production rules.
-
-\lstinputlisting[caption=Syntax  definition in Rascal, firstline=3, label=lst:rsc/cs, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/ConcreteSyntax.rsc}
-
-\subsection{Code Generation}
-
-A code generator is defined using Rascals string templates.
-Strings can span over more than one line and a single quote indicates which part of the line is ignored.
-Expressions interpolated into strings are escaped between angle brackets.
-The result of interpolated expressions are on the same indentation level as the expression itself.
-
-In \autoref{lst:rsc/cg} a generator targeting Java source code is shown.
-
-\lstinputlisting[caption=Code generation in Rascal, firstline=15, label=lst:rsc/cg, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Generator.rsc}
-
-\subsection{Constraint Checking}
-
-Contraints are checked in ordinary Rascal code.
-Each function returns a set of the \lstinline{Message} algebraic data type from Rascals standard library.
-\lstinline{Message}s are used to communicate information about source code.
-Each \lstinline{Message} either represents an error, warning or info with corresponding source location.
-
-The function in \autoref{lst:rsc/cc/singleInitial} checks if the given final state machine has exact one initial state.
-Otherwise an error message for every violation against a single initial state constraint will be returned.
-First the visit statement collects each initial and noninitial state in different sets.
-The following switch statement matches the set of initial states either with an empty set, a set with at least two elements or falls back to the default case and adds error messages.
-
-\lstinputlisting[caption=Check single initial constraint in Rascal, firstline=40, lastline=54, label=lst:rsc/cc/singleInitial, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
-
-\lstinputlisting[caption=Check distinct ids constraint in Rascal, firstline=57, lastline=63, label=lst:rsc/cc/distinctIds, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
-
-\lstinputlisting[caption=Check resolvable constraint in Rascal, firstline=29, lastline=38, label=lst:rsc/cc/resolvable, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
-
-\lstinputlisting[caption=Check deterministic contraint in Rascal, firstline=14, lastline=26, label=lst:rsc/cc/determinism, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
-
-\lstinputlisting[caption=Check reachable constraint in Rascal, firstline=66, lastline=80, label=lst:rsc/cc/reachable, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
+\input{chapters/implementations/rascal}
 
 \section{Spoofax}
 

@@ -68,8 +68,8 @@ rules // Editor services
     (selected, position, ast, path, project-path) -> (filename, result)
     with
     	ext      := <get-extension> path;
-      filename := <guarantee-extension(|$[pp.[ext]])> path;
-      result   := <pp-fsml-string> selected
+      	filename := <guarantee-extension(|$[pp.[ext]])> path;
+      	result   := <pp-fsml-string> selected
 
 rules // Debugging
 	

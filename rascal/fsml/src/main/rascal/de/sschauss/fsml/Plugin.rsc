@@ -10,19 +10,19 @@ import main::rascal::de::sschauss::fsml::Generator;
 import main::rascal::de::sschauss::fsml::Outliner;
 import main::rascal::de::sschauss::fsml::PrettyPrinter;
 import main::rascal::de::sschauss::fsml::Proposer;
-import main::rascal::de::sschauss::fsml::Referencer;
+import main::rascal::de::sschauss::fsml::Resolver;
 import main::rascal::de::sschauss::fsml::Visualizer;
 
 private str FSML_NAME = "FSML";
 private str FSML_EXT = "fsml";
 
-private Fsm parseFsm(str x, loc l) {
-    return parse(#Fsm, x, l);
+private Fsm parseFsm(str source, loc location) {
+	return parse(#Fsm, source, location);
 }
 
 private Fsm annotateFsm (Fsm f) {
 	set[Message] errors = checkConstraints(f);
-	f = reference(f);
+	f = resolve(f);
 	return f[@messages = errors];
 }
 
@@ -33,13 +33,13 @@ private set[Contribution] FSMLContrib = {
 			action("Generate Java", generateJava),
 			action("Visualize", visualize)
 		])
-  	),
-  	annotator(annotateFsm),
-  	outliner(outlineFsm),
-  	proposer(makePropose, "(\\s | [a-z0-9])*")
+	),
+	annotator(annotateFsm),
+	outliner(outlineFsm),
+	proposer(propose, "(\\s | [a-z0-9])*")
 };
 
 public void registerFSML() {
 	registerLanguage(FSML_NAME, FSML_EXT, parseFsm);
-  	registerContributions(FSML_NAME, FSMLContrib);
+	registerContributions(FSML_NAME, FSMLContrib);
 }

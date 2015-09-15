@@ -1,6 +1,12 @@
 initial state stateA {
-  eventI/actionI -> stateB;
-  eventI/actionII -> stateC;
+	eventI / actionI -> stateB;
+	eventI / actionII -> stateC;
 }
-state stateB { }
-state stateC { }
+
+state stateB {
+	
+}
+
+state stateC {
+	
+}

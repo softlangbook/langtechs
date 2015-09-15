@@ -1,0 +1,106 @@
+\section{Rascal}
+
+\subsection{Syntax Definition}
+
+In Rascal a language syntax is defined using context-free grammars.
+The modular definition allows extending and combining of languages \cite{van2011rascal}.
+
+\autoref{lst:rsc/cs} shows the syntax definition of the FSML in Rascal.
+First the layout module from Rascals standart library is extended, which ensures whitespaces are skipped.
+Extending a module makes every definition local available for the extending module.
+The definition of \lstinline[language=rascal]{Fsm} indicates the start symbol, followed by defining the remaining nonterminals.
+Each syntax production rule can be labeled by an identifier as for every symbol in these production rules a postfix label can be defined.
+Further \lstinline{Name} is defined as a lexical production rule.
+
+The distinction between lexical and syntax rules is necessary due to the fact that Rascal interleaves the layout nonterminals with the syntax production rules before generating a parser.
+This step is skipped for lexical production rules so that ...
+
+\lstinputlisting[caption=Syntax definition in Rascal, firstline=3, label=lst:rsc/cs, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/ConcreteSyntax.rsc}
+
+\subsection{Code Generation}
+\label{ss:rsc/cg}
+
+A code generator is defined using Rascals string templates.
+Strings can span over more than one line and a single quote indicates which part of the line is ignored.
+Expressions interpolated into strings are escaped between angle brackets.
+The result of interpolated expressions are on the same indentation level as the expression itself.
+
+In \autoref{lst:rsc/cg} a generator targeting Java source code is shown.
+
+\lstinputlisting[caption=Code generation in Rascal, firstline=16, label=lst:rsc/cg, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Generator.rsc}
+
+\subsection{Pretty Printing}
+
+The pretty printing functions defined in \autoref{lst:rsc/pp} are very similar to the ones shown in \autoref{ss:rsc/cg}.
+They also utilize Rascals string interpolation capabilities.
+
+\lstinputlisting[caption=Pretty printing in Rascal, firstline=9, label=lst:rsc/pp, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/PrettyPrinter.rsc}
+
+\subsection{Constraint Checking}
+
+Contraints are checked in ordinary Rascal code.
+Each function returns a set of the \lstinline{Message} algebraic data type from Rascals standard library.
+Messages are used to communicate information about source code.
+Each \lstinline{Message} either represents an error, warning or info with corresponding source location.
+
+\subsubsection{Single Initial State}
+
+The function in \autoref{lst:rsc/cc/singleInitial} checks if the given final state machine has exactly one initial state.
+Otherwise an error message for every violation against the single initial state constraint will be returned.
+First the visit statement collects each initial and noninitial state in different sets.
+The following switch statement matches the set of initial states either with an empty set, a set with at least two elements or falls back to the default case.
+
+\lstinputlisting[caption=Check for single initial state constraint in Rascal, firstline=14, lastline=28, label=lst:rsc/cc/singleInitial, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
+
+\subsubsection{Distinct State IDs}
+
+As shown in \autoref{lst:rsc/cc/distinctIDs} error messages for already defined state IDs created by
+
+\lstinputlisting[caption=Check for distinct state IDs constraint in Rascal, firstline=30, lastline=36, label=lst:rsc/cc/distinctIDs, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
+
+\subsubsection{Resolvable State ID}
+
+\lstinputlisting[caption=Check for resolvable state ID constraint in Rascal, firstline=38, lastline=47, label=lst:rsc/cc/resolvable, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
+
+\subsubsection{Deterministic Input}
+
+The \autoref{lst:rsc/cc/determinism} shows how state machines are checked for nondeterministic transitions.
+This is done by nesting two visit statements.
+First the outer one builds for every state a new list of inputs.
+Then the inner one fills the list of input and adds for every duplicated entry in this list an error message to the list of messages.
+
+\lstinputlisting[caption=Check for deterministic input contraint in Rascal, firstline=49, lastline=60, label=lst:rsc/cc/determinism, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
+
+\subsubsection{Reachable State}
+
+\lstinputlisting[caption=Check for reachable state constraint in Rascal, firstline=63, lastline=77, label=lst:rsc/cc/reachable, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Checker.rsc}
+
+\subsection{IDE Construction}
+
+Rascal integrates with Eclipse trough the IMP framwork \cite{van2011rascal}.
+
+
+\lstinputlisting[caption=Plugin, firstline=16, label=lst:rsc/ide/plugin, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Plugin.rsc}
+
+\subsubsection{Annotations}
+
+\lstinputlisting[caption=Annotations, firstline=6, label=lst:rsc/ide/resolver, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Resolver.rsc}
+
+\subsubsection{Outline}
+
+
+
+\lstinputlisting[caption=Outline, firstline=7, label=lst:rsc/ide/outliner, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Outliner.rsc}
+
+\subsubsection{Completion Proposals}
+
+\lstinputlisting[caption=Completion Proposals, firstline=7, label=lst:rsc/ide/completion, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Proposer.rsc}
+
+\subsection{Test}
+
+Tests are ordinary parameterless boolean functions prefixed by the modifier \lstinline[language=rascal]{test}.
+They can be called by every other function or by the unit test framework, by typing \texttt{:test} at the command line.
+
+The test functions shown in \autoref{lst:rsc/ide/test} parse negative test cases.
+
+\lstinputlisting[caption=Test, firstline=7, lastline=34, label=lst:rsc/ide/test, language=rascal]{../rascal/fsml/src/main/rascal/de/sschauss/fsml/Test.rsc}

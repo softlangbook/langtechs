@@ -18,7 +18,7 @@
 \pagestyle{fancy}
 \headheight = 16pt
 \fancyhead[OL,ER]{\leftmark}
-	\fancyhead[OC,EC]{}
+\fancyhead[OC,EC]{}
 \fancyhead[OR,EL]{\rightmark}
 \fancyfoot[OL,ER]{}
 \fancyfoot[OC,EC]{}
@@ -37,8 +37,11 @@
 	breaklines=true,
 	captionpos=b,
 	frame=single,
+	keepspaces=true,
 	numbers=left,
 	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+	showstringspaces=false,
+	showtabs=false,
 	tabsize=2,
 	title=\lstname,
 	xleftmargin=2em
@@ -46,6 +49,7 @@
 
 \lstdefinelanguage{rascal}{
 	morekeywords={
+		bool,
 		case,
 		class,
 		default,
@@ -54,8 +58,10 @@
 		import,
 		final,
 		lexical,
+		list,
 		loc,
 		module,
+		node,
 		package,
 		private,
 		public,
@@ -68,20 +74,23 @@
 		str,
 		syntax,
 		switch,
+		test,
 		visit,
 		while,
 		o
-	}
+	},
+	morestring=[b]"
 }
 
 \begin{document}
 \include{cover}
 \include{abstract}
-\pagenumbering{arabic}\setcounter{page}{1}
+\pagenumbering{roman}\setcounter{page}{1}
 \tableofcontents
 \listoffigures
 \listoftables
 \lstlistoflistings
+\newpage
 \pagenumbering{arabic}\setcounter{page}{1}
 \include{chapters/introduction}
 \include{chapters/background}
