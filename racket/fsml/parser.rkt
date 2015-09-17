@@ -48,9 +48,9 @@
      ((STRING ARROW STRING SEMI) (transition $1 -> $3))
      ((STRING SLASH STRING ARROW STRING SEMI) (transition $1 / $3 -> $5))))))
 
-(define id (λ (x) x))
+(define id (lambda (x) x))
 
-(define (lex-fsml lexer input) (λ () (lexer input)))
+(define (lex-fsml lexer input) (lambda () (lexer input)))
 
 (define (parse-fsml input)
   (fsml-parser (lex-fsml fsml-lexer input)))

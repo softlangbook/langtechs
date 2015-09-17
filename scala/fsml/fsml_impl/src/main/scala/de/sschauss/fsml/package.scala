@@ -66,7 +66,14 @@ package object fsml {
       }
       """
       val fsm: Fsm = c.eval[Fsm](c.Expr[Fsm](c.untypecheck(fsmTree)))
-      check(fsm)
+      val errors: List[String] = checkErrors(fsm)
+      val warnings: List[String] = checkWarnings(fsm)
+      errors foreach {
+        c.error(c.enclosingPosition, _)
+      }
+      warnings foreach {
+        c.warning(c.enclosingPosition, _)
+      }
       fsmTree
     }
   }
@@ -97,43 +104,40 @@ package object fsml {
     }
   }
 
-  def check(fsm: Fsm): Unit =
-    List[Fsm => Unit](checkSingleInitial, checkDeterministic, checkReachable) foreach {
+  def checkErrors(fsm: Fsm): List[String] =
+    List[Fsm => List[String]](checkSingleInitial, checkDeterministic) flatMap {
       _(fsm)
     }
 
-  def checkSingleInitial(fsm: Fsm): Unit =
+  def checkSingleInitial(fsm: Fsm): List[String] =
     fsm.states count {
       _.initial
     } match {
-      case 0 => throw new RuntimeException("no initial state defined")
-      case 1 =>
-      case n => throw new RuntimeException(s"multiple ($n) states defined ")
+      case 0 => List("no initial state defined")
+      case 1 => List()
+      case n => List("multiple initial states defined")
     }
 
-  def checkDeterministic(fsm: Fsm): Unit =
-    fsm.states.foreach {
+  def checkDeterministic(fsm: Fsm): List[String] =
+    fsm.states.flatMap {
       state => state.transitions groupBy {
         _.input
-      } foreach {
-        case (input, transitions) if transitions.size > 1 => throw new RuntimeException(s"input $input not deterministic in state ${state.id}")
-        case _ =>
+      } collect {
+        case (input, transitions) if transitions.size > 1 => s"input $input already defined in state ${state.id}"
       }
     }
 
-
-  def checkReachable(fsm: Fsm): Unit =
-    (fsm.states toSet) diff checkReachable(Set(), fsm.states filter {
-      _.initial
-    } toSet) toList match {
-      case Nil =>
-      case state :: states => throw new RuntimeException(s"unreachable states ${
-        (state :: states) map {
-          _.id
-        } reduce { (left, right) => s"$left, $right" }
-      }")
+  def checkWarnings(fsm: Fsm): List[String] =
+    List[Fsm => List[String]](checkReachable) flatMap {
+      _(fsm)
     }
 
+  def checkReachable(fsm: Fsm): List[String] =
+    (fsm.states toSet) diff checkReachable(Set(), fsm.states filter {
+      _.initial
+    } toSet) map {
+      s => s"unreachable state ${s.id}"
+    } toList
 
   def checkReachable(visitedStates: Set[State], statesToVisit: Set[State]): Set[State] =
     statesToVisit toList match {

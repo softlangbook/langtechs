@@ -2,11 +2,11 @@ module fsml
 
 imports
 	
+	editor/fsml-Outliner
+	include/fsml
 	libstratego-lib
 	libstratego-gpp
 	libstratego-aterm
-	include/fsml
-	editor/fsml-Outliner
 	lib/editor-common.generated
 	lib/runtime/index/-
 	lib/runtime/nabl/-
@@ -15,9 +15,10 @@ imports
 	lib/runtime/task/-
 	lib/runtime/analysis/-
 	lib/runtime/editor/-
-	names
+	
 	check
 	generate
+	names
 	pp
 
 rules // Analysis

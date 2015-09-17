@@ -2,12 +2,12 @@ module pp
 
 imports
 
-	libstratego-gpp
-	lib/runtime/refactoring/-
 	include/fsml
 	include/fsml-parenthesize
-	src-gen/pp/fsml-pp
+	libstratego-gpp
+	lib/runtime/refactoring/-
   	runtime/tmpl/pp
+	src-gen/pp/fsml-pp
   	src-gen/pp/Common-pp
 
 rules

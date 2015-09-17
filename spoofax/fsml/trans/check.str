@@ -4,12 +4,14 @@ imports
 
 	include/fsml
 	runtime/nabl/-
+  	
   	names
 	
 rules
 	
 	constraint-error:
-		Fsm(states*) -> (states*, $[no initial state defined])
+		Fsm(states*) ->
+			(states*, $[no initial state defined])
 			with
 				s* := <initial-states> states*;
 				n := <length> s*
@@ -17,7 +19,8 @@ rules
 				<lt> (n, 1)
 			
 	constraint-error:
-		Fsm(states*) -> (initial-state*, $[multiple([n]) initial states defined])
+		Fsm(states*) ->
+			(initial-state*, $[multiple initial states defined])
 			with
 				initial-state* := <initial-states> states*;
 				n := <length> initial-state*

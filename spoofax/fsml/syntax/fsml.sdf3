@@ -1,18 +1,21 @@
 module fsml
 
 imports
+
 	Common
 
 context-free start-symbols
   
-  Fsm
+	Fsm
 
 context-free syntax
   
 Fsm.Fsm = State *
+
 State.State = <<Initial ?> state <ID> {
 	<Transition *>
 }>
+
 Transition.Transition = <<Input> <Action ?> <Target ?>;>
   
 Initial.Initial = <initial>

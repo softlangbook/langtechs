@@ -3,6 +3,7 @@ module generate
 imports
 	
 	include/fsml
+	
 rules
 	generate-java:
 		(selected, position, ast, path, project-path) -> (filename, result)

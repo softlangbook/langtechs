@@ -46,5 +46,6 @@
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.imp.metatooling.sanityNature</nature>
+		<nature>org.strategoxt.imp.metatooling.nature</nature>
 	</natures>
 </projectDescription>

@@ -1,8 +1,10 @@
+package de.sschauss.fsml.test
+
 import org.scalatest.WordSpec
 
-class FsmlTest extends WordSpec {
+class Tests extends WordSpec {
 
-  "A FSM" when {
+  "A final state machine" when {
     "defined with indeterministic inputs" should {
       "not compile" in {
         assertDoesNotCompile(
@@ -63,28 +65,6 @@ class FsmlTest extends WordSpec {
             |      "eventI" / "actionII" -> stateC
             |    }
             |    def stateC: State = state { }
-            |  }
-            |
-            |}
-          """.stripMargin
-        )
-      }
-    }
-    "defined with unreachable states" should {
-      "not compile" in {
-        assertDoesNotCompile(
-          """
-            |import de.sschauss.fsml._
-            |
-            |object InitialNotOk1 {
-            |
-            |  fsm {
-            |    def stateA: State = state {
-            |      "eventI" / "actionI" -> stateB
-            |    }
-            |    def stateB: State = state {
-            |      "eventII" / "actionII" -> stateA
-            |    }
             |  }
             |
             |}

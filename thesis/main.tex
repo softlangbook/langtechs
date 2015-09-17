@@ -18,7 +18,7 @@
 \pagestyle{fancy}
 \headheight = 16pt
 \fancyhead[OL,ER]{\leftmark}
-\fancyhead[OC,EC]{}
+	\fancyhead[OC,EC]{}
 \fancyhead[OR,EL]{\rightmark}
 \fancyfoot[OL,ER]{}
 \fancyfoot[OC,EC]{}
@@ -78,6 +78,59 @@
 		visit,
 		while,
 		o
+	},
+	morestring=[b]"
+}
+
+\lstdefinelanguage{spoofax}{
+	alsoletter=-,
+	morekeywords={
+		binding,
+		context-free,
+		constructors,
+		defines,
+		error,
+		id,
+		imports,
+		LAYOUT,
+		lexical,
+		module,
+		namespaces,
+		refers,
+		restrictions,
+		rules,
+		scopes,
+		signature,
+		start,
+		start-symbols,
+		symbol,
+		syntax,
+		test,
+		to,
+		unique,
+		warning,
+		where,
+		with
+	}
+}
+
+\lstdefinelanguage{racket}{
+	alsoletter=/->\#,
+	morekeywords=[1]{
+		datum->syntax,
+		define,
+		define-struct,
+		define-syntax,
+		lambda,
+		provide,
+		require,
+		string->symbol,
+		syntax-case,
+		syntax->datum,
+		with-syntax
+	},
+	morekeywords=[2]{
+		\#lang
 	},
 	morestring=[b]"
 }
