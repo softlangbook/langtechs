@@ -12,20 +12,23 @@
 \usepackage{hyperref}
 \usepackage{sourcecodepro}
 \usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{emptypage}
 
 \bibliography{bibliography}
 
 \pagestyle{fancy}
 \headheight = 16pt
 \fancyhead[OL,ER]{\leftmark}
-	\fancyhead[OC,EC]{}
+\fancyhead[OC,EC]{}
 \fancyhead[OR,EL]{\rightmark}
 \fancyfoot[OL,ER]{}
 \fancyfoot[OC,EC]{}
-\fancyfoot[OR,EL]{\thepage}
+\fancyfoot[OL,ER]{\thepage}
 \fancypagestyle{plain}{
 	\fancyhf{}
-	\fancyfoot[OR,EL]{\thepage}
+	\fancyfoot[OL,ER]{\thepage}
 	\renewcommand{\headrulewidth}{0pt}
 }
 
@@ -137,19 +140,36 @@
 
 \begin{document}
 \include{cover}
+
+\cleardoublepage
+\include{declaration}
+
+\cleardoublepage
 \include{abstract}
+
+\cleardoublepage
 \pagenumbering{roman}\setcounter{page}{1}
 \tableofcontents
+\cleardoublepage
 \listoffigures
+\cleardoublepage
 \listoftables
+\cleardoublepage
 \lstlistoflistings
-\newpage
+
+\cleardoublepage
 \pagenumbering{arabic}\setcounter{page}{1}
 \include{chapters/introduction}
+\cleardoublepage
 \include{chapters/background}
+\cleardoublepage
 \include{chapters/related_work}
+\cleardoublepage
 \include{chapters/implementation}
+\cleardoublepage
 \include{chapters/features}
+\cleardoublepage
 \include{chapters/conclusion}
+\cleardoublepage
 \include{chapters/bibliography}
 \end{document}

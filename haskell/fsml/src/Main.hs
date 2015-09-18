@@ -24,5 +24,8 @@ import Data.Maybe
                    }
 |]
 
+inputs :: [String]
+inputs = ["ticket", "pass", "pass", "release"]
+
 main :: IO ()
-main = print turnstileFsm
+main = print (run turnstileFsm inputs)
