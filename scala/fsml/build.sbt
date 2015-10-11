@@ -1,24 +1,17 @@
-name := "fsml"
-
 lazy val commonSettings = Seq(
   organization := "de.sschauss",
-  version := "0.0.1",
-  scalaVersion := "2.12.0-M1",
-  scalacOptions ++= Seq(
-    "-Xlog-free-terms",
-    "-unchecked",
-    "-deprecation",
-    "-feature"
-  )
+  version := "1.0",
+  scalaVersion := "2.11.7",
+  addCompilerPlugin("org.scalamacros" % "paradise_2.11.7" % "2.1.0-M5")
 )
 
 lazy val root = project
   .in(file("."))
-  .aggregate(fsml_impl, fsml_test)
-
-lazy val fsml_impl = project
   .settings(commonSettings: _*)
 
-lazy val fsml_test = project
-  .dependsOn(fsml_impl)
+lazy val core = project
   .settings(commonSettings: _*)
+
+lazy val test = project
+  .settings(commonSettings: _*)
+  .dependsOn(core)
