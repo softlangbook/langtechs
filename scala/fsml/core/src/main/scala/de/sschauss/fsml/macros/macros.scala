@@ -1,13 +1,11 @@
 package de.sschauss.fsml
 
-
 package object macros {
 
   import scala.annotation.StaticAnnotation
-  import scala.reflect.macros.whitebox
   import scala.language.experimental.macros
-  import scala.language.postfixOps
-  import scala.language.implicitConversions
+  import scala.language.{implicitConversions, postfixOps}
+  import scala.reflect.macros.whitebox
 
   implicit def stringToTransition(input: String): Transition = new Transition(input, None, None)
 
@@ -20,37 +18,45 @@ package object macros {
 
   def fsmMacro(context: whitebox.Context)(annottees: context.Tree*): context.Tree = {
     import context.universe._
-    val q"object $name extends ..$parents { ..${body: List[Tree]}}" = annottees.head
+    val q"object $objectName extends ..$parents { ..${body: List[Tree]}}" = annottees.head
     val stateTermNames: List[(Boolean, TermName, List[Tree])] = body.collect {
-      case q"def ${state: TermName}: State = initial state { ..${transitions: List[Tree]} }" => (true, state, transitions)
-      case q"def ${state: TermName}        = initial state { ..${transitions: List[Tree]} }" => (true, state, transitions)
-      case q"def ${state: TermName}: State =         state { ..${transitions: List[Tree]} }" => (false, state, transitions)
-      case q"def ${state: TermName}        =         state { ..${transitions: List[Tree]} }" => (false, state, transitions)
+      case q"def ${stateTermName: TermName}: State = initial state { ..${transitions: List[Tree]} }" =>
+        (true, stateTermName, transitions)
+      case q"def ${stateTermName: TermName}        = initial state { ..${transitions: List[Tree]} }" =>
+        (true, stateTermName, transitions)
+      case q"def ${stateTermName: TermName}: State =         state { ..${transitions: List[Tree]} }" =>
+        (false, stateTermName, transitions)
+      case q"def ${stateTermName: TermName}        =         state { ..${transitions: List[Tree]} }" =>
+        (false, stateTermName, transitions)
     }
     val initialState = stateTermNames.collectFirst { case (true, name, _) => name } get
     val states =
       q"""
-      object states {
+      object run {
         def apply() = $initialState
         ..${
         stateTermNames.map {
           case (_, name, transitions) =>
             val inputs: List[Tree] = transitions map {
-              case q"${input: String} / $action -> $target" => q"def ${TermName(s"$input")} = { println($action); $target }"
-              case q"${input: String} / $action" => q"def ${TermName(s"$input")} = { println($action); $name }"
-              case q"${input: String} -> $target" => q"def ${TermName(s"$input")} = $target"
-              case q"${input: String}" => q"def ${TermName(s"$input")} = $name"
+              case q"${input: String} / $action -> $target" =>
+                q"def ${TermName(s"$input")} = { println($action); $target }"
+              case q"${input: String} / $action" =>
+                q"def ${TermName(s"$input")} = { println($action); $name }"
+              case q"${input: String} -> $target" =>
+                q"def ${TermName(s"$input")} = $target"
+              case q"${input: String}" =>
+                q"def ${TermName(s"$input")} = $name"
             }
             q"object $name { ..$inputs }"
+          }
         }
       }
-      }
-    """
+      """
     q"""
-        object $name extends ..$parents {
-          $states
-          ..$body
-        }
+      object $objectName extends ..$parents {
+        $states
+        ..$body
+      }
     """
   }
 
@@ -89,7 +95,6 @@ package object macros {
 
     def ->(target: State): Transition = new Transition(input, action, Some(target))
   }
-
 
 }
 
