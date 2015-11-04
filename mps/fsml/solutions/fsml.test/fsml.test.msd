@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="fsml.test" uuid="0aff4652-c434-4604-b998-d611aa802c9f" pluginKind="PLUGIN_OTHER" compileInMPS="true">
+<solution name="fsml.tests" uuid="0aff4652-c434-4604-b998-d611aa802c9f" pluginKind="PLUGIN_OTHER" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
@@ -13,6 +13,7 @@
     <usedLanguage>8585453e-6bfb-4d80-98de-b16074f1d86c(jetbrains.mps.lang.test)</usedLanguage>
     <usedLanguage>1e0d5fd6-c07a-4df5-9c9b-c73735ba6c37(fsml)</usedLanguage>
     <usedLanguage>f3061a53-9226-4cc5-a443-f952ceaf5816(jetbrains.mps.baseLanguage)</usedLanguage>
+    <usedLanguage>f61473f9-130f-42f6-b98d-6c438812c2f6(jetbrains.mps.baseLanguage.unitTest)</usedLanguage>
   </usedLanguages>
   <languageVersions>
     <language id="1e0d5fd6-c07a-4df5-9c9b-c73735ba6c37" fqName="fsml" version="0" />

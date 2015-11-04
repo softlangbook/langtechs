@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:2fdebbc2-c8de-45fb-8c07-2514d59537a4(fsml.test.editortest)">
+<model ref="r:be8d51e0-70e9-4262-a4d2-8c0f8a8bdae4(editortests@tests)">
   <persistence version="9" />
   <languages>
+    <use id="f61473f9-130f-42f6-b98d-6c438812c2f6" name="jetbrains.mps.baseLanguage.unitTest" version="-1" />
     <use id="8585453e-6bfb-4d80-98de-b16074f1d86c" name="jetbrains.mps.lang.test" version="-1" />
     <use id="1e0d5fd6-c07a-4df5-9c9b-c73735ba6c37" name="fsml" version="-1" />
     <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="-1" />
@@ -133,7 +134,7 @@
     </node>
   </node>
   <node concept="2XOHcx" id="13jvcrV6pii">
-    <property role="2XOHcw" value="/home/simon/development/bscthesis/mps/fsml/" />
+    <property role="2XOHcw" value="${mps.home}" />
   </node>
 </model>
 
