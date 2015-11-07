@@ -3,8 +3,8 @@
 module Main where
 
 import Prelude        hiding (id)
-import Fsml.Quoter
-import Fsml.Runtime
+import Language.Fsml
+import Language.Fsml.Runtime
 import Data.Maybe
 
 [fsml|

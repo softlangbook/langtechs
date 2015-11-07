@@ -1,4 +1,4 @@
-module Fsml.Ast where
+module Language.Fsml.Ast where
 
 data FsmNode = FsmNode String [StateNode]
     deriving Show

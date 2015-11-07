@@ -1,7 +1,7 @@
-module Fsml.Parser where
+module Language.Fsml.Parser (fsm, topLevel) where
 
 import           Control.Applicative  hiding (many, (<|>))
-import           Fsml.Ast
+import           Language.Fsml.Ast
 import           Text.Parsec          hiding (State)
 import qualified Text.Parsec.Expr     ()
 import           Text.Parsec.Language (emptyDef)

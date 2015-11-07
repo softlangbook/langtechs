@@ -1,10 +1,11 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-module Fsml.Quoter where
+module Language.Fsml.Quoter where
 
-import Fsml.Ast
-import Fsml.Parser               (fsm, topLevel)
-import Fsml.Runtime
+import Prelude                   hiding (id)
+import Language.Fsml.Ast
+import Language.Fsml.Parser      (fsm, topLevel)
+import Language.Fsml.CS          (Fsm(..), State(..), Transition(..))
 import Language.Haskell.TH
 import Language.Haskell.TH.Quote
 import Text.Parsec               (parse)
@@ -41,7 +42,7 @@ toStateDec state@(StateNode _ id _) = ValD (VarP (mkName id)) (NormalB stateExp)
         stateExp = toStateExp state
 
 toStateExp :: StateNode -> Exp
-toStateExp (StateNode initial id transitions) = AppE (AppE (AppE (ConE 'State) (ConE 'True)) idExp) transitionExp
+toStateExp (StateNode _ id transitions) = AppE (AppE (AppE (ConE 'State) (ConE 'True)) idExp) transitionExp
    where
        idExp = toStringExp id
        transitionExp = ListE (map toTransitionExp transitions)
