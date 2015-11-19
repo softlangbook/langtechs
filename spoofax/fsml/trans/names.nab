@@ -16,7 +16,7 @@ binding rules
 		defines unique State id
 		scopes Transition  
 		
-	Transition(input, _, target):
+	Transition(input, _, _):
 		defines unique Transition input
 		
 	Target(id):

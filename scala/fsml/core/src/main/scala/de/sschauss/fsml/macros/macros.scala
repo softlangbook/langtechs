@@ -1,100 +1,103 @@
 package de.sschauss.fsml
 
+import scala.annotation.tailrec
+
 package object macros {
 
-  import scala.annotation.StaticAnnotation
+  import de.sschauss.fsml.macros.ast.{FsmNode, StateNode, TransitionNode}
+
   import scala.language.experimental.macros
   import scala.language.{implicitConversions, postfixOps}
   import scala.reflect.macros.whitebox
 
-  implicit def stringToTransition(input: String): Transition = new Transition(input, None, None)
+  def fsmMacro(c: whitebox.Context)(annottees: c.Tree*): c.Tree = (new {
 
-  implicit def stringToState(id: String): State = new State(false, List())
+    import c.universe._
 
+    implicit val nameToString: Name => String = (ident: Name) => ident.toString
 
-  class Fsm extends StaticAnnotation {
-    def macroTransform(annottees: Any*): Any = macro fsmMacro
-  }
-
-  def fsmMacro(context: whitebox.Context)(annottees: context.Tree*): context.Tree = {
-    import context.universe._
-    val q"object $objectName extends ..$parents { ..${body: List[Tree]}}" = annottees.head
-    val stateTermNames: List[(Boolean, TermName, List[Tree])] = body.collect {
-      case q"def ${stateTermName: TermName}: State = initial state { ..${transitions: List[Tree]} }" =>
-        (true, stateTermName, transitions)
-      case q"def ${stateTermName: TermName}        = initial state { ..${transitions: List[Tree]} }" =>
-        (true, stateTermName, transitions)
-      case q"def ${stateTermName: TermName}: State =         state { ..${transitions: List[Tree]} }" =>
-        (false, stateTermName, transitions)
-      case q"def ${stateTermName: TermName}        =         state { ..${transitions: List[Tree]} }" =>
-        (false, stateTermName, transitions)
+    implicit val unliftStateDefinition: Unliftable[StateNode] = Unliftable {
+      case q"initial state ${id: Name} { ..${transitions: List[TransitionNode]} }" =>
+        StateNode(true, id, transitions)
+      case q"state ${id: Name} { ..${transitions: List[TransitionNode]} }" =>
+        StateNode(false, id, transitions)
     }
-    val initialState = stateTermNames.collectFirst { case (true, name, _) => name } get
-    val states =
+
+    implicit val unliftTransitionExpression: Unliftable[TransitionNode] = Unliftable {
+      case q"${input: Name} / ${action: Name} -> ${target: Name}" =>
+        TransitionNode(input, Some(action), Some(target))
+      case q"${input: Name} / ${action: Name}" =>
+        TransitionNode(input, Some(action), None)
+      case q"${input: Name} -> ${target: Name}" =>
+        TransitionNode(input, None, Some(target))
+      case q"${input: Name}" =>
+        TransitionNode(input, None, None)
+    }
+
+    implicit val liftStateNode: Liftable[StateNode] = Liftable { s =>
+      q"""object ${TermName(s.id)} { ..${s.transitions} }"""
+    }
+
+    implicit val liftTransitionNode: Liftable[TransitionNode] = Liftable {
+      case TransitionNode(input, Some(action), Some(target)) =>
+        q"def ${TermName(s"$input")} = { println($action); ${TermName(target)} }"
+      case TransitionNode(input, Some(action), None) =>
+        q"def ${TermName(s"$input")} = { println($action); this }"
+      case TransitionNode(input, None, Some(target)) =>
+        q"def ${TermName(s"$input")} = ${TermName(target)}"
+      case TransitionNode(input, None, None) =>
+        q"def ${TermName(input)} = this"
+    }
+
+    def apply(): c.Tree = {
+      val q"object $objectName extends ..$parents { ..${states: List[StateNode]} }" = annottees.head
+      val fsmNode = FsmNode(states)
+      check(c)(fsmNode)
       q"""
-      object run {
-        def apply() = $initialState
-        ..${
-        stateTermNames.map {
-          case (_, name, transitions) =>
-            val inputs: List[Tree] = transitions map {
-              case q"${input: String} / $action -> $target" =>
-                q"def ${TermName(s"$input")} = { println($action); $target }"
-              case q"${input: String} / $action" =>
-                q"def ${TermName(s"$input")} = { println($action); $name }"
-              case q"${input: String} -> $target" =>
-                q"def ${TermName(s"$input")} = $target"
-              case q"${input: String}" =>
-                q"def ${TermName(s"$input")} = $name"
-            }
-            q"object $name { ..$inputs }"
-          }
+        object $objectName extends ..$parents {
+          def apply() = ${TermName(getInitialState(fsmNode).id)}
+          ..$states
         }
-      }
       """
-    q"""
-      object $objectName extends ..$parents {
-        $states
-        ..$body
+    }
+
+  }) ()
+
+  private def getInitialStates(fsmNode: FsmNode): List[StateNode] = fsmNode.states filter { _.initial }
+  private def getInitialState(fsmNode: FsmNode): StateNode = getInitialStates(fsmNode) head
+
+  private def check(c: whitebox.Context)(fsm: FsmNode): Unit =
+    List[whitebox.Context => FsmNode => Unit](checkSingleInitial, checkReachability) foreach {
+      _ (c)(fsm)
+    }
+
+  private def checkSingleInitial(c: whitebox.Context)(fsm: FsmNode): Unit =
+    fsm.states count {
+      _.initial
+    } match {
+      case 0 => c.error(c.enclosingPosition, "No initial state defined")
+      case 1 =>
+      case _ => c.error(c.enclosingPosition, "Multiple initial states defined")
+    }
+
+  private def checkReachability(c: whitebox.Context)(fsmNode: FsmNode): Unit =
+    (fsmNode.states toSet) diff checkReachability(fsmNode, Set(), getInitialStates(fsmNode) toSet) toList match {
+      case Nil =>
+      case states => states foreach {
+        s => c.error(c.enclosingPosition, s"unreachable state ${s.id}")
       }
-    """
-  }
-
-  object initial {
-    def state(transition: Transition): State = macro stateMacro
-
-    def state(unit: Unit): State = new State(false, List())
-
-    def stateMacro(context: whitebox.Context)(transition: context.Tree): context.Tree = {
-      import context.universe._
-      val q"..$transitions" = transition
-      q"new State(true, $transitions)"
     }
-  }
 
-  object state {
-    def apply(transition: Transition): State = macro stateMacro
-
-    def apply(unit: Unit): State = new State(false, List())
-
-    def stateMacro(context: whitebox.Context)(transition: context.Tree): context.Tree = {
-      import context.universe._
-      val q"..$transitions" = transition
-      q"new State(false, $transitions)"
+  @tailrec private def checkReachability(fsm: FsmNode, visitedStates: Set[StateNode], statesToVisit: Set[StateNode]): Set[StateNode] =
+    statesToVisit toList match {
+      case Nil => visitedStates
+      case state :: states => checkReachability(fsm, visitedStates + state, (state.transitions flatMap {
+        _.target
+      } flatMap { targetID =>
+        fsm.states filter {
+          _.id == targetID
+        }
+      } toSet) union (states toSet) diff (visitedStates + state))
     }
-  }
-
-  class State(final val initial: Boolean, `transitions'`: => List[Transition]) {
-    final lazy val transitions = `transitions'`
-  }
-
-  class Transition(final val input: String, final val action: Option[String], `target'`: => Option[State]) {
-    final lazy val target = `target'`
-
-    def /(action: String): Transition = new Transition(input, Some(action), target)
-
-    def ->(target: State): Transition = new Transition(input, action, Some(target))
-  }
 
 }
-

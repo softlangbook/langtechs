@@ -2,11 +2,11 @@
 <model ref="r:d52f619a-92bb-4609-884f-25be2b756cb6(fsml.runtime)">
   <persistence version="9" />
   <languages>
-    <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="-1" />
-    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="-1" />
+    <use id="83888646-71ce-4f1c-9c53-c54016f6ad4f" name="jetbrains.mps.baseLanguage.collections" version="0" />
+    <use id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage" version="4" />
   </languages>
   <imports>
-    <import index="e2lb" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/f:java_stub#6354ebe7-c22a-4a0f-ac54-50b52ab9b065#java.lang(JDK/java.lang@java_stub)" implicit="true" />
+    <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -198,7 +198,7 @@
     <node concept="2tJIrI" id="3V9BInOtmnH" role="jymVt" />
     <node concept="3Tm1VV" id="3V9BInOtmjs" role="1B3o_S" />
     <node concept="3uibUv" id="3V9BInOtmkH" role="1zkMxy">
-      <ref role="3uigEE" to="e2lb:~RuntimeException" resolve="RuntimeException" />
+      <ref role="3uigEE" to="wyt6:~RuntimeException" resolve="RuntimeException" />
     </node>
   </node>
   <node concept="312cEu" id="5WiIO$HCxdj">
@@ -415,7 +415,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="5WiIO$HCM$E" role="2OqNvi">
-                    <ref role="37wK5l" to="e2lb:~String.equals(java.lang.Object):boolean" resolve="equals" />
+                    <ref role="37wK5l" to="wyt6:~String.equals(java.lang.Object):boolean" resolve="equals" />
                     <node concept="37vLTw" id="5WiIO$HCMDP" role="37wK5m">
                       <ref role="3cqZAo" node="5WiIO$HCJmM" resolve="event" />
                     </node>
@@ -431,7 +431,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="5WiIO$HCKYP" role="2OqNvi">
-                    <ref role="37wK5l" to="e2lb:~String.equals(java.lang.Object):boolean" resolve="equals" />
+                    <ref role="37wK5l" to="wyt6:~String.equals(java.lang.Object):boolean" resolve="equals" />
                     <node concept="37vLTw" id="5WiIO$HCL1l" role="37wK5m">
                       <ref role="3cqZAo" node="5WiIO$HCJfM" resolve="state" />
                     </node>
@@ -499,7 +499,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="5WiIO$HCTyr" role="2OqNvi">
-                    <ref role="37wK5l" to="e2lb:~String.equals(java.lang.Object):boolean" resolve="equals" />
+                    <ref role="37wK5l" to="wyt6:~String.equals(java.lang.Object):boolean" resolve="equals" />
                     <node concept="37vLTw" id="5WiIO$HCTz3" role="37wK5m">
                       <ref role="3cqZAo" node="5WiIO$HCQb3" resolve="event" />
                     </node>
@@ -515,7 +515,7 @@
                     </node>
                   </node>
                   <node concept="liA8E" id="5WiIO$HCRUp" role="2OqNvi">
-                    <ref role="37wK5l" to="e2lb:~String.equals(java.lang.Object):boolean" resolve="equals" />
+                    <ref role="37wK5l" to="wyt6:~String.equals(java.lang.Object):boolean" resolve="equals" />
                     <node concept="37vLTw" id="5WiIO$HCS1H" role="37wK5m">
                       <ref role="3cqZAo" node="5WiIO$HCQ1l" resolve="state" />
                     </node>

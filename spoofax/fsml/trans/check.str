@@ -4,6 +4,10 @@ imports
 
 	include/fsml
 	runtime/nabl/-
+  libstratego-gpp
+  runtime/tmpl/pp
+  libstratego-sglr
+  src-gen/signatures/Common-sig
   	
   	names
 	
@@ -26,6 +30,9 @@ rules
 				n := <length> initial-state*
 			where 
 				<gt> (n, 1)
+		
+	constraint-note:
+		_ -> <fail>
  
 	constraint-warning:
 		Fsm(state*) ->
@@ -34,19 +41,9 @@ rules
 				initial-state* := <initial-states> state*;
 				unreachable-state* := <unreachable-states> ([], initial-state*, state*)
 				
-		
-	constraint-note:
-		_ -> <fail>
-		
-	initial-states:
-		states* -> <filter(?State(Some(initial), _, _))> states*
-		
-		
 	unreachable-states:
-		(visited-state*, state-to-visit*, state*) ->
+		(visited-state*, [], state*) ->
 			<diff> (state*, visited-state*)
-			where
-				<lt> (<length> state-to-visit*, 1)
 		
 	unreachable-states:
 		(visited-state*, state-to-visit*, state*) ->
@@ -55,24 +52,29 @@ rules
 				visited-state'* := <union> (visited-state*, state-to-visit*);
 				target-state* := <mapconcat(\ state -> 
 					<(\ State(_, _, transition*) -> 
-						<mapconcat(\ Transition(_, _, target) -> <get-target-state> (state, target, state*) \)> transition* 
+						<mapconcat(\ Transition(_, _, target) -> 
+							<get-target-state> (state, target, state*) \)> transition* 
 					\)> state 
 				\)> state-to-visit*;
 				state-to-visit'* := <diff> (target-state*, visited-state'*)
-			where
-				<gt> (<length> state-to-visit*, 0)
-      			
+		
+	initial-states:
+		states* -> <filter(?State(Some(initial), _, _))> states*
 	
 	get-target-state:
 		(state, None(), state*) ->
-			[state]
-				
+			[state]		
+	
+	get-target-state:
+		(_, Some(Target(target)), _) ->
+			[]	
+	 		where
+	 			<equal(|[])> (<nabl-collect-all-resolved-defs> target)
 				
 	get-target-state:
 		(state, Some(Target(target)), state*) ->
 			target-state*
-			with		
+			with
 				target-uri := <nabl-uri> target;
       			state-uri*  := <map(\ State(_, id_, _) -> <nabl-uri> id_ \)> state*;
       			target-state* := <filter({state: ?(target-uri, state); <id> state})> <zip>(state-uri*, state*)
-	 

@@ -1,21 +1,63 @@
 \section{Racket}
+\label{s:racket}
+\lstset{language=lisp}
 
-\subsection{Abstract Syntax Tree}
+\subsection{Concrete Syntax}
 
-\lstinputlisting[caption=Abstract Syntax Tree in Racket, label=lst:rkt/parser, language=racket]{../racket/fsml/ast.rkt}
+Struct types are used in \autoref{lst:racket/cs} to define the concrete syntax of the FSML in Racket.
 
-\subsection{Syntax Definition}
+\lstinputlisting[caption=Macros in Racket, label=lst:racket/cs, language=lisp, firstline=16, lastline=18]{../racket/fsml/fsml.rkt}
 
-\lstinputlisting[caption=Parsing in Racket, label=lst:rkt/parser, language=racket]{../racket/fsml/syntax.rkt}
+\subsection{Macros}
 
-\subsection{Parser}
+The first macro defined in \autoref{lst:racket/macros} extracts the name and states from the syntax object.
+Then the \lstinline{with-syntax} form bind the identifier to a syntax object representing the state IDs.
+After that the input syntax object is checked for violation constraints (\autoref{ss:racket/cc}).
+Finally a begin form syntax object is returned, where the states and the \lstinline{fsm-struct} definition are spliced in.
 
-\lstinputlisting[caption=Parsing in Racket, label=lst:rkt/parser, language=racket]{../racket/fsml/parser.rkt}
+States are transformed to define forms syntax object by the second and third macro definition.
 
-\subsection{Reader}
+\lstinputlisting[caption=Macros in Racket, label=lst:racket/macros, language=lisp, firstline=128, lastline=142]{../racket/fsml/fsml.rkt}
 
-\lstinputlisting[caption=Parsing in Racket, label=lst:rkt/parser, language=racket]{../racket/fsml/lang/reader.rkt}
+\subsection{Syntax Object Transformation}
 
-\subsection{Usage}
+Each forms phase level in \autoref{lst:racket/syntaxObjectTransformation} is shifted by the \lstinline{begin-for-syntax} form by one.
+This is required, as these forms are used by the macros at compile time.
+The \lstinline{state->id} procedure transforms a state syntax object to an ID syntax object.
+A transition syntax object is transformed by the \lstinline{stx->transition-struct} procedure to a \lstinline{transition-struct} syntax object.
+Finally the \lstinline{stx->define-state-struct} function converts a state syntax object to a syntax object representing a define form of a \lstinline{state-struct}.
 
-\lstinputlisting[caption=Parsing in Racket, label=lst:rkt/parser, language=racket]{../racket/fsml/example.rkt}
+\lstinputlisting[caption=Syntax Object Transformation in Racket, label=lst:racket/syntaxObjectTransformation, language=lisp, linerange={20-20,23-55}]{../racket/fsml/fsml.rkt}
+
+\subsection{Constraint Checking}
+\label{ss:racket/cc}
+
+As for every state a define form is generated and the target in a transition has a binding for a state identifier, the constraint checks for the distinct state ID and resolvable state ID constraints don't have to be checked for.
+
+The validation procedures for deterministic input and reachable state are omitted, because all checks are implemented similar.
+
+\subsubsection{Single Initial State}
+
+The function within \autoref{lst:racket/cc/initialState} uses the syntactic form \lstinline{raise-syntax-error} to indicate that a syntax error has occurred.
+
+\lstinputlisting[caption=Check for single initial state constraint in Racket, label=lst:racket/cc/initialState, language=lisp, firstline=63, lastline=72]{../racket/fsml/fsml.rkt}
+
+\subsection{Tests}
+
+Racket ships with the unit-testing framework RackUnit, which is used for the implementation of the test cases \cite{rackunit}.
+Since these test cases bear a strong resemblance to each other, the tests for the single initial state constraint and reachable state constraint are omitted.
+
+\subsubsection{Test Helper}
+
+The procedure \lstinline{syntax-error?} in \autoref{lst:racket/test/helper} is used to test if a given quoted syntax object, when evaluated, raises a syntax error.
+This is done by evaluating the result of a quasiquoted begin macro where the quoted syntax object is spliced in.
+If the evaluation raises a syntax error, the errors message is returned.
+
+\lstinputlisting[caption=Test helper in Racket, label=lst:racket/test/helper, language=lisp, firstline=7, lastline=14]{../racket/fsml/tests.rkt}
+
+\subsubsection{Test Case}
+
+Test cases are build using the \lstinline[language=lisp]{test-case} form.
+The test case in \autoref{lst:racket/test/case} checks that the regular expression matches the message returned by \lstinline{syntax-error?}.
+
+\lstinputlisting[caption=Test case in Racket, label=lst:racket/test/case, language=lisp, firstline=17, lastline=27]{../racket/fsml/tests.rkt}

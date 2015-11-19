@@ -1,30 +1,52 @@
 \chapter{Background}
 
-\section{Metaprogramming}
+This thesis utilizes a collection of language workbenches and metaprogramming languages. 
+Therefore, an overview over the key terminology is given in the following.
 
-\section{Meta Programming System}
+\label{c:background}
 
-\section{Language Workbench}
+\section{Language Workbenches}
 
 Language workbench is a term coined by \citeauthor{fowler2005language} in \citeyear{fowler2005language}~\cite{fowler2005language}.
 He describes language workbenches as a set of tools that support building domain-specific languages and integrated development environments for editing these domain-specific languages~\cite{fowler2010domain}.
+Implementing software languages using such a language workbench supports the idea of language-oriented programming \cite{dmitriev2004language} \cite{fowler2005language}.
+
+\section{Metaprogramming}
+
+Meta-programming 
 
 \section{Representatives}
+
+\label{c:background/representatives}
 
 \subsection{MPS}
 
 The Meta Programming System, an open-source project developed at JetBrains, is an integrated development environment for language engineering \cite{pech2013jetbrains}.
+Languages are defined by using several domain-specific languages.
 
 \subsection{Rascal}
 
 \subsection{Spoofax}
 
 Stated by \citeauthor{kats2010spoofax} Spoofax is a language workbench for efficient, agile development of textual domain-specific languages with state-of-the-art IDE support~\cite{kats2010spoofax}.
-Spoofax is build on top of the Eclipse IDE and uses a set of domain
-
+Spoofax is build on top of the Eclipse IDE.
+It uses a set of languages to define the aspects of the implemented language and its accompanioned IDE implementation.
 
 \subsection{Haskell}
 
+Haskell is a purely functional general-purpose programming language.
+It uses non-strict semantics and a static polymorphic typesystem \cite{peterson1996report}.
+The Glasgow Haskell Compiler implementation embodies the de facto standart for the programming communtity \cite{jones1993glasgow}.
+
+\subsubsection{Template Haskell}
+
+Template Haskell provides an extension for the Glasgow Haskell Compiler that supports compile-time meta-programming facilities \cite{sheard2002template}.
+
 \subsection{Racket}
 
+
 \subsection{Scala}
+
+Scala is a object-oriented and functional general-purpose programming language \cite{odersky2004overview}.
+
+

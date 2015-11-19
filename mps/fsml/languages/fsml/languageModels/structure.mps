@@ -2,16 +2,17 @@
 <model ref="r:b814c010-3eeb-4171-b50a-982b2ce1cddf(fsml.structure)">
   <persistence version="9" />
   <languages>
-    <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="-1" />
+    <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="1" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
-    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="tpee" ref="r:00000000-0000-4000-0000-011c895902ca(jetbrains.mps.baseLanguage.structure)" implicit="true" />
+    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
+        <property id="1587916991969465369" name="conceptId" index="1pbfSe" />
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
       </concept>
       <concept id="1169127622168" name="jetbrains.mps.lang.structure.structure.InterfaceConceptReference" flags="ig" index="PrWs8">
@@ -36,6 +37,7 @@
   </registry>
   <node concept="1TIwiD" id="6JT1n72QSlZ">
     <property role="TrG5h" value="Fsm" />
+    <property role="1pbfSe" value="785681136" />
     <ref role="1TJDcQ" to="tpee:fz3vP1J" resolve="Expression" />
     <node concept="1TJgyj" id="3V9BInOl6xO" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
@@ -46,6 +48,7 @@
   </node>
   <node concept="1TIwiD" id="3V9BInOkYn2">
     <property role="TrG5h" value="State" />
+    <property role="1pbfSe" value="857572519" />
     <node concept="PrWs8" id="3V9BInOl6da" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
@@ -63,18 +66,21 @@
   </node>
   <node concept="1TIwiD" id="3V9BInOl6df">
     <property role="TrG5h" value="Action" />
+    <property role="1pbfSe" value="857604660" />
     <node concept="PrWs8" id="3V9BInOl6dg" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
   </node>
   <node concept="1TIwiD" id="3V9BInOl6dn">
     <property role="TrG5h" value="Input" />
+    <property role="1pbfSe" value="857604668" />
     <node concept="PrWs8" id="3V9BInOl6du" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
   </node>
   <node concept="1TIwiD" id="3V9BInOl6dB">
     <property role="TrG5h" value="Transition" />
+    <property role="1pbfSe" value="857604684" />
     <node concept="1TJgyj" id="3V9BInOl6yh" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
       <property role="20kJfa" value="input" />
@@ -94,6 +100,7 @@
   </node>
   <node concept="1TIwiD" id="3V9BInOl6eg">
     <property role="TrG5h" value="Initial" />
+    <property role="1pbfSe" value="857604725" />
   </node>
 </model>
 

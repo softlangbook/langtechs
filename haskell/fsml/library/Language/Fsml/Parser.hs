@@ -1,7 +1,9 @@
-module Language.Fsml.Parser (fsm, topLevel) where
+module Language.Fsml.Parser
+    ( fsm
+    , topLevel ) where
 
-import           Control.Applicative  hiding (many, (<|>))
-import           Language.Fsml.Ast
+import           Control.Applicative  ()
+import qualified Language.Fsml.AST    as AST
 import           Text.Parsec          hiding (State)
 import qualified Text.Parsec.Expr     ()
 import           Text.Parsec.Language (emptyDef)
@@ -50,11 +52,11 @@ initial =
     <|> (symbol ""        >> return False)
 
 
-transition :: Parser TransitionNode
-transition = TransitionNode <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> identifier) <* semi
+transition :: Parser AST.Transition
+transition = AST.Transition <$> identifier <*> optionMaybe (reservedOp "/" *> identifier) <*> optionMaybe (reservedOp "->" *> identifier) <* semi
 
-state :: Parser StateNode
-state = StateNode  <$> initial <*> (reserved "state" *> identifier) <*> braces (many transition)
+state :: Parser AST.State
+state = AST.State  <$> initial <*> (reserved "state" *> identifier) <*> braces (many transition)
 
-fsm :: Parser FsmNode
-fsm = FsmNode <$> (identifier <* reserved "=") <*> (many state)
+fsm :: Parser AST.Fsm
+fsm = AST.Fsm <$> many state

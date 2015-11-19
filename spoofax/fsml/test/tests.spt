@@ -1,7 +1,5 @@
 language fsml
 
-start symbol Fsm
-
 test Determinisim not ok [[
 	initial state stateA {
   		eventI / actionI -> stateB;

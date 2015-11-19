@@ -29,10 +29,7 @@ private set[Message] checkSingleInitial(Fsm f) {
 }
 
 private set[Message] checkDistinctIds(Fsm f) {
-	list[Id] ids = [];
-	visit(f) {
-		case State s: ids = ids + s.id;
-	}
+	list[Id] ids = [ s.id | s <- f.states ];
 	return {error("state with ID <id> already defined", id@\loc) | id <- getDuplicates(ids)};
 }
 	

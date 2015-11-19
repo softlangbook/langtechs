@@ -1,1 +1,530 @@
 \chapter{Feature Models}
+
+This chapter gives an overview on features used by languages workbenches and general-purpose programming languages with meta-programming facilities to realize domain-specific languages.
+First these features are identified by analyzing the implementations of the FSML illustrated in \autoref{c:implementation}.
+Then feature models build on the identified features are constructed.
+Finally, the devised features models of the language workbenches respectively metaprogramming languages are combined.
+
+\section{Language Workbenches}
+
+\subsection{MPS}
+
+MPS provides several domain-specific languages for implementing languages as seen in \autoref{s:mps}.
+These domain-specific languages are in particular the structure language for abstract syntax tree definitions, editor language for concrete syntax definitions, type system language for constraint checking, generator language for code generation and test language \cite{mpsdocumentation}.
+It should be noted that the generator language uses reduction rules to generate code.
+The devised feature model is shown in \autoref{fig:mps}.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {MPS};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Abstract Syntax &
+				Concrete Syntax &
+				Constraints &
+				Code Generation &
+				Tests \\
+			};
+
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-4,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Reduction Rules \\
+			};
+
+
+			\draw (root.south) -- (sub-1-1-1.north);
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+			\draw (root.south) -- (sub-1-1-3.north);
+			\draw (root.south) -- (sub-1-1-4.north);
+			\draw (root.south) -- (sub-1-1-5.north);
+
+			\draw (sub-1-1-4.south) -- (sub-2-1-1-1.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+			\fill[draw] (sub-1-1-3.north) circle (.8mm);
+			\fill[draw] (sub-1-1-4.north) circle (.8mm);
+			\fill[draw] (sub-1-1-5.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Haskell}
+	\label{fig:mps}
+\end{figure}
+
+\subsection{Rascal}
+
+The implementation in \autoref{s:rascal} of the FSML utilizing the Rascal language workbench used the following features.
+First, context-free grammars were defined for the syntax definition.
+Then Rascals algebraic data type \lstinline{Message} was provided for constraint checking purposes.
+Further string interpolation was used for source code generation.
+Finally the \lstinline[language=rascal]{test} modifier for testing.
+Every features was provided by the Rascal language itself \cite{rascaltutor}.
+\autoref{fig:rascal} shows the relevant feature model.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Rascal};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Context-free Grammars &
+				Constraints &
+				Code Generation &
+				Tests \\
+			};
+
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-3,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				String Interpolation \\
+			};
+
+
+			\draw (root.south) -- (sub-1-1-1.north);
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+			\draw (root.south) -- (sub-1-1-3.north);
+			\draw (root.south) -- (sub-1-1-4.north);
+
+			\draw (sub-1-1-3.south) -- (sub-2-1-1-1.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+			\fill[draw] (sub-1-1-3.north) circle (.8mm);
+			\fill[draw] (sub-1-1-4.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Rascal}
+	\label{fig:rascal}
+\end{figure}
+
+
+\subsection{Spoofax}
+
+The implementation in \autoref{s:spoofax} utilized four different domain-specific languages.
+First SDF3, the Syntax Definition Formalism, for the syntax definition of the FSML.
+Then NaBL, the Name Binding Language, for lexical scoping.
+Stratego program transformations for constraint checking and code generation.
+The code generation is implemented in the form of string interpolation.
+Finally, the Spoofax Testing Language is used to test the FSML implementation.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Spoofax};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Abstract Syntax &
+				Concrete Syntax &
+				Constraints &
+				Code Generation &
+				Tests \\
+			};
+
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-4,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				String Interpolation \\
+			};
+
+
+			\draw (root.south) -- (sub-1-1-1.north);
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+			\draw (root.south) -- (sub-1-1-3.north);
+			\draw (root.south) -- (sub-1-1-4.north);
+			\draw (root.south) -- (sub-1-1-5.north);
+
+			\draw (sub-1-1-4.south) -- (sub-2-1-1-1.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+			\fill[draw] (sub-1-1-3.north) circle (.8mm);
+			\fill[draw] (sub-1-1-4.north) circle (.8mm);
+			\fill[draw] (sub-1-1-5.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Spoofax}
+	\label{fig:spoofax}
+\end{figure}
+
+\subsection{Combined Feature Model}
+
+The features identified for the language workbenches are combined in \autoref{fig:languageworkbenches}.
+Every implementation used constraint checking, code generation and testing features of the language workbenches.
+Code generation was either realized using string interpolation or reduction rules.
+
+\begin{landscape}
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Language Workbenches};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Abstract Syntax &
+				Concrete Syntax &
+				Context-free Grammars &
+				Constraints &
+				Code Generation &
+				Tests \\
+			};
+
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-5,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Reduction Rules &
+				String Interpolation \\
+			};
+
+
+			\draw (root.south) -- (sub-1-1-1.north);
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+			\draw (root.south) -- (sub-1-1-3.north);
+			\draw (root.south) -- (sub-1-1-4.north);
+			\draw (root.south) -- (sub-1-1-5.north);
+			\draw (root.south) -- (sub-1-1-6.north);
+
+			\draw (sub-1-1-5.south) -- (sub-2-1-1-1.north);
+			\draw (sub-1-1-5.south) -- (sub-2-1-1-2.north);
+
+			\draw[opt] (sub-1-1-1.north) circle (.8mm);
+			\draw[opt] (sub-1-1-2.north) circle (.8mm);
+			\draw[opt] (sub-1-1-3.north) circle (.8mm);
+			\fill[draw] (sub-1-1-4.north) circle (.8mm);
+			\fill[draw] (sub-1-1-5.north) circle (.8mm);
+			\fill[draw] (sub-1-1-6.north) circle (.8mm);
+
+			\begin{scope}
+				\path[clip] (sub-1-1-5.south) -- (sub-2-1-1-1.north) -- (sub-2-1-1-2.north) -- cycle;
+				\fill[draw] (sub-1-1-4.south) circle (.5cm);
+			\end{scope}
+
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Language Workbenches}
+	\label{fig:languageworkbenches}
+\end{figure}
+\end{landscape}
+
+\section{Metaprogramming Languages}
+
+\subsection{Haskell}
+
+Haskells support for metaprogramming is achieved by using the Template Haskell library, as illustrated in \autoref{s:haskell}.
+Template Haskells quotation monad encapsulates the process of generating fresh names and lexical scoping \cite{sheard2002template}.
+Therefore some kind of hygiene is provided.
+A quasiquotation can occur instead of an expression, pattern, type or declaration context.
+
+Template Haskell execution phase is limited to the compile time phase, as it is a compile time only meta-system \cite{sheard2002template}.
+Therefore the features are mapped to the feature model in \autoref{fig:haskell}.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Template Haskell};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=30mm, row sep=0mm, nodes=feature]{
+				Quasiquotation &
+				Phase \\
+			};
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-1,
+				column sep=3mm, row sep=0mm, nodes=feature]{ 
+				Hygiene &
+				Context \\
+			};
+			\matrix (sub-2-2)[matrix of nodes,
+				below=of sub-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Compile Time \\
+			};
+			\matrix (sub-3-1) [matrix of nodes,
+				below=of sub-2-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Expression &
+				Pattern &
+				Type &
+				Declaration \\
+			};
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-1.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-2.north);
+
+			\draw (sub-1-1-2.south) -- (sub-2-2-1-1.north);
+
+			\draw (sub-2-1-1-2.south) -- (sub-3-1-1-1.north);
+			\draw (sub-2-1-1-2.south) -- (sub-3-1-1-2.north);
+			\draw (sub-2-1-1-2.south) -- (sub-3-1-1-3.north);
+			\draw (sub-2-1-1-2.south) -- (sub-3-1-1-4.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-2-1-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-2-2-1-1.north) circle (.8mm);
+
+			\fill[draw] (sub-3-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-2.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-3.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-4.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Haskell}
+	\label{fig:haskell}
+\end{figure}
+
+\subsection{Racket}
+
+Racket uses hygienic macros to provide support for metaprogramming \cite{tobin2011languages}.
+The implementation of the FSML in \autoref{s:racket} showed macros at compile time and runtime.
+Quasiquotation in the expression context is used to manipulate syntax objects.
+Also the syntax transformations are bound at a different phase level than the macros.
+This implies that Racket allows the programmer to chose the stage procedures are evaluated.
+These features are pictured in \autoref{fig:racket}.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Racket};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=30mm, row sep=0mm, nodes=feature]{
+				Quasiquotation &
+				Phase \\
+			};
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-1,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Hygiene &
+				Context \\
+			};      
+			\matrix (sub-2-2)[matrix of nodes,
+				below=of sub-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Runtime &
+				Compile Time \\
+			};      
+			\matrix (sub-3-1) [matrix of nodes,
+				below=of sub-2-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Expression \\
+			};      
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-1.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-2.north);
+
+			\draw (sub-1-1-2.south) -- (sub-2-2-1-1.north);
+			\draw (sub-1-1-2.south) -- (sub-2-2-1-2.north);
+
+			\draw (sub-2-1-1-2.south) -- (sub-3-1-1-1.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-2-1-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-2-2-1-1.north) circle (.8mm);
+			\fill[draw] (sub-2-2-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-3-1-1-1.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Racket}
+	\label{fig:racket}
+\end{figure}
+
+
+\subsection{Scala}
+
+Scalas metaprogramming capabilities are supported by the Scala macro system \cite{scalamacros} \cite{burmako2013scala}.
+These capabilities are extended by the Scala macro paradise plugin.
+It makes features available for Scala that are not yet implemented in the current versions of Scala \cite{scalamacroparadise}.
+
+In \autoref{s:scala} quasiquotation was used to realize the implementation of the FSML.
+The quasiquotation syntax allows quoting in the context of expressions, types, patterns and auxiliary clauses \cite{scalaquasiquotation}.
+Also lifting instances were provided to create abstract syntax tree representations for customs types, and unlifting instances for the other way round. 
+The implementations macro is expanded at compile time.
+
+These features are pictured in \autoref{fig:scala}.
+
+ \begin{figure}[h]
+ 	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Scala Macros};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=30mm, row sep=0mm, nodes=feature]{
+				Quasiquotation &
+				Phase \\
+			};
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-1,
+				column sep=3mm, row sep=0mm, nodes=feature]{ 
+				Lifting &
+				Unlifting &
+				Context \\
+			};
+			\matrix (sub-2-2)[matrix of nodes,
+				below=of sub-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Compile Time \\
+			};
+			\matrix (sub-3-1) [matrix of nodes,
+				below=of sub-2-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Expression &
+				Pattern &
+				Type &
+				Declaration &
+				Auxiliary \\
+			};
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-1.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-2.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-3.north);
+
+			\draw (sub-1-1-2.south) -- (sub-2-2-1-1.north);
+
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-1.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-2.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-3.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-4.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-5.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-2-1-1-2.north) circle (.8mm);
+			\fill[draw] (sub-2-1-1-3.north) circle (.8mm);
+
+			\fill[draw] (sub-2-2-1-1.north) circle (.8mm);
+
+			\fill[draw] (sub-3-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-2.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-3.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-4.north) circle (.8mm);
+			\fill[draw] (sub-3-1-1-5.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Scala}
+	\label{fig:scala}
+\end{figure}
+
+\subsection{Combined Feature Model}
+
+\autoref{fig:metaprogramming} shows the merged feature model from the models for Haskell, Racket and Scala.
+The only features used by all metaprogramming languages are quasiquotation in an expression context and metaprogramming at compile time.
+
+\begin{figure}[h]
+	\begin{center}
+		\begin{tikzpicture}[node distance=.8cm]
+			\node[feature] (root) {Metaprogramming};
+
+			\matrix (sub-1)[matrix of nodes,
+				below=of root,
+				column sep=40mm, row sep=0mm, nodes=feature]{
+				Quasiquotation &
+				Phase \\
+			};
+			\matrix (sub-2-1)[matrix of nodes,
+				below=of sub-1-1-1,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Context &
+				Hygiene &
+				Lifting &
+				Unlifting \\
+			};
+			\matrix (sub-2-2)[matrix of nodes,
+				below=of sub-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Compile Time &
+				Runtime \\
+			};
+			\matrix (sub-3-1) [matrix of nodes,
+				below=of sub-2-1-1-2,
+				column sep=3mm, row sep=0mm, nodes=feature]{
+				Expression &
+				Pattern &
+				Type &
+				Declaration &
+				Auxiliary \\
+			};
+
+			\draw (root.south) -- (sub-1-1-1.north);
+			\draw (root.south) -- (sub-1-1-2.north);
+
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-1.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-2.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-3.north);
+			\draw (sub-1-1-1.south) -- (sub-2-1-1-4.north);
+
+			\draw (sub-1-1-2.south) -- (sub-2-2-1-1.north);
+			\draw (sub-1-1-2.south) -- (sub-2-2-1-2.north);
+
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-1.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-2.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-3.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-4.north);
+			\draw (sub-2-1-1-1.south) -- (sub-3-1-1-5.north);
+
+			\fill[draw] (sub-1-1-1.north) circle (.8mm);
+			\fill[draw] (sub-1-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-2-1-1-1.north) circle (.8mm);
+			\draw[opt] (sub-2-1-1-2.north) circle (.8mm);
+			\draw[opt] (sub-2-1-1-3.north) circle (.8mm);
+			\draw[opt] (sub-2-1-1-4.north) circle (.8mm);
+
+			\fill[draw] (sub-2-2-1-1.north) circle (.8mm);
+			\draw[opt] (sub-2-2-1-2.north) circle (.8mm);
+
+			\fill[draw] (sub-3-1-1-1.north) circle (.8mm);
+			\draw[opt] (sub-3-1-1-2.north) circle (.8mm);
+			\draw[opt] (sub-3-1-1-3.north) circle (.8mm);
+			\draw[opt] (sub-3-1-1-4.north) circle (.8mm);
+			\draw[opt] (sub-3-1-1-5.north) circle (.8mm);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Feature Model for Metaprogramming}
+	\label{fig:metaprogramming}
+\end{figure}
+

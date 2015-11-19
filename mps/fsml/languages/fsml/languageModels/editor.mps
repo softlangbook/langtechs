@@ -2,12 +2,12 @@
 <model ref="r:d133ee2a-5f23-4996-9f69-d87bbf01dce7(fsml.editor)">
   <persistence version="9" />
   <languages>
-    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="-1" />
+    <use id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor" version="3" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
-    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
     <import index="go7p" ref="r:b814c010-3eeb-4171-b50a-982b2ce1cddf(fsml.structure)" implicit="true" />
+    <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="18bc6592-03a6-4e29-a83a-7ff23bde13ba" name="jetbrains.mps.lang.editor">
@@ -77,6 +77,7 @@
     <ref role="1XX52x" to="go7p:6JT1n72QSlZ" resolve="Fsm" />
     <node concept="b$f91" id="3V9BInOlhpC" role="2wV5jI">
       <node concept="3EZMnI" id="3V9BInOlhpK" role="b$wch">
+        <node concept="3F0ifn" id="7k5EH56o29M" role="3EZMnx" />
         <node concept="3F2HdR" id="3V9BInOlhpR" role="3EZMnx">
           <ref role="1NtTu8" to="go7p:3V9BInOl6xO" />
           <node concept="2iRkQZ" id="3V9BInOlhpT" role="2czzBx" />

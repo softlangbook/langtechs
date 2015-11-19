@@ -1,15 +1,55 @@
 \chapter{Introduction}
+\label{c:introduction}
 
-Developing \textit{domain-specific languages} (DSLs) accompanied by appropriate \textit{intergrated development environment} (IDE) involves a great deal of expense.
-Language workbenches try to reduce the burden on programmers by providing software development tools for \textit{language oriented programming} (LOP).
+Developing domain-specific languages accompanied with support by appropriate integrated development environment involves a great deal of expense.
+Using language workbenches, to implement such domain-specific languages and tools, reduce the burden on programmers by providing software development tools for language oriented programming.
 
-Another approach is the use of an embedded domain-specific language (eDSL), where the tools of the host languages are utilized.
-The disadvantage in this approach lies in the limitation of the underlying languages and availability of sophisticated IDEs.
+Instead of language workbenches, metaprogramming languages can be utilized to decrease the overhead by embedding domain-specific languages into existing general-purpose programming languages and take advantage of existing software development tools.
 
-This work presents the technologies used by major language workbenches and general-purpose programming languages with metaprogramming facilities.
+This work presents the techniques used by language workbenches and general-purpose programming languages with metaprogramming facilities to develop domain-specific languages.
 
-\section{Context}
+\section{Research Questions} 
 
-\section{Research Questions}
+The thesis research questions are about, which features are provided by language workbenches and metaprogramming languages to implement a domain-specific language.
+This leads to the problem how of finding features actually used by implementations of domain-specific languages.
+
+Thus the research questions are:
+
+\begin{itemize} 
+	\item How is a domain-specific language implemented with the help of
+	\begin{itemize}
+		\item language workbenches?
+		\item metaprogramming languages?
+	\end{itemize}
+	\item What features are utilized to accomplish the implementation by
+	\begin{itemize}
+		\item language workbenches?
+		\item metaprogramming languages?
+	\end{itemize}
+\end{itemize}
 
 \section{Contributions}
+
+This work illustrates the implementation of a domain-specific language utilizing three language workbenches and three metaprogramming languages.
+The representative selection is based on diversity in the used paradigms.
+Also a general view, in the form of feature models, based on the features used by the implementations is given.
+
+Therefore this thesis makes the following contributions:
+
+\begin{itemize}
+	\item An implementation of the FSML using the language workbenches:
+	\begin{itemize}
+		\item MPS
+		\item Rascal
+		\item Spoofax
+	\end{itemize}
+	\item An implementation of the FSML using the metaprogramming languages:
+	\begin{itemize}
+		\item Haskell
+		\item Racket
+		\item Scala
+	\end{itemize}
+	\item Feature models based on the utilized features for implementing the FSML per representative.
+	\item An accumulated model for features provided by language workbenches and metaprogramming languages. 
+\end{itemize}
+

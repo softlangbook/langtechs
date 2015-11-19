@@ -1,20 +1,18 @@
 module Language.Fsml.Runtime where
 
-import Data.List
-import Data.Maybe
-import Language.Fsml.CS
+import           Data.List
+import           Data.Maybe
+import qualified Language.Fsml.CS as CS
 
-run :: Fsm -> [String] -> [String]
-run f = runI f s'
+run :: CS.Fsm -> [String] -> [String]
+run f = run' f s'
     where
-        s' = case find (\s -> initial s) (states f) of
-            Nothing -> error "no initial state defined"
-            Just a  -> a
+        s' = fromMaybe (error "no initial state defined")
+                       (find CS.initial (CS.states f))
 
-runI :: Fsm -> State -> [String] -> [String]
-runI _ _ []      = []
-runI f s (i:is) = (maybeToList (action t')) ++ (runI f (maybe s Prelude.id (target t')) is)
+run' :: CS.Fsm -> CS.State -> [String] -> [String]
+run' _ _ []      = []
+run' f s (i:is) = maybeToList (CS.action t') ++ run' f (fromMaybe s (CS.target t')) is
     where
-         t' = case find (\t -> input t == i) (transitions s) of
-            Nothing -> error ("input" ++ i ++ "not defined in state " ++ Language.Fsml.CS.id s)
-            Just a  -> a
+         t' = fromMaybe (error ("input" ++ i ++ "not defined in state " ++ CS.id s))
+                        (find ((==) i . CS.input) (CS.transitions s))

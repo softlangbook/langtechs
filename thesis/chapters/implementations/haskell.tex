@@ -1,24 +1,76 @@
 \section{Haskell}
+\label{s:haskell}
 
 \subsection{Abstract Syntax Tree}
 
 Haskells algebraic data types are predestinated to represent the nodes of the abstract syntax tree.
 \autoref{lst:hs/ast} shows a straight forward implementation using these data types.
 
-\lstinputlisting[caption=Abstract syntax tree in Haskell, label=lst:hs/ast, language=haskell]{../haskell/fsml/src/Fsml/Ast.hs}
+\lstinputlisting[caption=Abstract syntax tree in Haskell, label=lst:hs/ast, language=haskell]{../haskell/fsml/library/Language/Fsml/AST.hs}
+
+\subsection{Concrete Syntax}
+
+The concrete syntax realized in \autoref{lst:hs/cs} also uses algebraic data types.
+This implementation differs from the abstract syntax tree representation by using the states type for the target state in the transitions algebraic data type instead of a string.
+
+\lstinputlisting[caption=Concrete syntax tree in Haskell, label=lst:hs/cs, language=haskell]{../haskell/fsml/library/Language/Fsml/CS.hs}
 
 \subsection{Parser}
+\label{hs:ss/parser}
 
-\lstinputlisting[caption=Parser in Haskell, label=lst:hs/ast, language=haskell]{../haskell/fsml/src/Fsml/Parser.hs}
+\autoref{lst:hs/parser} shows the parser for the FSML.
+The parser is implemented using the parser combinator library Parsec \cite{parsec}.
+Ultimately the \lstinline[language=haskell]{fsm} function transforms FSML source code to an abstract syntax tree representation.
 
-\subsection{Quasiquoter}
+\lstinputlisting[caption=Parser in Haskell, label=lst:hs/parser, language=haskell, firstline=13]{../haskell/fsml/library/Language/Fsml/Parser.hs}
 
-\lstinputlisting[caption=Quasiquoter in Haskell, label=lst:hs/ast, language=haskell]{../haskell/fsml/src/Fsml/Quoter.hs}
+\subsection{Quasiquotation}
+\label{ss:haskell/quasiquotation}
+The Template Haskell library provides quasiquotation capabilities to Haskell \cite{templatehaskell}.
 
-\subsection{Runtime}
+In \autoref{lst:hs/quoter} the quoter for the FSML is defined.
+Pattern, type and declaration quotation is omitted, as the quoted FSML source code is only expected in an expression context.
 
-\lstinputlisting[caption=FSML Runtime in Haskell, label=lst:hs/ast, language=haskell]{../haskell/fsml/src/Fsml/Runtime.hs}
+The function \lstinline[language=haskell]{quoteFsmlExp} invokes the parser and constraint checker.
+When these steps succeed, the abstract syntax tree is passed to the \lstinline[language=haskell]{toFsmLetExp}.
+This is where the abstract syntax tree is transformed to Template Haskells quotation monad.
+Quotation monads encapsulate the concept of generating fresh names, failure, input and output \cite{sheard2002template}.
 
-\subsection{Usage}
+\lstinputlisting[caption=Quoter in Haskell, label=lst:hs/quoter, language=haskell, firstline=14]{../haskell/fsml/library/Language/Fsml/Quoter.hs}
 
-\lstinputlisting[caption=Embedded DSL Usage in Haskell, label=lst:hs/ast, language=haskell]{../haskell/fsml/src/Main.hs}
+\subsection{Constraint Checking}
+\label{hs:s/cc}
+
+The checks for distinct IDs and resolvable state IDs are not implemented as the Haskell compiler already takes care of unique and resolvable names.
+A finite state machine is considered valid if every of the following function returns an empty list.
+
+\subsubsection{Single Initial State}
+
+\autoref{lst:hs/cc/singleInitial} uses \lstinline[language=haskell]{initialStates} to select the initial states.
+If there are no initial states or more than one, an appropriate error message is returned.
+
+\lstinputlisting[caption=Check for single initial state constraint in Haskell, label=lst:hs/cc/singleInitial, language=haskell, firstline=25, lastline=31]{../haskell/fsml/library/Language/Fsml/Check.hs}
+
+\subsubsection{Deterministic Input}
+
+Checking for the deterministic input constraint is done in \autoref{lst:hs/cc/deterministicInput}.
+The first function concats the list of the duplicated inputs found in each states by invoking the second function with every state.
+
+\lstinputlisting[caption=Check for deterministic input constraint in Haskell, label=lst:hs/cc/deterministicInput, language=haskell, firstline=20, lastline=24]{../haskell/fsml/library/Language/Fsml/Check.hs}
+
+\subsubsection{Reachable State}
+
+\autoref{lst:hs/cc/reachableState} uses the initial states as an entry point to find all reachable states.
+Then \lstinline[language=haskell]{checkReachability'} determines which states to visit by selecting every target state referenced in the transitions of the currently states to visit.
+This functions invokes itself as long as new target states are found.
+
+\lstinputlisting[caption=Check for reachable state constraint in Haskell, label=lst:hs/cc/reachableState, language=haskell, firstline=32, lastline=44]{../haskell/fsml/library/Language/Fsml/Check.hs}
+
+\subsection{Tests}
+
+As the quasiquoter runs when the program is compiled, the doctest library is used to test for compile-time errors \cite{doctest}.
+This is possible due to the fact that each test case defined in a Haddock comment is evaluated by a read-eval-print loop like ghci.
+
+An example negative is test case is defined in \autoref{lst:hs/tests}
+
+\lstinputlisting[caption=Tests in Haskell, label=lst:hs/tests, language=haskell, firstline=9, lastline=26]{../haskell/fsml/test-suite/FsmlTest.hs}

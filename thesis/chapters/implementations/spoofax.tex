@@ -1,29 +1,61 @@
 \section{Spoofax}
+\label{s:spoofax}
 
 \subsection{Syntax Definition}
 
 Spoofax uses the Syntax Definition Formalism SDF3 for defining a context-free syntax.
+Therefore \autoref{lst:spoofax/syntax} is a straightforward implementation of the context-free syntax of the FSML illustrated in \citetitle{laemmel2014} \cite{laemmel2014}.
 
 \lstinputlisting[caption=Syntax definition in Spoofax, firstline=7, label=lst:spoofax/syntax, language=spoofax]{../spoofax/fsml/syntax/fsml.sdf3}
 
 \subsection{Name Binding}
 
-\lstinputlisting[caption=Name Binding in Spoofax, firstline=7, label=lst:spoofax/syntax, language=spoofax]{../spoofax/fsml/trans/names.nab}
+The NaBL Name Binding Language describes the scope and binding of syntax definitions.
+
+In \autoref{lst:spoofax/names} each Fsm node scopes its underlying state nodes.
+Theses state nodes define a unique ID in the Fsm scope.
+In the same way every transition node is scoped by a parent state node.
+At last the binding between the targets ID and the states ID is made.
+
+\lstinputlisting[caption=Name Binding in Spoofax, firstline=7, label=lst:spoofax/names, language=spoofax]{../spoofax/fsml/trans/names.nab}
 
 \subsection{Constraint Checking}
 
-\lstinputlisting[caption=Constraint Checking in Spoofax, firstline=7, label=lst:spoofax/syntax, language=spoofax]{../spoofax/fsml/trans/check.str}
+Constraints are checked by defining conditional rewrite rules in the Stratego language.
+Matching rules return a tuple of AST nodes and an associated message.
+Spoofax provides rules for constraint errors, warnings and notes.
+
+Since the name binding ensures that the distinct ID, deterministic input and resolvable state constraints  are satisfied, the AST is only checked for the single initial state and reachable state constraint.
+
+\subsubsection{Single Initial State}
+
+\autoref{lst:spoofax/cc/initialState} shows rules for constraint errors.
+The first rule is applied when no initial states are defined.
+Where the second rule is applied when there are more than one initial states.
+
+\lstinputlisting[caption=Check for single initial state constraint in Spoofax, label=lst:spoofax/cc/initialState, language=spoofax, firstline=17, lastline=32]{../spoofax/fsml/trans/check.str}
+
+\subsubsection{Reachable State}
+
+The constraint warning rule in \autoref{lst:spoofax/cc/reachable}, which checks for unreachable states, is always applied.
+When there are no unreachable states the tuples first value contains an empty list.
+
+\lstinputlisting[caption=Check for reachable state constraint in Spoofax, label=lst:spoofax/cc/reachable, language=spoofax, firstline=33, lastline=38]{../spoofax/fsml/trans/check.str}
 
 \subsection{Code Generation}
 
-\lstinputlisting[caption=Code generation in Spoofax, firstline=7, label=lst:spoofax/syntax, language=spoofax]{../spoofax/fsml/trans/generate.str}
+Spoofax uses rewrite rules and string interpolation written in the Stratego transformation language to generate arbitrary source code.
+\autoref{lst:spoofax/generate} defines the entry point for Java source code generation.
 
-\subsection{Pretty Printing}
-
-\lstinputlisting[caption=Pretty Printing in Spoofax, firstline=13, lastline=64, label=lst:spoofax/syntax, language=spoofax]{../spoofax/fsml/trans/pp.str}
+\lstinputlisting[caption=Code generation in Spoofax, firstline=16, lastline=35, label=lst:spoofax/generate, language=spoofax]{../spoofax/fsml/trans/generate.str}
 
 \subsection{IDE Construction}
 
 \subsection{Tests}
 
-\lstinputlisting[caption=Tets in Spoofax, firstline=3, label=lst:spoofax/syntax, language=spoofax]{../spoofax/fsml/test/tests.spt}
+Test are written in the Spoofax Testing Language SPT. 
+
+In \autoref{lst:spoofax/tests} negative test cases for the FSML are shown.
+Each test statement expects an exact number of warnings or errors.
+
+\lstinputlisting[caption=Tests in Spoofax, linerange={3-10,40-48}, label=lst:spoofax/tests, language=spoofax]{../spoofax/fsml/test/tests.spt}

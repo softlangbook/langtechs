@@ -76,13 +76,13 @@ rules
     ; match(implicits__|[])
 
   nabl-get-name :
-    Transition(input, _, target) -> input
+    Transition(input, _, _) -> input
 
   nabl-name-apply(s) =
     Transition(s, id, id)
 
   nabl-def-site(child-uris__, sibl-uris__, implicits__|lang__, ctx__, uniques__, uri__, states__) =
-    ?Transition(input, _, target)
+    ?Transition(input, _, _)
     ; origin-track-forced(
         Transition(
           nabl-def(

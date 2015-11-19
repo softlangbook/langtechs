@@ -1,10 +1,11 @@
 \documentclass[12pt, twoside]{report}
 \usepackage[backend=biber, sorting=nty, style=ieee]{biblatex}
 \usepackage{fancyhdr}
-\usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry}
+\usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, left=35mm, right=35mm, bindingoffset=0mm]{geometry}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage[english, ngerman]{babel}
 \usepackage{listings}
 \usepackage{epstopdf}
 \usepackage{forest}
@@ -16,14 +17,24 @@
 \usepackage{amssymb}
 \usepackage{tabularx}
 \usepackage{emptypage}
+\usepackage{pdflscape}
+\usepackage{wasysym}
+\usepackage{float}
 
 \bibliography{bibliography}
 
+\graphicspath{ {images/} }
+\usetikzlibrary{matrix,arrows,positioning,shadows}
+\tikzset{
+	feature/.style={draw, inner sep=1.5mm, font=\small\sffamily, fill=white, drop shadow},
+opt/.style={fill=white}
+}
+
 \pagestyle{fancy}
 \headheight = 16pt
-\fancyhead[OL,ER]{\leftmark}
+\fancyhead[OL,ER]{}
 \fancyhead[OC,EC]{}
-\fancyhead[OR,EL]{\rightmark}
+\fancyhead[OR,EL]{\leftmark}
 \fancyfoot[OL,ER]{}
 \fancyfoot[OC,EC]{}
 \fancyfoot[OL,ER]{\thepage}
@@ -32,7 +43,6 @@
 	\fancyfoot[OL,ER]{\thepage}
 	\renewcommand{\headrulewidth}{0pt}
 }
-
 
 \lstset{
 	aboveskip=2em,
@@ -48,12 +58,15 @@
 	showtabs=false,
 	tabsize=2,
 	title=\lstname,
-	xleftmargin=2em
+	xleftmargin=2em,
+	literate={λ}{{$\lambda$}}1
 }
 
 \lstdefinelanguage{rascal}{
+	alsoletter=-,
 	morekeywords={
 		bool,
+		bottom-up-break,
 		case,
 		class,
 		default,
@@ -148,21 +161,17 @@
 \cleardoublepage
 \include{abstract}
 
+\include{acknowledgement}
+
 \cleardoublepage
 \pagenumbering{roman}\setcounter{page}{1}
 \tableofcontents
-\cleardoublepage
 \listoffigures
-\cleardoublepage
-\listoftables
-\cleardoublepage
 \lstlistoflistings
 
 \cleardoublepage
 \pagenumbering{arabic}\setcounter{page}{1}
 \include{chapters/introduction}
-\cleardoublepage
-\include{chapters/background}
 \cleardoublepage
 \include{chapters/related_work}
 \cleardoublepage

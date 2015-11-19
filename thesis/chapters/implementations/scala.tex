@@ -1,8 +1,91 @@
 \section{Scala}
+\label{s:scala}
+\lstset{language=scala}
 
-\subsection{Macros}
+\subsection{Abstract Syntax}
+\label{ss:scala/abstractSyntax}
 
-\lstinputlisting[caption=Macro definition in Scala, label=lst:scala/macro, language=scala]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
+The abstract syntax is represented by Scala case classes shown in \autoref{lst:scala/ast/fsm}, \autoref{lst:scala/ast/state} and \autoref{lst:scala/ast/transition}.
+
+\lstinputlisting[caption=Fsm Abstract Syntax node in Scala, label=lst:scala/ast/fsm, language=scala, firstline=3, lastline=3]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/ast/FsmNode.scala}
+
+\lstinputlisting[caption=State Abstract Syntax node in Scala, label=lst:scala/ast/state, language=scala, firstline=3, lastline=3]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/ast/StateNode.scala}
+
+\lstinputlisting[caption=Transition Abstact Syntax Node in Scala, label=lst:scala/ast/transition, language=scala, firstline=3, lastline=3]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/ast/TransitionNode.scala}
+
+\subsection{Macro}
+
+\subsubsection{Macro Annotation}
+
+\autoref{lst:scala/macro/staticAnnotation} shows the definition for the macro annotation.
+This is a feature of the Scala macro paradise plugin \cite{scalamacroparadise}.
+A macro annotation is an ordinary Scala class extending the \lstinline{StaticAnnotation} trait.
+This trait expects a macro assigned to \lstinline{macroTransform}.
+The \lstinline{fsmMacro} variables refers to the actual implementation.
+To ensure that the annotation is not referred to after type checking, the class is annotated with the \lstinline{compileTimeOnly} annotation.
+
+\lstinputlisting[caption=Macro definition in Scala, label=lst:scala/macro/staticAnnotation, language=scala, firstline=6, lastline=9]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/Fsm.scala}
+
+\subsubsection{Implicit Conversion}
+
+The implicit conversion in \autoref{lst:scala/macro/implicitConversion} is used by the Scala compiler.
+When an expression of the type \lstinline{Name} is used in place of the type \lstinline{String}, the original expression is replaced by the invocation of the implicit conversion with the original expression as its parameter.
+
+\lstinputlisting[caption=Implicit Conversion in Scala, label=lst:scala/macro/implicitConversion, language=scala, firstline=17, lastline=18]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
+
+
+\subsubsection{Unlifting}
+\label{scala:sss/macro/unlifting}
+
+The unlifting instances in \autoref{lst:scala/macro/unlifting} transform Scala abstract syntax tree to the abstract syntax tree representation defined for the FSML in \autoref{ss:scala/abstractSyntax}.
+Pattern matching against a quasiquotation is used for the alternatives of a concrete syntax rule of the FSML.
+
+\lstinputlisting[caption=Unlifting in Scala, label=lst:scala/macro/unlifting, language=scala, firstline=19, lastline=35]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
+
+\subsubsection{Lifting}
+\label{scala:sss/macro/lifting}
+
+Lifting instances shown in \autoref{lst:scala/macro/lifting} define the Scala abstract syntax tree representation for the state and transition data type.
+The first lifting instance transforms a \lstinline{StateNode} to an object with the states ID as its name and the transitions as its body.
+A \lstinline{TransitionNode} is lifted to a function declaration.
+The transition input is used for the functions name and the body contains a \lstinline{println} invocation, if the transition contains an action.
+For transitions with a target state this state is returned by the function, otherwise the enclosing context is returned.
+
+\lstinputlisting[caption=Lifting in Scala, label=lst:scala/macro/lifting, language=scala, firstline=37, lastline=50]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
+
+\subsubsection{Tree Deconstruction}
+
+The Scala abstract syntax tree is deconstructed in \autoref{lst:scala/macro/treeDeconstruction} by unquoting the annotees object name, parents and unquote splicing the objects body respective the states in a quasiquotation.
+For the unquote splicing of the states the unlifting instances defined in \autoref{scala:sss/macro/unlifting} are used.
+
+\lstinputlisting[caption=Tree Deconstruction in Scala, label=lst:scala/macro/treeDeconstruction, language=scala, firstline=53, lastline=53]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
+
+\subsubsection{Tree Construction}
+
+In \autoref{lst:scala/macro/treeConstruction} the resulting Scala abstract syntax tree is constructed defining a quasiquotation.
+The object name and parents are unquoted back in with the values the tree deconstruction extracted.
+Further in the objects body the initial state is unquoted in place of the right-hand site of the newly defined apply function.
+Finally the states are also spliced into the objects body.
+The lifting instances from \autoref{scala:sss/macro/lifting} are used to quote or splice the states into the tree.
+
+\lstinputlisting[caption=Tree Construction in Scala, label=lst:scala/macro/treeConstruction, language=scala, firstline=56, lastline=61]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
+
+\subsection{Constraint Checking}
+
+As the Scala compiler takes care of name resolution and name collision, there is no need to check for the distinct state ID constraint, resolvable state ID constraint and deterministic input constraint.
+In the following the single initial state constraint check is shown.
+
+\subsubsection{Single Initial State}
+
+\autoref{lst:scala/cc/singleInitial} function first counts the number of initial states.
+If the this result matches zero or more than one, a compile time error is raised.
+
+\lstinputlisting[caption=Check for single initial state constraint in Scala, label=lst:scala/cc/singleInitial, language=scala, firstline=74, lastline=81]{../scala/fsml/core/src/main/scala/de/sschauss/fsml/macros/macros.scala}
 
 \subsection{Tests}
-\subsection{Usage}
+
+ScalaTest provides a convenient way to test if source code does not compile \cite{scalatest}.
+\autoref{lst:scala/tests} shows the negative test case for the single initial state constraint.
+
+\lstinputlisting[caption=Tests in Scala, label=lst:scala/tests, language=scala, firstline=6, lastline=19]{../scala/fsml/test/src/test/scala/de/sschauss/fsml/MacroTestSuite.scala}
+

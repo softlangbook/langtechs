@@ -2,9 +2,9 @@
 <model ref="r:f2b42bec-11ea-4b45-89e9-299de2e70709(nodetests@tests)">
   <persistence version="9" />
   <languages>
-    <use id="f61473f9-130f-42f6-b98d-6c438812c2f6" name="jetbrains.mps.baseLanguage.unitTest" version="-1" />
-    <use id="8585453e-6bfb-4d80-98de-b16074f1d86c" name="jetbrains.mps.lang.test" version="-1" />
-    <use id="1e0d5fd6-c07a-4df5-9c9b-c73735ba6c37" name="fsml" version="-1" />
+    <use id="f61473f9-130f-42f6-b98d-6c438812c2f6" name="jetbrains.mps.baseLanguage.unitTest" version="0" />
+    <use id="8585453e-6bfb-4d80-98de-b16074f1d86c" name="jetbrains.mps.lang.test" version="1" />
+    <use id="1e0d5fd6-c07a-4df5-9c9b-c73735ba6c37" name="fsml" version="0" />
   </languages>
   <imports>
     <import index="36f4" ref="r:ad6fef75-83a6-4dc3-b0fa-1a4cf65e8eba(fsml.typesystem)" />
@@ -96,9 +96,6 @@
         </node>
       </node>
     </node>
-  </node>
-  <node concept="2XOHcx" id="13jvcrV6pmA">
-    <property role="2XOHcw" value="#{mps.home}" />
   </node>
   <node concept="1lH9Xt" id="27zjBwZL_46">
     <property role="TrG5h" value="IdsNotOk" />
@@ -269,6 +266,9 @@
         </node>
       </node>
     </node>
+  </node>
+  <node concept="2XOHcx" id="1uZsEKvtuLZ">
+    <property role="2XOHcw" value="/home/simon/dev/langtechs/mps/fsml" />
   </node>
 </model>
 
