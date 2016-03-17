@@ -10,17 +10,4 @@ Or cd to the source dir and run
 - `cabal sandbox init` 
 - `cabal install --enable-tests`
 - `cabal test`
-
-#Structure
-- fsml
-  - executable
-    - Main.hs: example usage of the quasiquoter
-  - library/language
-    - Fsml.hs: re export modules
-      - Fsml
-        - AST.hs
-        - CS.hs
-        - Check.hs
-        - Parser.hs
-        - Quoter.hs
-        - Runtime.hs
+- `cabal run`
